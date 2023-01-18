@@ -3,3 +3,6 @@
 <meta name="google-site-verification" content="ckqIY6d7rrOOv6HtORLOsxm0DIWsd_R_dbYjN30p8xs">
 
 <meta name="cmsmagazine" content="9c6ef2de977ca07e4acfde59d15b7656">
+
+
+refetchOnFocus/refetchOnReconnect setupListeners(store.dispatch) - чтоб обновлялись данные при переходе по вкладкам надо ли?

@@ -1,0 +1,31 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: initial;
+}
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 40px 200px;
+  //font-family: 'Sofia Sans', sans-serif;
+  //font-family: 'PT Sans', sans-serif;
+  font-size: 22px;
+}
+.navigation {
+  display: flex;
+  li {
+    display: inline;
+    padding: 25px;
+    a:active {
+      color: orangered;
+    }
+  }
+}
+.main {
+  padding-left: 200px;
+  padding-right: 200px;
+  height: calc(100vh - 169px);
+  display: flex;
+}

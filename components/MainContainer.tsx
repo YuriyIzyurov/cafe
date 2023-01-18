@@ -1,5 +1,6 @@
 import Head from "next/head";
 import A from "./A";
+import s from '../styles/header.module.scss'
 
 const MainContainer = ({children, keywords = ''}) => {
     return (
@@ -10,19 +11,14 @@ const MainContainer = ({children, keywords = ''}) => {
                 <meta name="description" content="Кафе У Кузьмича официальный сайт"/>
                 <meta name="keywords" content={'кафе, иваново, у кузьмича, ' + keywords}/>
                 <title>Кафе "У Кузьмича"</title>
+                <link rel="preconnect" href="https://fonts.googleapis.com"/>
+                <link rel="preconnect" href="https://fonts.gstatic.com" />
+             {/*   <link href="https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@700&display=swap" rel="stylesheet"/>*/}
+                <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet"/>
             </Head>
-            <div>
-                <h1>Главная страница</h1>
-                <A href={'/'} text='Главная'/>
-                <A href={'/menu'} text='Меню'/>
-                <A href={'/services'} text='Услуги'/>
-                <A href={'/rooms'} text='Залы'/>
-                <A href={'/reviews'} text='Отзывы'/>
-                <A href={'/contacts'} text='Контакты'/>
-            </div>
-            <div>
-                {children}
-            </div>
+            <main>
+              {children}
+            </main>
         </>
     );
 };
