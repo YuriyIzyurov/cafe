@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const InfoContainer = styled.div`
+export const InfoContainer = styled.section`
   color: #fff;
   background: ${({lightBg}) => (lightBg ? '#f9f9f9' : '#161616')};
   
@@ -41,6 +41,7 @@ export const Column1 = styled.div`
 `
 
 export const Column2 = styled.div`
+  position: relative;
   margin-bottom: 15px;
   padding: 0 15px;
   grid-area: col2;
@@ -88,9 +89,57 @@ export const BtnWrap = styled.div`
 `
 
 export const ImgWrap = styled.div`
-  max-width: 555px;
+  position: absolute;
+  bottom: 310px;
+  right: -75px;
+  width: 660px;
   height: 100%;
 `
+
+export const ImgWrap2 = styled.div`
+  position: absolute;
+  bottom: -11px;
+  left: -206px;
+  height: 100%;
+`
+
+export const ImgWrap3 = styled.div`
+  position: absolute;
+  bottom: 287px;
+  left: -49px;
+  height: 100%;
+`
+
+export const ImgWrap4 = styled.div`
+  position: absolute;
+  bottom: -72px;
+  left: 318px;
+  width: 230px;
+  height: 100%;
+`
+
+export const ImgWrap5 = styled.div`
+  position: absolute;
+  bottom: -43px;
+  left: -78px;
+  height: 100%;
+`
+
+export const ImgWrap6 = styled.div`
+  position: absolute;
+  bottom: 338px;
+  right: -139px;
+  height: 100%;
+`
+
+
+export const ImgWrap7 = styled.div`
+  position: absolute;
+  bottom: 370px;
+  right: -43px;
+  height: 100%;
+`
+
 
 export const Img = styled.img`
   width: 100%;

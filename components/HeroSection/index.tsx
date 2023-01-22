@@ -20,9 +20,9 @@ const HeroSection = () => {
     }
 
     return (
-        <HeroContainer>
+        <HeroContainer id='main'>
             <HeroBg>
-                <ImgBg src='images/main.jpg' alt='main'/>
+                <ImgBg src='images/main2.jpg' alt='main'/>
             </HeroBg>
             <HeroContent>
                 <HeroH1>Идеальное место для семейного отдыха</HeroH1>
@@ -37,9 +37,8 @@ const HeroSection = () => {
                         onMouseEnter={onHover}
                         onMouseLeave={onHover}
                         primary='false'
-                        dark={false}
                     >
-                        Посмотреть меню {hover ? <ArrowForward/> : <ArrowRight/>}
+                        Заказать столик {hover ? <ArrowForward/> : <ArrowRight/>}
                     </Button>
                 </HeroBtnWrapper>
             </HeroContent>

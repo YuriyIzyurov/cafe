@@ -1,9 +1,9 @@
 import React from 'react';
 import {ServicesCard, ServicesContainer, ServicesH1, ServicesH2, ServicesIcon, ServicesP, ServicesWrapper} from "./ServicesStyles";
 
-const Services = () => {
+const Services = ({id}) => {
     return (
-        <ServicesContainer id='services'>
+        <ServicesContainer id={id}>
             <ServicesH1>Наши услуги</ServicesH1>
             <ServicesWrapper>
                 <ServicesCard>
