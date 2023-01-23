@@ -12,8 +12,8 @@ const MainContainer = ({children, keywords = ''}) => {
                 <link rel="preconnect" href="https://fonts.googleapis.com"/>
                 <link rel="preconnect" href="https://fonts.gstatic.com" />
                 <link rel="shortcut icon" href="images/favicon.ico" />
-             {/*   <link href="https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@700&display=swap" rel="stylesheet"/>*/}
                 <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet"/>
+                <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet"/>
             </Head>
             <main>
               {children}

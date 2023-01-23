@@ -13,6 +13,7 @@ import {gsap} from "gsap";
 import {scroller} from 'react-scroll'
 import { useInView } from 'react-intersection-observer';
 import {activateScrollTrigger, activateScrollTriggerFromBottom} from "../components/utility/parallax";
+import HistorySection from "../components/HistorySection";
 
 
 
@@ -66,7 +67,7 @@ const Index = () => {
                 })
             }
         } else if(e.pageY < 1800) {
-            let direction = e.deltaY > 0 ? 'services2' : 'main'
+            let direction = e.deltaY > 0 ? 'history' : 'main'
             scroller.scrollTo(direction, {
                 duration: 1200,
                 smooth: true,
@@ -83,7 +84,7 @@ const Index = () => {
             })
         } else {
             if(e.deltaY < 0) {
-                scroller.scrollTo('services2', {
+                scroller.scrollTo('history', {
                     duration: 1200,
                     smooth: true,
                     offset: -80,
@@ -148,7 +149,7 @@ const Index = () => {
           <div ref={mainPage} >
               <HeroSection />
               <InfoSection {...homeObjOne}/>
-              <Services id='services2'/>
+              <HistorySection />
               <Services id='services'/>
           </div>
           {/*<InfoSection {...homeObjThree}/>*/}

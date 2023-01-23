@@ -1,20 +1,11 @@
 import {gsap} from "gsap";
-import {scroller} from 'react-scroll'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger.js';
 gsap.registerPlugin(ScrollTrigger)
 
-/*ScrollTrigger.create({
-    trigger: "#about",
-    start: "top bottom",
-    end: "top top",
-    scrub: true,
-    onToggle: self => console.log("toggled, isActive:", self.isActive),
-    onUpdate: self => {
-        console.log("progress:", self.progress.toFixed(3), "direction:", self.direction, "velocity", self.getVelocity());
-    }
-})*/
 
 export const activateScrollTrigger = () => {
+
+    //about container animation
         gsap.timeline({
         ease: 'expo.inOut',
         scrollTrigger: {
@@ -40,9 +31,23 @@ export const activateScrollTrigger = () => {
         .from("#pepper", { y: 150 }, 0)
         .from("#salad",   { y:  100 }, 0)
         .from("#tomatos",   { y:  250 }, 0)
+
+    //history container animation
+    gsap.timeline({
+        scrollTrigger: {
+            trigger: "#history",
+            start: "center bottom",
+            end: "top top",
+            scrub: true
+        }
+    })
+        .from("#smoke", { y: 30 }, 0)
+        .from("#tea",   { y:  40 }, 0)
+        .from("#branch",   { y:  100 }, 0)
 }
 
 export const activateScrollTriggerFromBottom = () => {
+    //about container animation
     gsap.timeline({
         scrollTrigger: {
             trigger: "#about",
@@ -59,21 +64,17 @@ export const activateScrollTriggerFromBottom = () => {
         .to("#salad",   { y:  -100 }, 0)
         .to("#tomatos",   { y:  -250 }, 0)
 
-    /*gsap.timeline({
+    //history container animation
+    gsap.timeline({
         scrollTrigger: {
-            trigger: "#about",
-            start: "bottom 80%",
+            trigger: "#history",
+            start: "bottom bottom",
             end: "bottom top",
             scrub: true
         }
     })
-        */
+        .to("#smoke", { y: -30 }, 0)
+        .to("#tea",   { y:  -40 }, 0)
+        .to("#branch",   { y:  -100 }, 0)
 }
 
-/*
-scroller.scrollTo('about', {
-    duration: 5000,
-    smooth: true,
-    offset: -80,
-    ignoreCancelEvents: true
-})*/
