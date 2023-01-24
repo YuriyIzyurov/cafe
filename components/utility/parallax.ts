@@ -75,6 +75,6 @@ export const activateScrollTriggerFromBottom = () => {
     })
         .to("#smoke", { y: -30 }, 0)
         .to("#tea",   { y:  -40 }, 0)
-        .to("#branch",   { y:  -100 }, 0)
+        .to("#branch",   { y:  850, x: -20, rotation: 180 }, 0)
 }
 

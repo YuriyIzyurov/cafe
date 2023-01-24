@@ -26,28 +26,30 @@ export const HistoryWrapper = styled.div`
 export const HistoryBlock = styled.div`
   position: relative;
   display: grid;
-  grid-template-columns: 45% 55%;
+  grid-template-columns: ${({reverse = false, mini = false}) => 
+          reverse ? (mini ? '60% 40%' :'55% 45%') : (mini ? '40% 60%' : '45% 55%')};
   background-color: #fff;
   z-index: 1;
+  box-shadow: 2px 2px 8px black;
 `
 export const HistoryContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 100px;
+  padding: ${({padding}) => '0 ' + padding};
 `
 export const HistoryH2 = styled.h2`
   font-family: 'Marck Script', cursive;
   color: rgba(157,141,121,0.85);
   font-weight: 400;
-  font-size: 28px;
-  line-height: 28px;
+  font-size: ${({fontSize = '28px'}) => fontSize};
+  line-height: ${({fontSize = '28px'}) => fontSize};;
   letter-spacing: -2px;
 `
 export const HistoryH1 = styled.h1`
   color: #161616;
-  font-size: 34px;
-  line-height: 34px;
+  font-size: ${({fontSize = '34px'}) => fontSize};
+  line-height: ${({fontSize = '34px'}) => fontSize};
 `
 export const HistoryP = styled.p`
   color: #161616;
@@ -76,6 +78,7 @@ export const HistoryImgWrap3 = styled.div`
   bottom: -85px;
   right: -44px;
   width: 140px;
+  z-index: 3;
 `
 
 

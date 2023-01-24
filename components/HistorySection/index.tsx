@@ -25,7 +25,7 @@ const HistorySection = () => {
                         <img src='images/tea.png'/>
                     </HistoryImgWrap2>
                     <img src='images/history2.png'/>
-                    <HistoryContent>
+                    <HistoryContent padding='100px'>
                         <HistoryH2>Погрузись</HistoryH2>
                         <HistoryH1>В нашу историю</HistoryH1>
                         <HistoryP>
