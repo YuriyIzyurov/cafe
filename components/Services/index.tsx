@@ -1,6 +1,8 @@
 import React from 'react';
-import { ServicesBlockWrapper1, ServicesBlockWrapper2,
-    ServicesBlockWrapper3, ServicesContainer, ServicesWrapper} from "./ServicesStyles";
+import {
+    ServicesBlockWrapper1, ServicesBlockWrapper2,
+    ServicesBlockWrapper3, ServicesContainer, ServicesImgWrapper, ServicesWrapper
+} from "./ServicesStyles";
 import {
     HistoryBlock,
     HistoryContent,
@@ -14,6 +16,9 @@ const Services = ({id}) => {
     return (
         <ServicesContainer id={id}>
             <ServicesWrapper>
+               <ServicesImgWrapper id='flour'>
+                   <img src='images/flour.png' alt='flour'/>
+               </ServicesImgWrapper>
                <ServicesBlockWrapper1>
                 <HistoryBlock mini>
                     <img src='images/banket2.png'/>

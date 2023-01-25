@@ -12,8 +12,9 @@ import Services from "../components/Services";
 import {gsap} from "gsap";
 import {scroller} from 'react-scroll'
 import { useInView } from 'react-intersection-observer';
-import {activateScrollTrigger, activateScrollTriggerFromBottom} from "../components/utility/parallax";
+import {activateScrollTrigger} from "../components/utility/parallax";
 import HistorySection from "../components/HistorySection";
+import Footer from "../components/Footer";
 
 
 
@@ -39,25 +40,15 @@ const Index = () => {
         for (let i = 0; i < slides.length; i++) {
             offsets.push(-slides[i].offsetTop)
         }
-
         activateScrollTrigger()
-        activateScrollTriggerFromBottom()
     }, [])
 
-    const chooseScrollDirection = (activeSlide) => {
-        switch (activeSlide) {
-            case 0: return 'main'
-            case 1: return 'about'
-            case 2: return 'services2'
-            case 3: return 'services'
-        }
-    }
 
     function slideScroll(e) {
-
-
+        console.log(e.pageY)
         //todo: переделать на другую логику
         if(e.pageY < 900) {
+            //main page
             if(e.deltaY > 0) {
                 scroller.scrollTo('about', {
                     duration: 1200,
@@ -67,6 +58,7 @@ const Index = () => {
                 })
             }
         } else if(e.pageY < 1800) {
+            //about page
             let direction = e.deltaY > 0 ? 'history' : 'main'
             scroller.scrollTo(direction, {
                 duration: 1200,
@@ -75,6 +67,7 @@ const Index = () => {
                 ignoreCancelEvents: true
             })
         } else if(e.pageY < 2500) {
+            //history page
             let direction = e.deltaY > 0 ? 'services' : 'about'
             scroller.scrollTo(direction, {
                 duration: 1200,
@@ -82,9 +75,19 @@ const Index = () => {
                 offset: -80,
                 ignoreCancelEvents: true
             })
+        } else if(e.pageY < 3400){
+            //services page
+            let direction = e.deltaY > 0 ? 'contacts' : 'history'
+            scroller.scrollTo(direction, {
+                duration: 1200,
+                smooth: true,
+                offset: -80,
+                ignoreCancelEvents: true
+                })
         } else {
+            //contacts page
             if(e.deltaY < 0) {
-                scroller.scrollTo('history', {
+                scroller.scrollTo('services', {
                     duration: 1200,
                     smooth: true,
                     offset: -80,
@@ -92,52 +95,6 @@ const Index = () => {
                 })
             }
         }
-        /*console.log(activeSlide)
-
-        let desirableSlide = activeSlide
-        oldSlide = activeSlide
-        e.deltaY > 0 ? desirableSlide += 1 : desirableSlide -= 1
-
-
-        // make sure we're not past the end or beginning slide
-        desirableSlide = desirableSlide < 0 ? 0 : desirableSlide
-        desirableSlide = desirableSlide > slides.length - 1 ? slides.length - 1 : desirableSlide
-        setActiveSlide(desirableSlide)
-        if (oldSlide === desirableSlide) {
-            return
-        }
-
-        scroller.scrollTo(chooseScrollDirection(activeSlide), {
-            duration: 1000,
-            smooth: true,
-            offset: -80,
-            ignoreCancelEvents: true
-        })*/
-
-        //gsap.to(mainPage.current, dur, { y: offsets[activeSlide], ease:"power2.inOut" })
-
-       /* // if we're dragging we don't animate the container
-        if (this.id != "dragger") {
-            gsap.to(container, dur, { y: offsets[activeSlide], ease:"power2.inOut", onUpdate:tweenDot });
-        }
-*/
-            // dragging the panels
-            /*if (this.id === "dragger") {
-                activeSlide = offsets.indexOf(this.endY);
-            } else {
-                if (gsap.isTweening(container)) {
-                    return;
-                }
-                // up/down arrow clicks
-                if (this.id === "downArrow" || this.id === "upArrow") {
-                    activeSlide = this.id === "downArrow" ? (activeSlide += 1) : (activeSlide -= 1);
-                    // click on a dot
-                } else if (this.className === "dot") {
-                    activeSlide = this.index;
-                    // scrollwheel
-                } else {
-                    activeSlide = e.deltaY > 0 ? (activeSlide += 1) : (activeSlide -= 1);
-                }*/
     }
     const toggle = () => setIsOpen(!isOpen)
 
@@ -151,9 +108,9 @@ const Index = () => {
               <InfoSection {...homeObjOne}/>
               <HistorySection />
               <Services id='services'/>
+              <Footer id='contacts'/>
           </div>
           {/*<InfoSection {...homeObjThree}/>*/}
-          {/*<Footer />*/}
         </MainContainer>
     );
 

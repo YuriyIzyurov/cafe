@@ -54,4 +54,8 @@ export const ServicesBlockWrapper3 = styled.div`
   left: 0;
   max-width: 700px;
 `
-
+export const ServicesImgWrapper = styled.div`
+  position: absolute;
+  top: -111px;
+  left: 182px;
+`

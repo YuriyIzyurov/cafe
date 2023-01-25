@@ -1,55 +1,67 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
-    FooterContainer,
+    FooterBG, FooterBG2,
+    FooterContainer, FooterContentWrapper, FooterH1,
+    FooterH2,
     FooterLink,
     FooterLinkItems,
     FooterLinksContainer,
     FooterLinksWrapper,
-    FooterLinkTitle,
+    FooterLinkTitle, FooterP,
     FooterWrap
 } from "./FooterStyles";
+import {ArrowForward, ArrowRight, HeroBtnWrapper, ImgBg} from "../HeroSection/HeroSectionStyles";
+import {Button} from "../ButtonElement";
+import {NavLogo} from "../Navbar/NavStyles";
 
-const Footer = () => {
+const Footer = ({id}) => {
+
+    const [hover, setHover] = useState(false)
+
+    const onHover = () => {
+        setHover(!hover)
+    }
+
     return (
-        <FooterContainer>
+        <FooterContainer id={id}>
+            <FooterBG url="images/footer2.png"/>
+            <FooterBG2>
+                <FooterContentWrapper>
+                    <FooterH2>Бронирование</FooterH2>
+                    <FooterH1>Закажи себе столик</FooterH1>
+                    <HeroBtnWrapper>
+                        <Button
+                            to='signup'
+                            onMouseEnter={onHover}
+                            onMouseLeave={onHover}
+                            primary='false'
+                        >
+                            Заказать столик {hover ? <ArrowForward/> : <ArrowRight/>}
+                        </Button>
+                    </HeroBtnWrapper>
+                </FooterContentWrapper>
+            </FooterBG2>
             <FooterWrap>
                 <FooterLinksContainer>
                     <FooterLinksWrapper>
                         <FooterLinkItems>
-                            <FooterLinkTitle>О нас</FooterLinkTitle>
-                            <FooterLink href='signin'>Где мы</FooterLink>
-                            <FooterLink href='signin'>Фотоальбом</FooterLink>
-                            <FooterLink href='signin'>Руководство</FooterLink>
-                            <FooterLink href='signin'>Предложения</FooterLink>
-                            <FooterLink href='signin'>Ссылка на соцсети</FooterLink>
+                            <FooterLinkTitle>Где мы находимся</FooterLinkTitle>
+                            <FooterP>
+                                Подгорная ул.7, Иваново
+                                8-915-828-55-07, 28‑55-07
+                                ежедневно, 12:00–0:00
+                            </FooterP>
                         </FooterLinkItems>
                         <FooterLinkItems>
-                            <FooterLinkTitle>О нас</FooterLinkTitle>
-                            <FooterLink href='signin'>Где мы</FooterLink>
-                            <FooterLink href='signin'>Фотоальбом</FooterLink>
-                            <FooterLink href='signin'>Руководство</FooterLink>
-                            <FooterLink href='signin'>Предложения</FooterLink>
-                            <FooterLink href='signin'>Ссылка на соцсети</FooterLink>
+                            <FooterLinkTitle>Социальные сети</FooterLinkTitle>
+                            <FooterLink href='signin'>Инстаграм</FooterLink>
+                            <FooterLink href='signin'>Группа вк</FooterLink>
+                            <FooterLink href='signin'>Эл. почта</FooterLink>
                         </FooterLinkItems>
                     </FooterLinksWrapper>
-                    <FooterLinksWrapper>
-                        <FooterLinkItems>
-                            <FooterLinkTitle>О нас</FooterLinkTitle>
-                            <FooterLink href='signin'>Где мы</FooterLink>
-                            <FooterLink href='signin'>Фотоальбом</FooterLink>
-                            <FooterLink href='signin'>Руководство</FooterLink>
-                            <FooterLink href='signin'>Предложения</FooterLink>
-                            <FooterLink href='signin'>Ссылка на соцсети</FooterLink>
-                        </FooterLinkItems>
-                        <FooterLinkItems>
-                            <FooterLinkTitle>О нас</FooterLinkTitle>
-                            <FooterLink href='signin'>Где мы</FooterLink>
-                            <FooterLink href='signin'>Фотоальбом</FooterLink>
-                            <FooterLink href='signin'>Руководство</FooterLink>
-                            <FooterLink href='signin'>Предложения</FooterLink>
-                            <FooterLink href='signin'>Ссылка на соцсети</FooterLink>
-                        </FooterLinkItems>
-                    </FooterLinksWrapper>
+                    <NavLogo href='/' >
+                        <img src="images/logo.png" alt="логотип"/>
+                    </NavLogo>
                 </FooterLinksContainer>
             </FooterWrap>
         </FooterContainer>
