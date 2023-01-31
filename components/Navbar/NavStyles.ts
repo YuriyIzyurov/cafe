@@ -29,7 +29,10 @@ export const NavbarContainer = styled.div`
   max-width: 1100px;
 `
 
-export const NavLogo = styled(Link)`
+export const NavLogo = styled(LinkScroll)`
+  cursor: pointer;
+`
+export const NavLinkNextLogo = styled(Link)`
   cursor: pointer;
 `
 
@@ -59,24 +62,35 @@ export const NavMenu = styled.ul`
 `
 export const NavItem = styled.div`
   height: 80px;
-`
-
-export const NavLinks = styled(LinkScroll)`
-  color: #a2917c;
   font-family: 'PT Sans', sans-serif;
   font-weight: 700;
   font-size: 20px;
+  padding: 0 1rem;
+  cursor: pointer;
+`
+
+export const NavLinksSmooth = styled(LinkScroll)`
+  color: #a2917c;
+  height: 100%;
   display: flex;
   align-items: center;
-  padding: 0 1rem;
-  height: 100%;
-  cursor: pointer;
-
   &.active {
     border-bottom: 3px solid #a2917c;
     color: #fff;
   }
 `
+
+export const NavLinkNext = styled(Link)`
+  color: #a2917c;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  &.active {
+    border-bottom: 3px solid #a2917c;
+    color: #fff;
+  }
+`
+
 export const NavBtn = styled.nav`
   display: flex;
   align-items: center;

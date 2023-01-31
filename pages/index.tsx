@@ -5,16 +5,14 @@ import {useTypedSelector} from "../hooks/useTypedSelector";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import {useEffect, useRef, useState} from "react";
-import HeroSection from "../components/HeroSection";
-import InfoSection from "../components/InfoSection";
-import { homeObjOne, homeObjThree, homeObjTwo } from "../components/InfoSection/data";
-import Services from "../components/Services";
-import {gsap} from "gsap";
-import {scroller} from 'react-scroll'
-import { useInView } from 'react-intersection-observer';
-import {activateScrollTrigger} from "../components/utility/parallax";
-import HistorySection from "../components/HistorySection";
-import Footer from "../components/Footer";
+import HeroSection from "../components/MainPage/HeroSection";
+import InfoSection from "../components/MainPage/InfoSection";
+import { homeObjOne} from "../components/MainPage/InfoSection/data";
+import Services from "../components/MainPage/Services";
+import {scroller, Element} from 'react-scroll'
+import {activateScrollTrigger} from "../utility/parallax";
+import HistorySection from "../components/MainPage/HistorySection";
+import Footer from "../components/MainPage/Footer";
 
 
 
@@ -24,13 +22,10 @@ const Index = () => {
     const {addItem} = useActions() //используем экшены
     const {cart} = useTypedSelector(state => state) //доступ к стейту
 
-    let oldSlide = 0
-    let dur = 0.6
     let slides
     let offsets = []
 
     const [isOpen, setIsOpen] = useState(false)
-    let mainPage = useRef(null)
 
 
     useEffect(() => {
@@ -98,19 +93,17 @@ const Index = () => {
     }
     const toggle = () => setIsOpen(!isOpen)
 
-    //тест сайт
     return (
         <MainContainer>
           <Sidebar isOpen={isOpen} toggle={toggle}/>
           <Navbar toggle={toggle} />
-          <div ref={mainPage} >
+          <>
               <HeroSection />
               <InfoSection {...homeObjOne}/>
               <HistorySection />
               <Services id='services'/>
               <Footer id='contacts'/>
-          </div>
-          {/*<InfoSection {...homeObjThree}/>*/}
+          </>
         </MainContainer>
     );
 

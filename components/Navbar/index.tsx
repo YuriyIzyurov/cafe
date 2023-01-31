@@ -4,17 +4,18 @@ import {
     NavbarContainer,
     NavBtn,
     NavBtnLink,
-    NavItem,
-    NavLinks,
+    NavItem, NavLinkNext, NavLinkNextLogo,
+    NavLinksSmooth,
     NavLogo,
     NavMenu
 } from "./NavStyles";
 import { FaBars } from 'react-icons/fa';
 import {useEffect, useState} from "react";
 import {animateScroll as scroll} from 'react-scroll'
+import {scroller} from 'react-scroll'
 
 
-const Navbar = ({toggle}) => {
+const Navbar = ({isOutsidePage = false, toggle}) => {
     const [scrollNav, setScrollNav] = useState(false)
 
     const changeNav = () => {
@@ -24,85 +25,115 @@ const Navbar = ({toggle}) => {
     }
 
     useEffect(() => {
-        window.addEventListener('scroll', changeNav)
+        if(!isOutsidePage) window.addEventListener('scroll', changeNav)
+
+        return () => {
+            if(!isOutsidePage) window.removeEventListener('scroll', changeNav)
+        }
     }, [])
 
-    const toggleHome = () => {
-        scroll.scrollToTop()
+    const scrollTo = (target) => {
+        //todo: сделать скролл до секции при переходе на index page
     }
+
 
     return (
         <>
            <Nav scrollNav={scrollNav}>
                <NavbarContainer>
-                   <NavLogo href='/' onClick={toggleHome}>
-                       <img src="images/logo.png" alt="логотип"/>
-                   </NavLogo>
+                   {isOutsidePage
+                       ? <NavLinkNextLogo href='/'>
+                            <img src="images/logo.png" alt="логотип"/>
+                        </NavLinkNextLogo>
+                       : <NavLogo
+                            to='main'
+                            smooth={true}
+                            duration={500}
+                            spy={true}
+                            exact='true'
+                            offset={-80}
+                        >
+                            <img src="images/logo.png" alt="логотип"/>
+                        </NavLogo>}
                    <MobileIcon onClick={toggle}>
                         <FaBars/>
                    </MobileIcon>
-                   <NavMenu>
-                       <NavItem>
-                           <NavLinks
+                   {isOutsidePage
+                       ? <NavMenu>
+                            <NavItem>
+                                <NavLinkNext href='/' onClick={() => scrollTo('about')}>Главная</NavLinkNext>
+                            </NavItem>
+                            <NavItem>
+                                <NavLinkNext href='/' onClick={() => scrollTo('history')}>О нас</NavLinkNext>
+                            </NavItem>
+                            <NavItem>
+                                <NavLinkNext href='/' onClick={() => scrollTo('services')}>Услуги</NavLinkNext>
+                            </NavItem>
+                            <NavItem>
+                                <NavLinkNext href='/' onClick={() => scrollTo('contacts')}>Контакты</NavLinkNext>
+                            </NavItem>
+                            <NavItem>
+                                <NavLinkNext href='/' onClick={() => scrollTo('contacts')}>Залы</NavLinkNext>
+                            </NavItem>
+                            <NavItem>
+                                <NavLinkNext className='active' href='/'>Меню</NavLinkNext>
+                            </NavItem>
+                        </NavMenu>
+                       : <NavMenu>
+                            <NavItem>
+                           <NavLinksSmooth
                                to='about'
                                smooth={true}
                                duration={500}
                                spy={true}
                                exact='true'
                                offset={-80}
-                           >Главная</NavLinks>
+                           >Главная</NavLinksSmooth>
                        </NavItem>
-                       <NavItem>
-                           <NavLinks
+                            <NavItem>
+                           <NavLinksSmooth
                                to='history'
                                smooth={true}
                                duration={500}
                                spy={true}
                                exact='true'
                                offset={-80}
-                           >О нас</NavLinks>
+                           >О нас</NavLinksSmooth>
                        </NavItem>
-                       <NavItem>
-                           <NavLinks
+                            <NavItem>
+                           <NavLinksSmooth
                                to='services'
                                smooth={true}
                                duration={500}
                                spy={true}
                                exact='true'
                                offset={-80}
-                           >Услуги</NavLinks>
+                           >Услуги</NavLinksSmooth>
                        </NavItem>
-                       <NavItem>
-                           <NavLinks
+                            <NavItem>
+                           <NavLinksSmooth
                                to='contacts'
                                smooth={true}
                                duration={500}
                                spy={true}
                                exact='true'
                                offset={-80}
-                           >Контакты</NavLinks>
+                           >Контакты</NavLinksSmooth>
                        </NavItem>
-                       <NavItem>
-                           <NavLinks
+                            <NavItem>
+                           <NavLinksSmooth
                                to='rooms'
                                smooth={true}
                                duration={500}
                                spy={true}
                                exact='true'
                                offset={-80}
-                           >Залы</NavLinks>
+                           >Залы</NavLinksSmooth>
                        </NavItem>
-                       <NavItem>
-                           <NavLinks
-                               to='reviews'
-                               smooth={true}
-                               duration={500}
-                               spy={true}
-                               exact='true'
-                               offset={-80}
-                           >Меню</NavLinks>
+                            <NavItem>
+                           <NavLinkNext href='menu'>Меню</NavLinkNext>
                        </NavItem>
-                   </NavMenu>
+                   </NavMenu>}
                    {/*<NavBtn>
                        <NavBtnLink href='/signin'>Войти</NavBtnLink>
                    </NavBtn>*/}
