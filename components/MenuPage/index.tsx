@@ -96,7 +96,7 @@ const MenuPage = ({dishes, drinks}) => {
                 Основное меню
             </MenuHeader>
             <MenuWrapper>
-                {/*{sections.map((section, index) =>
+                {sections.map((section, index) =>
                     index === 1 ?
                         <MenuSectionReversed key={index} id={'section'+index}>
                             <MenuImgWrapper>
@@ -145,7 +145,7 @@ const MenuPage = ({dishes, drinks}) => {
                                         sectionIndex={'section'+index}
                                         justifySelf={index === 3}
                                     />)}
-                        </MenuSection>)}*/}
+                        </MenuSection>)}
             </MenuWrapper>
             <MenuToggle id='drinkMenu' padding={50}>
                 <ButtonSmoothScroll
@@ -197,7 +197,7 @@ const MenuPage = ({dishes, drinks}) => {
                 Напитки
             </MenuHeader>
             <MenuWrapper>
-                {/*<BarSection>
+                <BarSection>
                     {sortedDrinks.map((specification, index) =>
                             <BarCard
                                 key={specification.id}
@@ -206,7 +206,7 @@ const MenuPage = ({dishes, drinks}) => {
                                 index={index}
                             />
                         )}
-                </BarSection>*/}
+                </BarSection>
             </MenuWrapper>
             <MenuToggle padding={50}>
                 <ButtonSmoothScroll

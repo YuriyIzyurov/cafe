@@ -16,7 +16,7 @@ const Menu = ({dishes, drinks}) => {
         <MainContainer keywords={'меню'}>
             <Sidebar isOpen={isOpen} toggle={toggle}/>
             <Navbar isOutsidePage toggle={toggle} />
-            <MenuPage dishes={dishes} drinks={drinks}/>
+            {/*<MenuPage dishes={dishes} drinks={drinks}/>*/}
         </MainContainer>
     );
 };
