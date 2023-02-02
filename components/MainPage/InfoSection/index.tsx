@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import { Button } from '../../ButtonElement';
+import {Button, ButtonRoute, ButtonSmoothScroll} from '../../ButtonElement';
 import {
     BtnWrap,
     Column1,
@@ -32,17 +32,11 @@ const InfoSection = ({lightBg, id, imgStart, topLine, lightText, headline, darkT
                                 <Heading lightText={lightText}>{headline}</Heading>
                                 <Subtitle darkText={darkText}>{description}</Subtitle>
                                 <BtnWrap>
-                                    <Button
-                                        to='/'
-                                        smooth={true}
-                                        duration={500}
-                                        spy={true}
-                                        exact='true'
-                                        offset={-80}
-                                        primary={primary ? 1 : 0}
-                                    >
-                                        {buttonLabel}
-                                    </Button>
+                                    <ButtonRoute href='/menu'>
+                                        <Button>
+                                            {buttonLabel}
+                                        </Button>
+                                    </ButtonRoute>
                                 </BtnWrap>
                             </TextWrapper>
                         </Column1>

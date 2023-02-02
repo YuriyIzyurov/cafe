@@ -20,6 +20,13 @@ export const MenuImg = styled.div`
   display: flex;
   justify-content: center;
 `
+export const TestBG = styled.div`
+  background: greenyellow;
+  max-width: 230px;
+  min-width: 230px;
+  display: flex;
+  justify-content: center;
+`
 
 export const CardContent = styled.div`
   display: flex;

@@ -1,19 +1,27 @@
 import {
-     ImgMask2, ImgMask4, ImgMask6,
-    MenuContainer,
+    ImgMask2, ImgMask4, ImgMask6,
+    MenuContainer, MenuHeader,
     MenuImgWrapper,
     MenuSection,
     MenuSectionReversed,
-    MenuSideImg, MenuSideImg2, MenuSideImg3, MenuSideImg4, MenuSideImg5, MenuSideImg6,
+    MenuSideImg, MenuSideImg2, MenuSideImg3, MenuSideImg4, MenuSideImg5, MenuSideImg6, MenuToggle,
     MenuWrapper
 } from "./MenuPageStyles";
 import MenuCard from "./MenuCard";
-import {useEffect, useRef} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {activateMenuAnimation} from "../../utility/parallax";
 import { useInView } from 'react-intersection-observer';
+import BarCard from "./BarCard";
+import {BarSection} from "./BarCard/BarCardStyles";
+import {Button, ButtonSmoothScroll} from "../ButtonElement";
 
 
 
+type ToggleStateType = {
+    main: boolean
+    drinks: boolean
+    additional: boolean
+}
 const MenuPage = ({dishes, drinks}) => {
 
     const { ref, inView, entry } = useInView({
@@ -21,6 +29,7 @@ const MenuPage = ({dishes, drinks}) => {
         threshold: .14,
     })
     const imgRef = useRef(null)
+    const [sectionIsActive, changeSectionActivity] = useState<ToggleStateType>({main: true, drinks: false, additional: false})
 
 
     const section1 = dishes.slice(0,4)
@@ -28,18 +37,64 @@ const MenuPage = ({dishes, drinks}) => {
     const section3 = dishes.slice(8,13)
     const sections = [section1,section2,section3]
 
+    const sortedDrinks = [
+        drinks[0], drinks[4], drinks[5],
+        drinks[1], drinks[2], drinks[3],
+        drinks[9], drinks[10],
+        drinks[8], drinks[7], drinks[6],
+        drinks[11]
+    ]
+
     useEffect(() => {
         activateMenuAnimation()
     }, [])
-
-    useEffect(() => {
-        console.log( inView)
-    }, [inView])
 
 
 
     return (
         <MenuContainer id='menu'>
+            <MenuToggle>
+                <ButtonSmoothScroll
+                    to='mainMenu'
+                    smooth={true}
+                    duration={800}
+                    spy={true}
+                    exact='true'
+                    offset={-80}
+                >
+                    <Button color={'#a1907b'} sectionIsActive={true}>
+                        Основное меню
+                    </Button>
+                </ButtonSmoothScroll>
+                <ButtonSmoothScroll
+                    to='drinkMenu'
+                    smooth={true}
+                    duration={800}
+                    spy={true}
+                    exact='true'
+                    offset={-80}
+
+                >
+                    <Button color={'#a1907b'} sectionIsActive={false} middleBtn>
+                        Напитки
+                    </Button>
+                </ButtonSmoothScroll>
+                <ButtonSmoothScroll
+                    to='/'
+                    smooth={true}
+                    duration={500}
+                    spy={true}
+                    exact='true'
+                    offset={-80}
+                >
+                    <Button color={'#a1907b'} sectionIsActive={false}>
+                        Дополнительное меню
+                    </Button>
+                </ButtonSmoothScroll>
+            </MenuToggle>
+            <MenuHeader id='mainMenu' padding='20px 0 0 0'>
+                Основное меню
+            </MenuHeader>
             <MenuWrapper>
                 {sections.map((section, index) =>
                     index === 1 ?
@@ -92,6 +147,112 @@ const MenuPage = ({dishes, drinks}) => {
                                     />)}
                         </MenuSection>)}
             </MenuWrapper>
+            <MenuToggle id='drinkMenu' padding={50}>
+                <ButtonSmoothScroll
+                    to='menu'
+                    smooth={true}
+                    duration={800}
+                    spy={true}
+                    exact='true'
+                    offset={-80}
+                >
+                    <Button color={'#a1907b'}
+                            sectionIsActive={false}
+                            isBottom>
+                        Основное меню
+                    </Button>
+                </ButtonSmoothScroll>
+                <ButtonSmoothScroll
+                    to='drinkMenu'
+                    smooth={true}
+                    duration={800}
+                    spy={true}
+                    exact='true'
+                    offset={-80}
+                >
+                    <Button middleBtn
+                            borderless
+                            isBottom
+                            sectionIsActive={true}
+                            color={'#a1907b'}>
+                        Напитки
+                    </Button>
+                </ButtonSmoothScroll>
+                <ButtonSmoothScroll
+                    to='/'
+                    smooth={true}
+                    duration={500}
+                    spy={true}
+                    exact='true'
+                    offset={-80}
+                >
+                    <Button color={'#a1907b'}
+                            sectionIsActive={false}
+                            isBottom>
+                        Дополнительное меню
+                    </Button>
+                </ButtonSmoothScroll>
+            </MenuToggle>
+            <MenuHeader  padding='20px 0 20px 0' >
+                Напитки
+            </MenuHeader>
+            <MenuWrapper>
+                <BarSection>
+                    {sortedDrinks.map((specification, index) =>
+                            <BarCard
+                                key={specification.id}
+                                name={specification.name}
+                                drinks={specification.drinks}
+                                index={index}
+                            />
+                        )}
+                </BarSection>
+            </MenuWrapper>
+            <MenuToggle padding={50}>
+                <ButtonSmoothScroll
+                    to='menu'
+                    smooth={true}
+                    duration={800}
+                    spy={true}
+                    exact='true'
+                    offset={-80}
+                >
+                    <Button color={'#a1907b'}
+                            sectionIsActive={false}
+                            isBottom>
+                        Основное меню
+                    </Button>
+                </ButtonSmoothScroll>
+                <ButtonSmoothScroll
+                    to='drinkMenu'
+                    smooth={true}
+                    duration={800}
+                    spy={true}
+                    exact='true'
+                    offset={-80}
+                >
+                    <Button sectionIsActive={true}
+                            middleBtn
+                            isBottom
+                            color={'#a1907b'}>
+                        Напитки
+                    </Button>
+                </ButtonSmoothScroll>
+                <ButtonSmoothScroll
+                    to='/'
+                    smooth={true}
+                    duration={500}
+                    spy={true}
+                    exact='true'
+                    offset={-80}
+                >
+                    <Button color={'#a1907b'}
+                            sectionIsActive={false}
+                            isBottom>
+                        Дополнительное меню
+                    </Button>
+                </ButtonSmoothScroll>
+            </MenuToggle>
         </MenuContainer>
     );
 };

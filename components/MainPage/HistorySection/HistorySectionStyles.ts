@@ -68,8 +68,8 @@ export const HistoryImgWrap = styled.div`
 `
 export const HistoryImgWrap2 = styled.div`
   position: absolute;
-  bottom: -96px;
-  left: 271px;
+  bottom: -125px;
+  left: 244px;
   z-index: -1;
 `
 export const HistoryImgWrap3 = styled.div`

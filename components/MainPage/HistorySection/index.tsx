@@ -13,7 +13,10 @@ import {
 
 
 
+
+
 const HistorySection = () => {
+
     return (
         <HistoryContainer id='history' name='history'>
             <HistoryWrapper>
@@ -22,7 +25,7 @@ const HistorySection = () => {
                         <img src='images/smoke.png'/>
                     </HistoryImgWrap>
                     <HistoryImgWrap2 id='tea'>
-                        <img src='images/tea.png'/>
+                        <img src='images/tea-leaves.png'/>
                     </HistoryImgWrap2>
                     <img src='images/history2.png'/>
                     <HistoryContent padding='100px'>

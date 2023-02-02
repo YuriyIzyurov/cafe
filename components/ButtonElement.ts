@@ -1,13 +1,18 @@
 import styled from "styled-components";
 import {Link as LinkScroll} from 'react-scroll'
+import Link from "next/link";
 
-export const Button = styled(LinkScroll)`
-  //background: ${({primary}) => (primary ? '#a2917c' : 'transparent')};
-  border: 3px solid #fff;
+export const Button = styled.div`
+  min-width: 230px;
+  border: ${({color = '#fff', borderless}) => !borderless ? `3px solid ${color}` : 'none'};
+  border-left: ${({middleBtn, sectionIsActive }) => middleBtn && sectionIsActive ? 'none' : ''};
+  border-right: ${({middleBtn, sectionIsActive}) => middleBtn || sectionIsActive ? 'none' : ''};
+  border-bottom: ${({sectionIsActive, isBottom}) => sectionIsActive && !isBottom ? 'none' : ''};
+  border-top: ${({sectionIsActive, isBottom}) => sectionIsActive && isBottom? 'none' : ''};
   font-weight: 700;
   white-space: nowrap;
-  padding: ${({big}) => (big ? '14px 48px' : '12px 30px')};
-  color:  #fff;
+  padding: ${({sectionIsActive, isBottom, middleBtn}) => (sectionIsActive && isBottom && middleBtn ? '13.5px 30px' : '12px 30px')};
+  color:  ${({color = '#fff'}) => color};
   font-size: ${({fontBig}) => (fontBig ? '20px' : '16px')};
   cursor: pointer;
   display: flex;
@@ -17,7 +22,11 @@ export const Button = styled(LinkScroll)`
   
   &:hover {
     transition: all 0.2s ease-in-out;
-    background: ${({primary}) => (primary ? '#fff' : '#01BF71')};
-    color: ${({primary}) => (primary ? '#010606' : '#01BF71')};
+    background: ${({sectionIsActive , color = '#fff'}) => sectionIsActive ? 'transparent' : color};
+    color: ${({sectionIsActive , color}) => sectionIsActive ? color : '#010606'};
   }
+`
+export const ButtonSmoothScroll = styled(LinkScroll)`
+`
+export const ButtonRoute = styled(Link)`
 `

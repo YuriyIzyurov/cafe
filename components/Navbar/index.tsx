@@ -1,4 +1,5 @@
 import {
+    LogoH1,
     MobileIcon,
     Nav,
     NavbarContainer,
@@ -11,8 +12,7 @@ import {
 } from "./NavStyles";
 import { FaBars } from 'react-icons/fa';
 import {useEffect, useState} from "react";
-import {animateScroll as scroll} from 'react-scroll'
-import {scroller} from 'react-scroll'
+
 
 
 const Navbar = ({isOutsidePage = false, toggle}) => {
@@ -39,11 +39,11 @@ const Navbar = ({isOutsidePage = false, toggle}) => {
 
     return (
         <>
-           <Nav scrollNav={scrollNav}>
+           <Nav scrollNav={!isOutsidePage ? scrollNav : true}>
                <NavbarContainer>
                    {isOutsidePage
                        ? <NavLinkNextLogo href='/'>
-                            <img src="images/logo.png" alt="логотип"/>
+                           <LogoH1>УКузьмича</LogoH1>
                         </NavLinkNextLogo>
                        : <NavLogo
                             to='main'
@@ -53,7 +53,7 @@ const Navbar = ({isOutsidePage = false, toggle}) => {
                             exact='true'
                             offset={-80}
                         >
-                            <img src="images/logo.png" alt="логотип"/>
+                           <LogoH1>УКузьмича</LogoH1>
                         </NavLogo>}
                    <MobileIcon onClick={toggle}>
                         <FaBars/>

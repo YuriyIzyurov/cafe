@@ -9,10 +9,11 @@ import HeroSection from "../components/MainPage/HeroSection";
 import InfoSection from "../components/MainPage/InfoSection";
 import { homeObjOne} from "../components/MainPage/InfoSection/data";
 import Services from "../components/MainPage/Services";
-import {scroller, Element} from 'react-scroll'
+import {scroller, Events} from 'react-scroll'
 import {activateScrollTrigger} from "../utility/parallax";
 import HistorySection from "../components/MainPage/HistorySection";
 import Footer from "../components/MainPage/Footer";
+import { useScrollBlock } from "../hooks/useScrollBlock";
 
 
 
@@ -21,6 +22,9 @@ const Index = () => {
     const { data, isLoading, error} = useGetProductsQuery(6) //получаем данные с сервера
     const {addItem} = useActions() //используем экшены
     const {cart} = useTypedSelector(state => state) //доступ к стейту
+
+    const [blockScroll, allowScroll] = useScrollBlock()
+
 
     let slides
     let offsets = []
@@ -32,64 +36,40 @@ const Index = () => {
         window.addEventListener("wheel", slideScroll)
         slides = document.querySelectorAll('section')
 
+        Events.scrollEvent.register('begin', () => {
+            blockScroll()
+        })
+        Events.scrollEvent.register('end', () => {
+            allowScroll()
+        })
         for (let i = 0; i < slides.length; i++) {
             offsets.push(-slides[i].offsetTop)
         }
         activateScrollTrigger()
+
+        return () => {
+            window.removeEventListener("wheel", slideScroll)
+        }
     }, [])
 
 
     function slideScroll(e) {
-        console.log(e.pageY)
         //todo: переделать на другую логику
-        if(e.pageY < 900) {
-            //main page
-            if(e.deltaY > 0) {
-                scroller.scrollTo('about', {
-                    duration: 1200,
-                    smooth: true,
-                    offset: -80,
-                    ignoreCancelEvents: true
-                })
-            }
-        } else if(e.pageY < 1800) {
-            //about page
-            let direction = e.deltaY > 0 ? 'history' : 'main'
-            scroller.scrollTo(direction, {
-                duration: 1200,
-                smooth: true,
-                offset: -80,
-                ignoreCancelEvents: true
-            })
-        } else if(e.pageY < 2500) {
-            //history page
-            let direction = e.deltaY > 0 ? 'services' : 'about'
-            scroller.scrollTo(direction, {
-                duration: 1200,
-                smooth: true,
-                offset: -80,
-                ignoreCancelEvents: true
-            })
-        } else if(e.pageY < 3400){
-            //services page
-            let direction = e.deltaY > 0 ? 'contacts' : 'history'
-            scroller.scrollTo(direction, {
-                duration: 1200,
-                smooth: true,
-                offset: -80,
-                ignoreCancelEvents: true
-                })
-        } else {
-            //contacts page
-            if(e.deltaY < 0) {
-                scroller.scrollTo('services', {
-                    duration: 1200,
-                    smooth: true,
-                    offset: -80,
-                    ignoreCancelEvents: true
-                })
-            }
+
+        const pickSection = () => {
+            if(e.pageY < 900 && e.deltaY > 0) return 'about'
+            else if(e.pageY < 1800) return e.deltaY > 0 ? 'history' : 'main'
+            else if(e.pageY < 2500) return e.deltaY > 0 ? 'services' : 'about'
+            else if(e.pageY < 3400) return e.deltaY > 0 ? 'contacts' : 'history'
+            else if(e.deltaY < 0) return 'services'
         }
+
+        scroller.scrollTo(pickSection(), {
+            duration: 1200,
+            smooth: true,
+            offset: -80,
+            ignoreCancelEvents: true
+        })
     }
     const toggle = () => setIsOpen(!isOpen)
 

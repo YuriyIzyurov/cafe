@@ -10,6 +10,20 @@ export const MenuContainer = styled.section`
     padding: 100px 0;
   }
 `
+export const MenuHeader = styled.header`
+  font-size: 90px;
+  line-height: 86px;
+  padding: ${({padding}) => padding};
+  display: flex;
+  justify-content: center;
+  font-family: 'Pierre',serif;
+  color: rgb(161 144 123);
+`
+export const MenuToggle = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: ${({padding = 20}) => `${padding}px 0`};
+`
 
 export const MenuWrapper = styled.div`
   display: flex;
@@ -23,6 +37,7 @@ export const MenuWrapper = styled.div`
   padding: 0 24px;
   gap: 10px;
 `
+
 
 const Section = styled.div`
   display: grid;

@@ -3,7 +3,8 @@ import Link from "next/link";
 import {Link as LinkScroll} from 'react-scroll'
 
 export const Nav = styled.nav`
-  background: ${({scrollNav}) => (scrollNav ? '#161616' : 'transparent')};
+  background: ${({scrollNav }) => (scrollNav ? '#161616' : 'transparent')};
+  transition: background-color 0.3s ease;
   height: 80px;
   margin-top: -80px;
   display: flex;
@@ -31,6 +32,17 @@ export const NavbarContainer = styled.div`
 
 export const NavLogo = styled(LinkScroll)`
   cursor: pointer;
+`
+export const LogoH1 = styled.h1`
+  padding:  2px;
+  font-size: 43px;
+  font-weight: 100;
+  cursor: pointer;
+  font-family: 'Pierre', sans-serif;
+  background-color: antiquewhite;
+  background-image: linear-gradient(180deg, #5b4428, antiquewhite);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 `
 export const NavLinkNextLogo = styled(Link)`
   cursor: pointer;

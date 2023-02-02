@@ -11,7 +11,7 @@ import {
     FooterWrap
 } from "./FooterStyles";
 import {ArrowForward, ArrowRight, HeroBtnWrapper, ImgBg} from "../HeroSection/HeroSectionStyles";
-import {Button} from "../../ButtonElement";
+import {Button, ButtonRoute} from "../../ButtonElement";
 import {NavLogo} from "../../Navbar/NavStyles";
 
 const Footer = ({id}) => {
@@ -30,14 +30,15 @@ const Footer = ({id}) => {
                     <FooterH2>Бронирование</FooterH2>
                     <FooterH1>Закажи себе столик</FooterH1>
                     <HeroBtnWrapper>
-                        <Button
-                            to='signup'
+                        <ButtonRoute
+                            href='tel:28‑55-07'
                             onMouseEnter={onHover}
                             onMouseLeave={onHover}
-                            primary='false'
                         >
-                            Заказать столик {hover ? <ArrowForward/> : <ArrowRight/>}
-                        </Button>
+                            <Button>
+                                Заказать столик {hover ? <ArrowForward/> : <ArrowRight/>}
+                            </Button>
+                        </ButtonRoute>
                     </HeroBtnWrapper>
                 </FooterContentWrapper>
             </FooterBG2>

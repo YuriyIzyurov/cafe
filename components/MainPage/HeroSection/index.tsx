@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button } from "../../ButtonElement";
+import { Button, ButtonRoute } from "../../ButtonElement";
 
 import {
     ArrowForward,
@@ -33,14 +33,15 @@ const HeroSection = () => {
                     людьми или просто для комфортного времяпрепровождения за чашечкой кофе.
                 </HeroP>
                 <HeroBtnWrapper>
-                    <Button
-                        to='signup'
+                    <ButtonRoute
+                        href='tel:28‑55-07'
                         onMouseEnter={onHover}
                         onMouseLeave={onHover}
-                        primary='false'
                     >
-                        Заказать столик {hover ? <ArrowForward/> : <ArrowRight/>}
-                    </Button>
+                        <Button>
+                            Заказать столик {hover ? <ArrowForward/> : <ArrowRight/>}
+                        </Button>
+                    </ButtonRoute>
                 </HeroBtnWrapper>
             </HeroContent>
         </HeroContainer>

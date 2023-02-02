@@ -119,9 +119,11 @@ export const activateMenuAnimation = () => {
         {name: "#section1", images: ["#soup", "#branch", "#flour2wrap", "#flour2", "#flour4wrap", "#flour4"], start:["top top","top 30%","top center", "15% top"], end:["bottom top","15% top","top top","35% top"]},
         {name: "#section2", images: ["#potatos", "#pepper", "#flour3wrap", "#flour3"], start:["top center","top center","top center"], end:["top top","top top","top top"]}
     ]
+    const drinks = ["#whisky", "#vine", "#beer", "#tea"]
 
     const masterTimeLine = gsap.timeline()
 
+    //animate main menu
     sections.forEach((section) => {
         const tl1 = gsap.timeline({
             scrollTrigger: {
@@ -168,6 +170,23 @@ export const activateMenuAnimation = () => {
 
         return masterTimeLine.add(tl1).add(tl2).add(tl3)
     })
+
+    //animate bar menu
+    drinks.forEach((img) => {
+        const tl1 = gsap.timeline({
+            scrollTrigger: {
+                trigger: img,
+                start: "top bottom",
+                end: "top center",
+                scrub: 0.5
+            }
+        })
+
+        tl1.from(img, {opacity: 0, scale: 0.9, y: 100}, 0)
+
+        return masterTimeLine.add(tl1)
+    })
+
 }
 
 
