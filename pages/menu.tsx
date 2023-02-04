@@ -16,7 +16,7 @@ const Menu = ({dishes, drinks}) => {
         <MainContainer keywords={'меню'}>
             <Sidebar isOpen={isOpen} toggle={toggle}/>
             <Navbar isOutsidePage toggle={toggle} />
-            {/*<MenuPage dishes={dishes} drinks={drinks}/>*/}
+            <MenuPage dishes={dishes} drinks={drinks}/>
         </MainContainer>
     );
 };
@@ -25,8 +25,8 @@ export default Menu;
 
 export async function getStaticProps(context) {
 
-    const response1 = await fetch('http://localhost:5000/dishes')
-    const response2 = await fetch('http://localhost:5000/drinks')
+    const response1 = await fetch('https://jwt-authorization-nest.vercel.app/dishes')
+    const response2 = await fetch('https://jwt-authorization-nest.vercel.app/drinks')
     const dishes = await response1.json()
     const drinks = await response2.json()
     return {
