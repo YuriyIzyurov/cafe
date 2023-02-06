@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Link from "next/link";
 import { BsInstagram} from 'react-icons/bs'
-import { SlSocialVkontakte } from 'react-icons/Sl'
+import { SlSocialVkontakte } from 'react-icons/sl'
 import { MdAlternateEmail } from 'react-icons/md'
 
 
