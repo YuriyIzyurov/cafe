@@ -29,6 +29,7 @@ export async function getStaticProps(context) {
     const response2 = await fetch('https://jwt-authorization-nest.vercel.app/drinks')
     const dishes = await response1.json()
     const drinks = await response2.json()
+
     return {
         props: {dishes, drinks}
     }

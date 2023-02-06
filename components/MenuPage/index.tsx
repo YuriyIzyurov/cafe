@@ -15,6 +15,7 @@ import { useInView } from 'react-intersection-observer';
 import BarCard from "./BarCard";
 import {BarSection} from "./BarCard/BarCardStyles";
 import {Button, ButtonSmoothScroll} from "../ButtonElement";
+import MenuNavigation from "./MenuNavigation";
 
 
 
@@ -25,6 +26,7 @@ type ToggleStateType = {
 }
 const MenuPage = ({dishes, drinks}) => {
 
+    console.log(dishes)
     const { ref, inView, entry } = useInView({
         /* Optional options */
         threshold: .14,
@@ -54,46 +56,9 @@ const MenuPage = ({dishes, drinks}) => {
 
     return (
         <MenuContainer id='menu'>
-            <MenuToggle>
-                <ButtonSmoothScroll
-                    to='mainMenu'
-                    smooth={true}
-                    duration={800}
-                    spy={true}
-                    exact='true'
-                    offset={-80}
-                >
-                    <Button color={'#a1907b'} sectionIsActive={true}>
-                        Основное меню
-                    </Button>
-                </ButtonSmoothScroll>
-                <ButtonSmoothScroll
-                    to='drinkMenu'
-                    smooth={true}
-                    duration={800}
-                    spy={true}
-                    exact='true'
-                    offset={-80}
-
-                >
-                    <Button color={'#a1907b'} sectionIsActive={false} middleBtn>
-                        Напитки
-                    </Button>
-                </ButtonSmoothScroll>
-                <ButtonSmoothScroll
-                    to='addMenu'
-                    smooth={true}
-                    duration={500}
-                    spy={true}
-                    exact='true'
-                    offset={-80}
-                >
-                    <Button color={'#a1907b'} sectionIsActive={false}>
-                        Дополнительное меню
-                    </Button>
-                </ButtonSmoothScroll>
-            </MenuToggle>
-            <MenuHeader id='mainMenu' padding='20px 0 0 0'>
+            {/*-----Основное меню----*/}
+            <MenuNavigation id='mainMenu' position='top'/>
+            <MenuHeader padding='20px 0 0 0'>
                 Основное меню
             </MenuHeader>
             <MenuWrapper>
@@ -148,51 +113,10 @@ const MenuPage = ({dishes, drinks}) => {
                                     />)}
                         </MenuSection>)}
             </MenuWrapper>
-            <MenuToggle id='drinkMenu' padding={50}>
-                <ButtonSmoothScroll
-                    to='menu'
-                    smooth={true}
-                    duration={800}
-                    spy={true}
-                    exact='true'
-                    offset={-80}
-                >
-                    <Button color={'#a1907b'}
-                            sectionIsActive={false}
-                            isBottom>
-                        Основное меню
-                    </Button>
-                </ButtonSmoothScroll>
-                <ButtonSmoothScroll
-                    to='drinkMenu'
-                    smooth={true}
-                    duration={800}
-                    spy={true}
-                    exact='true'
-                    offset={-80}
-                >
-                    <Button middleBtn
-                            sectionIsActive={true}
-                            color={'#a1907b'}>
-                        Напитки
-                    </Button>
-                </ButtonSmoothScroll>
-                <ButtonSmoothScroll
-                    to='addMenu'
-                    smooth={true}
-                    duration={500}
-                    spy={true}
-                    exact='true'
-                    offset={-80}
-                >
-                    <Button color={'#a1907b'}
-                            sectionIsActive={false}
-                            isBottom>
-                        Дополнительное меню
-                    </Button>
-                </ButtonSmoothScroll>
-            </MenuToggle>
-            <MenuHeader  padding='20px 0 20px 0' >
+
+            {/*-----Напитки и бар----*/}
+            <MenuNavigation id='drinkMenu' position='middle' padding={50}/>
+            <MenuHeader padding='20px 0 20px 0' >
                 Напитки
             </MenuHeader>
             <MenuWrapper>
@@ -207,51 +131,10 @@ const MenuPage = ({dishes, drinks}) => {
                         )}
                 </BarSection>
             </MenuWrapper>
-            <MenuToggle padding={50}>
-                <ButtonSmoothScroll
-                    to='menu'
-                    smooth={true}
-                    duration={800}
-                    spy={true}
-                    exact='true'
-                    offset={-80}
-                >
-                    <Button color={'#a1907b'}
-                            sectionIsActive={false}
-                            middleBtn
-                    >
-                        Основное меню
-                    </Button>
-                </ButtonSmoothScroll>
-                <ButtonSmoothScroll
-                    to='drinkMenu'
-                    smooth={true}
-                    duration={800}
-                    spy={true}
-                    exact='true'
-                    offset={-80}
-                >
-                    <Button sectionIsActive={false}
-                            color={'#a1907b'}>
-                        Напитки
-                    </Button>
-                </ButtonSmoothScroll>
-                <ButtonSmoothScroll
-                    to='addMenu'
-                    smooth={true}
-                    duration={500}
-                    spy={true}
-                    exact='true'
-                    offset={-80}
-                >
-                    <Button color={'#a1907b'}
-                            sectionIsActive={true}
-                            rightBtn>
-                        Дополнительное меню
-                    </Button>
-                </ButtonSmoothScroll>
-            </MenuToggle>
-            <AddMenuWrapper id='addMenu'>
+
+            {/*-----Дополнительное меню под заказ----*/}
+            <MenuNavigation id='addMenu' position='bottom' padding={50}/>
+            <AddMenuWrapper>
                 <MenuHeader padding='20px 5px'>Блюда на заказ</MenuHeader>
                 <ul>
                     <li>Буженина</li>

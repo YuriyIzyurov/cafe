@@ -46,5 +46,7 @@ export const PositionName = styled.div`
 export const PositionPrice = styled.div`
  //align-self: flex-end;
 `
-
+export const Ruble = styled.span`
+    padding-left: 3px;
+`
 

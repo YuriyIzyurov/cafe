@@ -54,14 +54,11 @@ const Index = () => {
 
 
     function slideScroll(e) {
-        //todo: переделать на другую логику
 
         const heightInPercent = Math.ceil(window.scrollY / (document.documentElement.scrollHeight - document.documentElement.clientHeight) * 100)
 
         const pickSection = () => {
-            console.log(heightInPercent)
-
-            if(heightInPercent === 0 && e.deltaY > 0) return 'about'
+            if(heightInPercent < 10 && e.deltaY > 0) return 'about'
             else if(heightInPercent < 30) return e.deltaY > 0 ? 'history' : 'main'
             else if(heightInPercent < 60) return e.deltaY > 0 ? 'services' : 'about'
             else if(heightInPercent < 90) return e.deltaY > 0 ? 'contacts' : 'history'

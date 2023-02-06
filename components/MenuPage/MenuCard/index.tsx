@@ -6,7 +6,7 @@ import {
     MenuH2,
     MenuImg,
     PositionName,
-    PositionPrice
+    PositionPrice, Ruble
 } from "./MenuCardStyles";
 import React from "react";
 
@@ -53,6 +53,7 @@ const MenuCard:React.FC<MenuType> = ({name, dishes, index, sectionIndex, justify
                         <PositionPrice>
                             {dish.price}
                         </PositionPrice>
+                        <Ruble>₽</Ruble>
                     </CardPosition>
                 )}
             </CardContent>
