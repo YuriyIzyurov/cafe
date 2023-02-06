@@ -11,11 +11,15 @@ import {
     NavMenu
 } from "./NavStyles";
 import { FaBars } from 'react-icons/fa';
-import {useEffect, useState} from "react";
+import {FC, useEffect, useState} from "react";
 
 
-
-const Navbar = ({isOutsidePage = false, toggle}) => {
+type NavbarType = {
+    isOutsidePage?:boolean
+    isRoomPage?: boolean
+    toggle: () => void
+}
+const Navbar:FC<NavbarType> = ({isOutsidePage, toggle, isRoomPage}) => {
     const [scrollNav, setScrollNav] = useState(false)
 
     const changeNav = () => {
@@ -73,10 +77,10 @@ const Navbar = ({isOutsidePage = false, toggle}) => {
                                 <NavLinkNext href='/' onClick={() => scrollTo('contacts')}>Контакты</NavLinkNext>
                             </NavItem>
                             <NavItem>
-                                <NavLinkNext href='/' onClick={() => scrollTo('contacts')}>Залы</NavLinkNext>
+                                <NavLinkNext className={isRoomPage &&'active'} href='/rooms' >Залы</NavLinkNext>
                             </NavItem>
                             <NavItem>
-                                <NavLinkNext className='active' href='/'>Меню</NavLinkNext>
+                                <NavLinkNext className={!isRoomPage &&'active'} href='/menu'>Меню</NavLinkNext>
                             </NavItem>
                         </NavMenu>
                        : <NavMenu>
@@ -120,17 +124,10 @@ const Navbar = ({isOutsidePage = false, toggle}) => {
                                offset={-80}
                            >Контакты</NavLinksSmooth>
                        </NavItem>
-                            <NavItem>
-                           <NavLinksSmooth
-                               to='rooms'
-                               smooth={true}
-                               duration={500}
-                               spy={true}
-                               exact='true'
-                               offset={-80}
-                           >Залы</NavLinksSmooth>
+                       <NavItem>
+                           <NavLinkNext href='rooms'>Залы</NavLinkNext>
                        </NavItem>
-                            <NavItem>
+                       <NavItem>
                            <NavLinkNext href='menu'>Меню</NavLinkNext>
                        </NavItem>
                    </NavMenu>}

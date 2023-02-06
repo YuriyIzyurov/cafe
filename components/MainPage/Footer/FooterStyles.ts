@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import Link from "next/link";
+import { BsInstagram} from 'react-icons/bs'
+import { SlSocialVkontakte } from 'react-icons/Sl'
+import { MdAlternateEmail } from 'react-icons/md'
 
 
 export const FooterContainer = styled.footer`
@@ -118,7 +121,7 @@ export const FooterLinkItems = styled.div`
   align-items: flex-start;
   margin: 16px;
   text-align: left;
-  width: 160px;
+  width: 190px;
   color: #fff;
   box-sizing: border-box;
 
@@ -130,7 +133,7 @@ export const FooterLinkItems = styled.div`
 `
 
 export const FooterLinkTitle = styled.h1`
-  font-size: 14px;
+  font-size: 16px;
   margin-bottom: 16px;
   color: wheat;
   font-weight: bold;
@@ -143,9 +146,24 @@ export const FooterLink = styled(Link)`
   color: #fff;
   margin-bottom: 0.5rem;
   font-size: 14px;
+  display: flex;
+  align-items: center;
   
+  span {
+    line-height: 14px;
+    padding-left: 5px;
+  }
   &:hover {
     color: wheat;
     transition: 0.3s ease-out;
   }
+`
+export const InstagramIcon = styled(BsInstagram)`
+  color: wheat;
+`
+export const VkIcon = styled(SlSocialVkontakte)`
+  color: wheat;
+`
+export const Mail = styled(MdAlternateEmail)`
+  color: wheat;
 `

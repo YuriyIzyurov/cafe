@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Link from "next/link";
+import { HiArrowNarrowRight, HiChevronRight } from 'react-icons/hi'
 
 export const HistoryContainer = styled.section`
   color: #fff;
@@ -39,10 +40,10 @@ export const HistoryContent = styled.div`
   padding: ${({padding}) => '0 ' + padding};
 `
 export const HistoryH2 = styled.h2`
-  font-family: 'AuroraScript',serif;
+  font-family: 'Pierre',serif;
   color: rgba(152,108,53,0.85);
-  font-weight: 400;
-  font-size: ${({fontSize = '46px'}) => fontSize};
+  font-weight: 100;
+  font-size: ${({fontSize = '40px'}) => fontSize};
   line-height: ${({fontSize = '50px'}) => fontSize};;
 `
 export const HistoryH1 = styled.h1`
@@ -59,6 +60,13 @@ export const HistoryP = styled.p`
 export const HistoryLink = styled(Link)`
   color: rgba(152,108,53,0.85);
   font-weight: 700;
+  max-width: 140px;
+  display: flex;
+  align-items: center;
+  span {
+    line-height: 33px;
+    padding-right: 2px;
+  }
 `
 export const HistoryImgWrap = styled.div`
   position: absolute;
@@ -77,6 +85,12 @@ export const HistoryImgWrap3 = styled.div`
   bottom: -85px;
   right: -66px;
   z-index: 3;
+`
+export const ArrowRight = styled(HiArrowNarrowRight)`
+    font-size: 22px;
+`
+export const ArrowRightSmall = styled(HiChevronRight)`
+  font-size: 22px;
 `
 
 

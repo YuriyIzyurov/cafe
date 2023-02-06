@@ -4,20 +4,22 @@ import styled from "styled-components";
 export const MenuContainer = styled.section`
   color: #fff;
   padding-top: 80px;
-  background: ${({lightBg}) => (lightBg ? '#f9f9f9' : '#161616')};
   
   @media screen and (max-width: 768px) {
     padding: 100px 0;
   }
 `
 export const MenuHeader = styled.header`
-  font-size: 90px;
-  line-height: 86px;
   padding: ${({padding}) => padding};
   display: flex;
   justify-content: center;
-  font-family: 'Pierre',serif;
-  color: rgb(161 144 123);
+  font: normal 75px Pierre, sans-serif;
+  line-height: 75px;
+  background-color: antiquewhite;
+  background-image: linear-gradient(180deg, #5b4428, antiquewhite);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0.9;
 `
 export const MenuToggle = styled.div`
   display: flex;
@@ -37,7 +39,16 @@ export const MenuWrapper = styled.div`
   padding: 0 24px;
   gap: 10px;
 `
-
+export const AddMenuWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 1100px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0 24px;
+`
 
 const Section = styled.div`
   display: grid;

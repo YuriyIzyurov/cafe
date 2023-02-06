@@ -8,11 +8,11 @@ import {
     FooterLinksContainer,
     FooterLinksWrapper,
     FooterLinkTitle, FooterP,
-    FooterWrap
+    FooterWrap, InstagramIcon, Mail, VkIcon
 } from "./FooterStyles";
 import {ArrowForward, ArrowRight, HeroBtnWrapper, ImgBg} from "../HeroSection/HeroSectionStyles";
 import {Button, ButtonRoute} from "../../ButtonElement";
-import {NavLogo} from "../../Navbar/NavStyles";
+import {LogoH1, NavLogo} from "../../Navbar/NavStyles";
 
 const Footer = ({id}) => {
 
@@ -55,13 +55,19 @@ const Footer = ({id}) => {
                         </FooterLinkItems>
                         <FooterLinkItems>
                             <FooterLinkTitle>Социальные сети</FooterLinkTitle>
-                            <FooterLink href='signin'>Инстаграм</FooterLink>
-                            <FooterLink href='signin'>Группа вк</FooterLink>
-                            <FooterLink href='signin'>Эл. почта</FooterLink>
+                            <FooterLink href='https://www.instagram.com/cafe_ykuzmicha/'>
+                                <InstagramIcon/><span>Инстаграм</span>
+                            </FooterLink>
+                            <FooterLink href='vk.com'>
+                               <VkIcon/><span>Группа вконтакте</span>
+                            </FooterLink>
+                            <FooterLink href="mailto:tyurina.n.82@list.ru">
+                                <Mail/><span>Эл. почта</span>
+                            </FooterLink>
                         </FooterLinkItems>
                     </FooterLinksWrapper>
                     <NavLogo to='main' >
-                        <img src="images/logo.png" alt="логотип"/>
+                        <LogoH1>УКузьмича</LogoH1>
                     </NavLogo>
                 </FooterLinksContainer>
             </FooterWrap>

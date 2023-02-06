@@ -1,4 +1,5 @@
 import {
+    AddMenuWrapper,
     ImgMask2, ImgMask4, ImgMask6,
     MenuContainer, MenuHeader,
     MenuImgWrapper,
@@ -80,7 +81,7 @@ const MenuPage = ({dishes, drinks}) => {
                     </Button>
                 </ButtonSmoothScroll>
                 <ButtonSmoothScroll
-                    to='/'
+                    to='addMenu'
                     smooth={true}
                     duration={500}
                     spy={true}
@@ -171,15 +172,13 @@ const MenuPage = ({dishes, drinks}) => {
                     offset={-80}
                 >
                     <Button middleBtn
-                            borderless
-                            isBottom
                             sectionIsActive={true}
                             color={'#a1907b'}>
                         Напитки
                     </Button>
                 </ButtonSmoothScroll>
                 <ButtonSmoothScroll
-                    to='/'
+                    to='addMenu'
                     smooth={true}
                     duration={500}
                     spy={true}
@@ -219,7 +218,8 @@ const MenuPage = ({dishes, drinks}) => {
                 >
                     <Button color={'#a1907b'}
                             sectionIsActive={false}
-                            isBottom>
+                            middleBtn
+                    >
                         Основное меню
                     </Button>
                 </ButtonSmoothScroll>
@@ -231,15 +231,13 @@ const MenuPage = ({dishes, drinks}) => {
                     exact='true'
                     offset={-80}
                 >
-                    <Button sectionIsActive={true}
-                            middleBtn
-                            isBottom
+                    <Button sectionIsActive={false}
                             color={'#a1907b'}>
                         Напитки
                     </Button>
                 </ButtonSmoothScroll>
                 <ButtonSmoothScroll
-                    to='/'
+                    to='addMenu'
                     smooth={true}
                     duration={500}
                     spy={true}
@@ -247,12 +245,29 @@ const MenuPage = ({dishes, drinks}) => {
                     offset={-80}
                 >
                     <Button color={'#a1907b'}
-                            sectionIsActive={false}
-                            isBottom>
+                            sectionIsActive={true}
+                            rightBtn>
                         Дополнительное меню
                     </Button>
                 </ButtonSmoothScroll>
             </MenuToggle>
+            <AddMenuWrapper id='addMenu'>
+                <MenuHeader padding='20px 5px'>Блюда на заказ</MenuHeader>
+                <ul>
+                    <li>Буженина</li>
+                    <li>Рулет куриный с грибочками</li>
+                    <li>Рулет из лаваша  со  слабосоленой сёмгой</li>
+                    <li>Судак фаршированный</li>
+                    <li>Стерлядь фаршированная</li>
+                    <li>Поросёнок фаршированный</li>
+                    <li>Студень мясной</li>
+                    <li>Заливное из сёмги, говядины, языка</li>
+                    <li>Грибочки фаршированные</li>
+                    <li>Кролик в сметанном соусе</li>
+                    <li>Говяжьи ребра в казане</li>
+                    <li>Индейка в соусе</li>
+                </ul>
+            </AddMenuWrapper>
         </MenuContainer>
     );
 };

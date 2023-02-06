@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
+    BlackPhone, BlackPhoneActive,
     ServicesBlockWrapper1, ServicesBlockWrapper2,
     ServicesBlockWrapper3, ServicesContainer, ServicesImgWrapper, ServicesWrapper
 } from "./ServicesStyles";
 import {
+    ArrowRight, ArrowRightSmall,
     HistoryBlock,
     HistoryContent,
     HistoryH1,
@@ -14,6 +16,20 @@ import {
 import {Element} from 'react-scroll'
 
 const Services = ({id}) => {
+    const [hover, setHover] = useState(false)
+    const [hover2, setHover2] = useState(false)
+    const [hover3, setHover3] = useState(false)
+
+    const onHover = () => {
+        setHover(!hover)
+    }
+    const onHover2 = () => {
+        setHover2(!hover2)
+    }
+    const onHover3 = () => {
+        setHover3(!hover3)
+    }
+
     return (
         <ServicesContainer id={id}>
             <ServicesWrapper>
@@ -30,8 +46,10 @@ const Services = ({id}) => {
                             по любому важному для вас поводу.
                             Мы так же организуем Свадебные обеды и поминальные трапезы.
                         </HistoryP>
-                        <HistoryLink href='/history'>
-                            <span>Свяжитесь с нами!</span><span>-----</span>
+                        <HistoryLink href='tel:28‑55-07'
+                                     onMouseEnter={onHover}
+                                     onMouseLeave={onHover}>
+                            <span>Позвонить</span>{hover ? <BlackPhoneActive/> : <BlackPhone/>}
                         </HistoryLink>
                     </HistoryContent>
                 </HistoryBlock>
@@ -45,8 +63,10 @@ const Services = ({id}) => {
                                которые вмещают до 45 человек и до 25 человек и позволяют провести мероприятия
                                любого формата и сложности.
                            </HistoryP>
-                           <HistoryLink href='/history'>
-                               <span>Посмотреть фото залов</span><span>-----</span>
+                           <HistoryLink href='/rooms'
+                                        onMouseEnter={onHover2}
+                                        onMouseLeave={onHover2}>
+                               <span>Фото залов</span>{hover2 ? <ArrowRight/> : <ArrowRightSmall/>}
                            </HistoryLink>
                        </HistoryContent>
                      <img src='images/candles2.png'/>
@@ -62,8 +82,11 @@ const Services = ({id}) => {
                                множество вариантов, в состав которых входят в том числе и некоторые
                                блюда, не включенные в основное меню.
                            </HistoryP>
-                           <HistoryLink href='/history'>
-                               <span>Посмотреть доп.? меню</span><span>-----</span>
+                           <HistoryLink href='/menu'
+                                        onMouseEnter={onHover3}
+                                        onMouseLeave={onHover3}>
+                               <span style={{alignSelf: 'stretch', lineHeight: '20px'}}>Меню</span>
+                               {hover3 ? <ArrowRight/> : <ArrowRightSmall/>}
                            </HistoryLink>
                        </HistoryContent>
                    </HistoryBlock>

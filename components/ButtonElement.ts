@@ -5,8 +5,8 @@ import Link from "next/link";
 export const Button = styled.div`
   min-width: 230px;
   border: ${({color = '#fff', borderless}) => !borderless ? `3px solid ${color}` : 'none'};
-  border-left: ${({middleBtn, sectionIsActive }) => middleBtn && sectionIsActive ? 'none' : ''};
-  border-right: ${({middleBtn, sectionIsActive}) => middleBtn || sectionIsActive ? 'none' : ''};
+  border-left: ${({middleBtn, sectionIsActive,rightBtn }) => (middleBtn && sectionIsActive) || rightBtn ? 'none' : ''};
+  border-right: ${({middleBtn, sectionIsActive, rightBtn}) => (middleBtn || sectionIsActive) && !rightBtn ? 'none' : ''};
   border-bottom: ${({sectionIsActive, isBottom}) => sectionIsActive && !isBottom ? 'none' : ''};
   border-top: ${({sectionIsActive, isBottom}) => sectionIsActive && isBottom? 'none' : ''};
   font-weight: 700;

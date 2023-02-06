@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { MdLocalPhone,MdPhoneInTalk } from 'react-icons/md'
 
 export const ServicesContainer = styled.section`
   min-height: 100vh;
@@ -58,4 +59,10 @@ export const ServicesImgWrapper = styled.div`
   position: absolute;
   top: -111px;
   left: 182px;
+`
+export const BlackPhone = styled(MdLocalPhone)`
+  font-size: 17px;
+`
+export const BlackPhoneActive = styled(MdPhoneInTalk)`
+  font-size: 17px;
 `

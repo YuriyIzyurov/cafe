@@ -1,4 +1,6 @@
 import {
+    ArrowRight,
+    ArrowRightSmall,
     HistoryBlock,
     HistoryContainer,
     HistoryContent,
@@ -10,12 +12,18 @@ import {
     HistoryP,
     HistoryWrapper
 } from "./HistorySectionStyles";
+import {useState} from "react";
 
 
 
 
 
 const HistorySection = () => {
+    const [hover, setHover] = useState(false)
+
+    const onHover = () => {
+        setHover(!hover)
+    }
 
     return (
         <HistoryContainer id='history' name='history'>
@@ -37,8 +45,10 @@ const HistorySection = () => {
                             широкому кругу (специалистов) участие в формировании
                             направлений прогрессивного развития.
                         </HistoryP>
-                        <HistoryLink href='/history'>
-                            <span>Больше о нас</span><span>-----</span>
+                        <HistoryLink href='/history'
+                                     onMouseEnter={onHover}
+                                     onMouseLeave={onHover}>
+                            <span>Больше о нас</span>{hover ? <ArrowRight/> : <ArrowRightSmall/>}
                         </HistoryLink>
                     </HistoryContent>
                     <HistoryImgWrap3 id='branch'>
