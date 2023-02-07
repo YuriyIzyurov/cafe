@@ -5,6 +5,14 @@ export const BarCardContainer = styled.main`
   min-width: 500px;
   justify-self: ${({justifySelf}) => justifySelf};
 `
+export const CardTable =styled.div`
+  align-self: flex-end;
+  font-weight: bold;
+  display: flex;
+  span {
+    min-width: 60px;
+  }
+`
 export const BarCardWrapper = styled.div`
   display: flex;
   flex-direction: column;

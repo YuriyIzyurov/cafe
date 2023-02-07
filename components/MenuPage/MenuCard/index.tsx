@@ -52,8 +52,8 @@ const MenuCard:React.FC<MenuType> = ({name, dishes, index, sectionIndex, justify
                         <Dots></Dots>
                         <PositionPrice>
                             {dish.price}
+                            <Ruble>₽</Ruble>
                         </PositionPrice>
-                        <Ruble>₽</Ruble>
                     </CardPosition>
                 )}
             </CardContent>

@@ -3,8 +3,6 @@ import {
     MobileIcon,
     Nav,
     NavbarContainer,
-    NavBtn,
-    NavBtnLink,
     NavItem, NavLinkNext, NavLinkNextLogo,
     NavLinksSmooth,
     NavLogo,
@@ -12,6 +10,7 @@ import {
 } from "./NavStyles";
 import { FaBars } from 'react-icons/fa';
 import {FC, useEffect, useState} from "react";
+import { useActions } from "../../hooks/useActions";
 
 
 type NavbarType = {
@@ -21,6 +20,7 @@ type NavbarType = {
 }
 const Navbar:FC<NavbarType> = ({isOutsidePage, toggle, isRoomPage}) => {
     const [scrollNav, setScrollNav] = useState(false)
+    const {activateScrolling} = useActions()
 
     const changeNav = () => {
         if(window.scrollY >= 80) {
@@ -37,7 +37,7 @@ const Navbar:FC<NavbarType> = ({isOutsidePage, toggle, isRoomPage}) => {
     }, [])
 
     const scrollTo = (target) => {
-        //todo: сделать скролл до секции при переходе на index page
+        activateScrolling(target)
     }
 
 

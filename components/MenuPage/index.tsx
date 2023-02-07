@@ -1,5 +1,4 @@
 import {
-    AddMenuWrapper,
     ImgMask2, ImgMask4, ImgMask6,
     MenuContainer, MenuHeader,
     MenuImgWrapper,
@@ -26,7 +25,7 @@ type ToggleStateType = {
 }
 const MenuPage = ({dishes, drinks}) => {
 
-    console.log(dishes)
+
     const { ref, inView, entry } = useInView({
         /* Optional options */
         threshold: .14,
@@ -134,7 +133,7 @@ const MenuPage = ({dishes, drinks}) => {
 
             {/*-----Дополнительное меню под заказ----*/}
             <MenuNavigation id='addMenu' position='bottom' padding={50}/>
-            <AddMenuWrapper>
+            <MenuWrapper>
                 <MenuHeader padding='20px 5px'>Блюда на заказ</MenuHeader>
                 <ul>
                     <li>Буженина</li>
@@ -150,7 +149,7 @@ const MenuPage = ({dishes, drinks}) => {
                     <li>Говяжьи ребра в казане</li>
                     <li>Индейка в соусе</li>
                 </ul>
-            </AddMenuWrapper>
+            </MenuWrapper>
         </MenuContainer>
     );
 };

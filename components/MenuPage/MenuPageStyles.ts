@@ -30,6 +30,7 @@ export const MenuToggle = styled.div`
 export const MenuWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   z-index: 1;
   min-height: 100vh;
   width: 100%;
@@ -38,16 +39,6 @@ export const MenuWrapper = styled.div`
   margin-left: auto;
   padding: 0 24px;
   gap: 10px;
-`
-export const AddMenuWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  max-width: 1100px;
-  margin-right: auto;
-  margin-left: auto;
-  padding: 0 24px;
 `
 
 const Section = styled.div`

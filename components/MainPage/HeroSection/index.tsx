@@ -13,8 +13,10 @@ import {
     ImgBg
 } from "./HeroSectionStyles";
 
+
 const HeroSection = () => {
     const [hover, setHover] = useState(false)
+
 
     const onHover = () => {
         setHover(!hover)

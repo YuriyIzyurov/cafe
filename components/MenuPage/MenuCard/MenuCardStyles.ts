@@ -15,8 +15,9 @@ export const MenuH2 = styled.h2`
 `
 export const MenuImg = styled.div`
   background: url(${({url}) => url}) center / cover;
-  max-width: 230px;
   min-width: 230px;
+  padding: 0 27px;
+  margin-bottom: 8px;
   display: flex;
   justify-content: center;
 `
@@ -44,9 +45,9 @@ export const PositionName = styled.div`
  //align-self: flex-start;
 `
 export const PositionPrice = styled.div`
- //align-self: flex-end;
+  min-width: 60px;
 `
 export const Ruble = styled.span`
-    padding-left: 3px;
+  padding-left: 3px;
 `
 

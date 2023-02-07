@@ -14,6 +14,7 @@ import {activateScrollTrigger} from "../utility/parallax";
 import HistorySection from "../components/MainPage/HistorySection";
 import Footer from "../components/MainPage/Footer";
 import { useScrollBlock } from "../hooks/useScrollBlock";
+import {log} from "util";
 
 
 
@@ -22,6 +23,10 @@ const Index = () => {
     const { data, isLoading, error} = useGetProductsQuery(6) //получаем данные с сервера
     const {addItem} = useActions() //используем экшены
     const {cart} = useTypedSelector(state => state) //доступ к стейту
+
+    //автоскролл после перехода из другой страницы на эту
+    const {mainPage} = useTypedSelector(state => state)
+    const {deActivateScrolling} = useActions()
 
     const [blockScroll, allowScroll] = useScrollBlock()
 
@@ -33,15 +38,29 @@ const Index = () => {
 
 
     useEffect(() => {
+
+        if(mainPage.scrollTo) {
+            scroller.scrollTo(mainPage.scrollTo, {
+                duration: 800,
+                smooth: true,
+                offset: -80,
+                ignoreCancelEvents: true
+            })
+            deActivateScrolling()
+        }
+
         window.addEventListener("wheel", slideScroll)
         slides = document.querySelectorAll('section')
 
-        Events.scrollEvent.register('begin', () => {
-            blockScroll()
-        })
-        Events.scrollEvent.register('end', () => {
-            allowScroll()
-        })
+        if(!mainPage.scrollTo) {
+            Events.scrollEvent.register('begin', () => {
+                blockScroll()
+            })
+            Events.scrollEvent.register('end', () => {
+                allowScroll()
+            })
+
+        }
         for (let i = 0; i < slides.length; i++) {
             offsets.push(-slides[i].offsetTop)
         }

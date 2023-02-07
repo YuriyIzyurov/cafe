@@ -4,10 +4,10 @@ import {
     Dots, MenuCardContainer,
     MenuH2,
     MenuImg,
-    PositionName, PositionPrice, TestBG
+    PositionName, PositionPrice, Ruble, TestBG
 } from "../MenuCard/MenuCardStyles";
 import React, { FC } from "react";
-import {BarCardContainer, BarCardWrapper, BarImgContainer, BarSideImg} from "./BarCardStyles";
+import {BarCardContainer, BarCardWrapper, BarImgContainer, BarSideImg, CardTable} from "./BarCardStyles";
 
 type Price = {
     ml50: number
@@ -36,6 +36,27 @@ const BarCard: FC<CardType> = ({name, drinks, index}) => {
         else if(index < 11) return 'flex-end'
         else return 'center'
     }
+
+    const isSizeAvailable = (number) => {
+        const array = number === 50
+            ? drinks.filter((drink) => drink.price.ml50 !== 0)
+            : drinks.filter((drink) => drink.price.ml100 !== 0)
+        return array.length !== 0
+    }
+    const isVisible50ml = isSizeAvailable(50)
+    const isVisible100ml = isSizeAvailable(100)
+
+    const setUnit = () => {
+
+        //todo: подумать как переделать на константы
+        if(name.includes('разливное')) return '500 мл.'
+        else if(name.includes('Горячие')) return ''
+        else if(name.includes('Снэки')) return 'шт.'
+        else return '1 бут.'
+    }
+    const unit = setUnit()
+
+
     return (
             <BarCardContainer justifySelf={getSelfPosition()}>
                 {index === 3 &&
@@ -50,21 +71,28 @@ const BarCard: FC<CardType> = ({name, drinks, index}) => {
                     <MenuImg url='images/splash2.png'>
                         <MenuH2>{name}</MenuH2>
                     </MenuImg>
+                    <CardTable>
+                        {isVisible50ml && <span>50 мл.</span>}
+                        {isVisible100ml && <span>{!name.includes('Сладкие') ? '100 мл.' : '0.25 мл.'}</span>}
+                        <span>{unit}</span>
+                    </CardTable>
                     <CardContent>
                         {drinks.map((drink) =>
                             <CardPosition key={drink._id}>
                                 <PositionName>
                                     {drink.name}
                                 </PositionName>
-                                <Dots></Dots>
+                                <Dots/>
+                                {drink.price.ml50 !== 0 &&
+                                    <PositionPrice>
+                                        {drink.price.ml50}<Ruble>₽</Ruble>
+                                    </PositionPrice>}
+                                {drink.price.ml100 !== 0 &&
+                                    <PositionPrice>
+                                        {drink.price.ml100}<Ruble>₽</Ruble>
+                                    </PositionPrice>}
                                 <PositionPrice>
-                                    {drink.price.ml50}
-                                </PositionPrice>
-                                <PositionPrice>
-                                    {drink.price.ml100}
-                                </PositionPrice>
-                                <PositionPrice>
-                                    {drink.price.bottle}
+                                    {drink.price.bottle}<Ruble>₽</Ruble>
                                 </PositionPrice>
                             </CardPosition>
                         )}
