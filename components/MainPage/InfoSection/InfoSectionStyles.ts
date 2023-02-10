@@ -1,9 +1,7 @@
 import styled from "styled-components";
 
 export const InfoContainer = styled.section`
-  color: #fff;
-  background: ${({lightBg}) => (lightBg ? '#f9f9f9' : '#161616')};
-  
+
   @media screen and (max-width: 768px) {
     padding: 100px 0;
   }
@@ -90,9 +88,9 @@ export const BtnWrap = styled.div`
 
 export const ImgWrap = styled.div`
   position: absolute;
-  bottom: 310px;
-  right: -75px;
-  width: 660px;
+  bottom: 300px;
+  right: -72px;
+  left: -63px;
   height: 100%;
 `
 
@@ -105,17 +103,15 @@ export const ImgWrap2 = styled.div`
 
 export const ImgWrap3 = styled.div`
   position: absolute;
-  bottom: 287px;
+  bottom: 0;
   left: -49px;
-  height: 100%;
 `
 
 export const ImgWrap4 = styled.div`
   position: absolute;
-  bottom: -72px;
-  left: 318px;
+  top: 43px;
+  left: 353px;
   width: 230px;
-  height: 100%;
 `
 
 export const ImgWrap5 = styled.div`
@@ -127,9 +123,8 @@ export const ImgWrap5 = styled.div`
 
 export const ImgWrap6 = styled.div`
   position: absolute;
-  bottom: 338px;
+  bottom: -50px;
   right: -139px;
-  height: 100%;
 `
 
 

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     FooterBG, FooterBG2,
     FooterContainer, FooterContentWrapper, FooterH1,
@@ -18,13 +18,18 @@ const Footer = ({id}) => {
 
     const [hover, setHover] = useState(false)
 
+    useEffect(() => {
+        console.log('footer mounted')
+    }, [])
+
+
     const onHover = () => {
         setHover(!hover)
     }
 
     return (
         <FooterContainer id={id}>
-            <FooterBG url="images/footer2.png"/>
+            <FooterBG url="images/footer2.jpg"/>
             <FooterBG2>
                 <FooterContentWrapper>
                     <FooterH2>Бронирование</FooterH2>

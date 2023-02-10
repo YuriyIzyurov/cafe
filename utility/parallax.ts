@@ -3,15 +3,10 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger.js';
 gsap.registerPlugin(ScrollTrigger)
 
 
-export const activateScrollTrigger = () => {
-    //master animation
-    const master = gsap.timeline()
-    master.add(animateAboutContainer())
-        .add(animateHistoryContainer())
-        .add(animateServicesContainer())
+export const registerMainComponentAnim = () => {
 
-    //about container animation
-    function animateAboutContainer() {
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) return
+
         const tl1 = gsap.timeline({
             scrollTrigger: {
                 trigger: "#about",
@@ -53,11 +48,13 @@ export const activateScrollTrigger = () => {
             .to("#salad",   { y:  -100 }, 0)
             .to("#tomatos",   { y:  -250 }, 0)
 
-        return tl1.add(tl2).add(tl3)
-    }
+        tl1.add(tl2).add(tl3)
+}
 
-    //history container animation
-    function animateHistoryContainer() {
+export const registerHistoryComponentAnim = () => {
+
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) return
+
         const tl1 = gsap.timeline({
             scrollTrigger: {
                 trigger: "#history",
@@ -82,11 +79,13 @@ export const activateScrollTrigger = () => {
             .to("#tea",   { y:  -50 }, 0)
             .to("#branch",   { y:  890, x: -40, rotation: 360 }, 0)
 
-        return tl1.add(tl2)
-    }
+        tl1.add(tl2)
+}
 
-    //services container animation
-    function animateServicesContainer() {
+export const registerServicesComponentAnim = () => {
+
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) return
+
         const tl1 = gsap.timeline({
             scrollTrigger: {
                 trigger: "#services",
@@ -108,11 +107,12 @@ export const activateScrollTrigger = () => {
         tl2.to("#flour", { y:  -100 }, 0)
         tl2.to("#branch", { y: 790 }, 0)
 
-        return tl1.add(tl2)
-    }
+        tl1.add(tl2)
 }
 
 export const activateMenuAnimation = () => {
+
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) return
 
     const sections = [
         {name: "#section0", images: ["#salad", "#tomatos", "#flourwrap", "#flour"], start:["15% top","top top","top top"], end:["bottom top","15% top","35% top"]},

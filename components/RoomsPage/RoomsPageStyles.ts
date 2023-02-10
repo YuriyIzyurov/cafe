@@ -50,7 +50,7 @@ export const RoomContent = styled.div`
   justify-content: center;
   align-items: center;
   h2 {
-    font: normal 50px Pierre, sans-serif;
+    font: normal 50px var(--font-caligraphic);
     background-color: antiquewhite;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

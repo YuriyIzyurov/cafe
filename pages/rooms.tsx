@@ -5,7 +5,7 @@ import {useState} from "react";
 import RoomsPage from "../components/RoomsPage";
 
 
-const Rooms = ({users}) => {
+const Rooms = () => {
     const [isOpen, setIsOpen] = useState(false)
     const toggle = () => setIsOpen(!isOpen)
 
@@ -19,11 +19,3 @@ const Rooms = ({users}) => {
 };
 
 export default Rooms;
-
-export async function getStaticProps(context) {
-    const response = await fetch('https://jsonplaceholder.typicode.com/users')
-    const users = await response.json()
-    return {
-        props: {users}
-    }
-}

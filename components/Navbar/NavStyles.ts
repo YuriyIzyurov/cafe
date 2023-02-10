@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import {Link as LinkScroll} from 'react-scroll'
 
+
 export const Nav = styled.nav`
   background: ${({scrollNav }) => (scrollNav ? '#161616' : 'transparent')};
   transition: background-color 0.3s ease;
@@ -38,7 +39,7 @@ export const LogoH1 = styled.h1`
   font-size: 43px;
   font-weight: 100;
   cursor: pointer;
-  font-family: 'Pierre', sans-serif;
+  font-family: var(--font-caligraphic);
   background-color: antiquewhite;
   background-image: linear-gradient(180deg, #5b4428, antiquewhite);
   -webkit-background-clip: text;
@@ -67,6 +68,8 @@ export const NavMenu = styled.ul`
   display: flex;
   align-items: center;
   text-align: center;
+  font-weight: 700;
+  font-size: 20px;
   
   @media screen and (max-width: 768px) {
     display: none;
@@ -74,9 +77,6 @@ export const NavMenu = styled.ul`
 `
 export const NavItem = styled.div`
   height: 80px;
-  font-family: 'PT Sans', sans-serif;
-  font-weight: 700;
-  font-size: 20px;
   padding: 0 1rem;
   cursor: pointer;
 `

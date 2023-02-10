@@ -1,5 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {Button, ButtonRoute, ButtonSmoothScroll} from '../../ButtonElement';
+import {Button, ButtonRoute} from '../../ButtonElement';
 import {
     BtnWrap,
     Column1,
@@ -13,13 +12,19 @@ import {
     InfoWrapper,
     Subtitle,
     TextWrapper,
-    TopLine
 } from './InfoSectionStyles';
+import Image from 'next/image'
+import {useEffect} from "react";
+import {registerMainComponentAnim} from "../../../utility/parallax";
 
 
 
-const InfoSection = ({lightBg, id, imgStart, topLine, lightText, headline, darkText, description, buttonLabel, primary, img, alt}) => {
 
+const InfoSection = ({lightBg, id, imgStart, lightText, headline, darkText, description, buttonLabel, img, alt}) => {
+
+    useEffect(() => {
+        registerMainComponentAnim()
+    }, [])
 
     return (
         <>
@@ -28,7 +33,6 @@ const InfoSection = ({lightBg, id, imgStart, topLine, lightText, headline, darkT
                     <InfoRow imgStart={imgStart}>
                         <Column1>
                             <TextWrapper>
-                                {/*<TopLine>{topLine}</TopLine>*/}
                                 <Heading lightText={lightText}>{headline}</Heading>
                                 <Subtitle darkText={darkText}>{description}</Subtitle>
                                 <BtnWrap>
@@ -42,25 +46,25 @@ const InfoSection = ({lightBg, id, imgStart, topLine, lightText, headline, darkT
                         </Column1>
                         <Column2>
                             <ImgWrap3 id='solt'>
-                                <Img src='images/solt-resized.png'  alt={alt}/>
+                                <Image src='/images/solt-resized.png' width={175} height={267}  alt={alt}/>
                             </ImgWrap3>
                             <ImgWrap6 id='spoon'>
-                                <Img src='images/spoon-resized.png'  alt={alt}/>
+                                <Image src='/images/spoon-resized.png' width={192} height={407}  alt={alt}/>
                             </ImgWrap6>
                             <ImgWrap4 id='pepper'>
-                                <Img src='images/pepper-resized.png'  alt={alt}/>
+                                <Image src='/images/pepper-resized.png' width={230} height={224}  alt={alt}/>
                             </ImgWrap4>
                             <ImgWrap2 id='salad'>
-                                <Img src='images/salad-resized.png'  alt={alt}/>
+                                <Image src='/images/salad-resized.png' width={232} height={177}  alt={alt}/>
                             </ImgWrap2>
                             <ImgWrap7 id='salad2'>
-                                <Img src='images/salad2-resized.png'  alt={alt}/>
+                                <Image src='/images/salad2-resized.png' width={250} height={371}  alt={alt}/>
                             </ImgWrap7>
                             <ImgWrap5 id='tomatos'>
-                                <Img src='images/tomatos-resized.png'  alt={alt}/>
+                                <Image src='/images/tomatos-resized.png' width={250} height={250}  alt={alt}/>
                             </ImgWrap5>
-                            <ImgWrap >
-                                <Img src={img}  id='dish' alt={alt}/>
+                            <ImgWrap>
+                                <Image id='dish' src='/images/animated-dish-test2.png' width={660} height={525}  alt={alt}/>
                             </ImgWrap>
                         </Column2>
                     </InfoRow>

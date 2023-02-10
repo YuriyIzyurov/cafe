@@ -51,7 +51,7 @@ export const ServicesBlockWrapper2 = styled.div`
 `
 export const ServicesBlockWrapper3 = styled.div`
   position: absolute;
-  top: 284px;
+  top: 300px;
   left: 0;
   max-width: 700px;
 `

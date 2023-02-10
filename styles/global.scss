@@ -36,7 +36,7 @@ body {
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
-  font-family: 'PT Sans', sans-serif;
+  font-family: var(--font-base);
 }
 
 /* Удаляем стандартную стилизацию для всех ul и il, у которых есть атрибут class*/
@@ -77,16 +77,6 @@ select {
     scroll-behavior: auto !important;
   }
 }
-@font-face {
-  font-family: 'AuroraScript';
-  src: url('../styles/fonts/AuroraScript.ttf');
-  font-weight: 400;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Pierre';
-  src: url('../styles/fonts/Pierre.ttf');
-  font-weight: 400;
-  font-style: normal;
-}
+
+
 @import "node_modules/react-image-gallery/styles/scss/image-gallery.scss";

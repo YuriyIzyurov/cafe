@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     BlackPhone, BlackPhoneActive,
     ServicesBlockWrapper1, ServicesBlockWrapper2,
@@ -14,11 +14,18 @@ import {
     HistoryP
 } from "../HistorySection/HistorySectionStyles";
 import {Element} from 'react-scroll'
+import Image from 'next/image'
+import {registerHistoryComponentAnim} from "../../../utility/parallax";
 
 const Services = ({id}) => {
     const [hover, setHover] = useState(false)
     const [hover2, setHover2] = useState(false)
     const [hover3, setHover3] = useState(false)
+
+    useEffect(() => {
+        registerHistoryComponentAnim()
+    }, [])
+
 
     const onHover = () => {
         setHover(!hover)
@@ -34,11 +41,11 @@ const Services = ({id}) => {
         <ServicesContainer id={id}>
             <ServicesWrapper>
                <ServicesImgWrapper id='flour'>
-                   <img src='images/flour.png' alt='flour'/>
+                   <Image src='/images/flour.png' width={700} height={382} alt='flour'/>
                </ServicesImgWrapper>
                <ServicesBlockWrapper1>
                 <HistoryBlock mini>
-                    <img src='images/banket2.png'/>
+                    <Image src='/images/banket2.jpg' width={300} height={262} alt='banket'/>
                     <HistoryContent padding='50px'>
                         <HistoryH1 fontSize='28px'>Банкеты на день рождения</HistoryH1>
                         <HistoryP>
@@ -69,12 +76,12 @@ const Services = ({id}) => {
                                <span>Фото залов</span>{hover2 ? <ArrowRight/> : <ArrowRightSmall/>}
                            </HistoryLink>
                        </HistoryContent>
-                     <img src='images/candles2.png'/>
+                     <Image src='/images/candles2.jpg' width={300} height={260} alt='candles'/>
                    </HistoryBlock>
                </ServicesBlockWrapper2>
                <ServicesBlockWrapper3>
                  <HistoryBlock mini>
-                       <img src='images/waiter2.png'/>
+                       <Image src='/images/waiter2.jpg' width={300} height={261} alt='waiter'/>
                        <HistoryContent padding='50px'>
                            <HistoryH1 fontSize='28px'>Приготовление заказных блюд</HistoryH1>
                            <HistoryP>

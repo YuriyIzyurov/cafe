@@ -13,7 +13,7 @@ export const MenuHeader = styled.header`
   padding: ${({padding}) => padding};
   display: flex;
   justify-content: center;
-  font: normal 75px Pierre, sans-serif;
+  font: normal 75px var(--font-caligraphic);
   line-height: 75px;
   background-color: antiquewhite;
   background-image: linear-gradient(180deg, #5b4428, antiquewhite);
@@ -118,11 +118,17 @@ export const ImgMask6 = styled.div`
   }
 `
 
-export const MenuSideImg = styled.img`
+export const MenuSideImgWrapper = styled.div`
   position: absolute;
   top: 40px;
   left: 40px;
   z-index: 2;
+`
+export const MenuSideImgWrapper2 = styled.div`
+  position: absolute;
+  bottom: 37px;
+  left: 35px;
+  z-index: 1;
 `
 const SideImg = styled.img`
   position: absolute;
@@ -146,4 +152,10 @@ export const MenuSideImg5 = styled(SideImg)`
 `
 export const MenuSideImg6 = styled.img`
   max-width: 98%;
+`
+export const MenuBranchWrapper = styled.div`
+  position: absolute;
+  z-index: 1;
+  bottom: 118px;
+  right: -12px;
 `

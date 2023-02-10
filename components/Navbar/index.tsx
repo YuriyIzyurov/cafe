@@ -11,6 +11,7 @@ import {
 import { FaBars } from 'react-icons/fa';
 import {FC, useEffect, useState} from "react";
 import { useActions } from "../../hooks/useActions";
+import { pierre } from "../../styles/fonts/fonts";
 
 
 type NavbarType = {
@@ -59,9 +60,13 @@ const Navbar:FC<NavbarType> = ({isOutsidePage, toggle, isRoomPage}) => {
                         >
                            <LogoH1>УКузьмича</LogoH1>
                         </NavLogo>}
+
+
                    <MobileIcon onClick={toggle}>
                         <FaBars/>
                    </MobileIcon>
+
+
                    {isOutsidePage
                        ? <NavMenu>
                             <NavItem>

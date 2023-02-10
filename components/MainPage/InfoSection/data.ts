@@ -8,7 +8,7 @@ export const homeObjOne = {
     description: '',
     buttonLabel: 'Посмотреть меню',
     imgStart: false,
-    img: 'images/animated-dish-test2.png',
+    img: '/images/animated-dish-test2.png',
     alt: 'Car',
     dark: true,
     primary: true,

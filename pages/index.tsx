@@ -3,18 +3,39 @@ import {useGetProductsQuery} from "../store/product/product.api";
 import {useActions} from "../hooks/useActions";
 import {useTypedSelector} from "../hooks/useTypedSelector";
 import Navbar from "../components/Navbar";
-import Sidebar from "../components/Sidebar";
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useState} from "react";
 import HeroSection from "../components/MainPage/HeroSection";
-import InfoSection from "../components/MainPage/InfoSection";
 import { homeObjOne} from "../components/MainPage/InfoSection/data";
-import Services from "../components/MainPage/Services";
 import {scroller, Events} from 'react-scroll'
-import {activateScrollTrigger} from "../utility/parallax";
-import HistorySection from "../components/MainPage/HistorySection";
-import Footer from "../components/MainPage/Footer";
 import { useScrollBlock } from "../hooks/useScrollBlock";
-import {log} from "util";
+import dynamic from 'next/dynamic'
+import Loading from "../components/Loading";
+
+
+
+
+
+const DynamicFooter = dynamic(() => import("../components/MainPage/Footer"), {
+    //loading: () => <Loading/>,
+    ssr:false
+})
+const DynamicSidebar = dynamic(() => import("../components/Sidebar"), {
+    //loading: () => <Loading/>,
+    ssr:false
+})
+const DynamicHistorySection = dynamic(() => import("../components/MainPage/HistorySection"), {
+   // loading: () => <Loading/>,
+    ssr:false
+})
+const DynamicServicesSection = dynamic(() => import("../components/MainPage/Services"), {
+    //loading: () => <Loading/>,
+    ssr:false
+})
+const DynamicInfoSection = dynamic(() => import("../components/MainPage/InfoSection"), {
+   // loading: () => <Loading/>,
+    ssr:false
+})
+
 
 
 
@@ -35,6 +56,7 @@ const Index = () => {
     let offsets = []
 
     const [isOpen, setIsOpen] = useState(false)
+    const [isVisible, setVisible] = useState(false)
 
 
     useEffect(() => {
@@ -64,7 +86,8 @@ const Index = () => {
         for (let i = 0; i < slides.length; i++) {
             offsets.push(-slides[i].offsetTop)
         }
-        activateScrollTrigger()
+
+        if(!isVisible) setVisible(true)
 
         return () => {
             window.removeEventListener("wheel", slideScroll)
@@ -93,16 +116,17 @@ const Index = () => {
     }
     const toggle = () => setIsOpen(!isOpen)
 
+
     return (
         <MainContainer>
-          <Sidebar isOpen={isOpen} toggle={toggle}/>
+          {isVisible && <DynamicSidebar isOpen={isOpen} toggle={toggle}/>}
           <Navbar toggle={toggle} />
           <>
               <HeroSection />
-              <InfoSection {...homeObjOne}/>
-              <HistorySection />
-              <Services id='services'/>
-              <Footer id='contacts'/>
+              <DynamicInfoSection {...homeObjOne}/>
+              <DynamicHistorySection />
+              <DynamicServicesSection id='services'/>
+              <DynamicFooter id='contacts'/>
           </>
         </MainContainer>
     );

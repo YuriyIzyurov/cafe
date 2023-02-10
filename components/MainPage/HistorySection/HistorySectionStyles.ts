@@ -40,7 +40,7 @@ export const HistoryContent = styled.div`
   padding: ${({padding}) => '0 ' + padding};
 `
 export const HistoryH2 = styled.h2`
-  font-family: 'Pierre',serif;
+  font-family: var(--font-caligraphic);
   color: rgba(152,108,53,0.85);
   font-weight: 100;
   font-size: ${({fontSize = '40px'}) => fontSize};

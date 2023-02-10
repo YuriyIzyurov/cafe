@@ -1,10 +1,21 @@
 import {
-    ImgMask2, ImgMask4, ImgMask6,
-    MenuContainer, MenuHeader,
+    ImgMask2,
+    ImgMask4,
+    ImgMask6,
+    MenuBranchWrapper,
+    MenuContainer,
+    MenuHeader,
     MenuImgWrapper,
     MenuSection,
     MenuSectionReversed,
-    MenuSideImg, MenuSideImg2, MenuSideImg3, MenuSideImg4, MenuSideImg5, MenuSideImg6, MenuToggle,
+    MenuSideImg2,
+    MenuSideImg3,
+    MenuSideImg4,
+    MenuSideImg5,
+    MenuSideImg6,
+    MenuSideImgWrapper,
+    MenuSideImgWrapper2,
+    MenuToggle,
     MenuWrapper
 } from "./MenuPageStyles";
 import MenuCard from "./MenuCard";
@@ -15,7 +26,7 @@ import BarCard from "./BarCard";
 import {BarSection} from "./BarCard/BarCardStyles";
 import {Button, ButtonSmoothScroll} from "../ButtonElement";
 import MenuNavigation from "./MenuNavigation";
-
+import Image from 'next/image'
 
 
 type ToggleStateType = {
@@ -65,13 +76,17 @@ const MenuPage = ({dishes, drinks}) => {
                     index === 1 ?
                         <MenuSectionReversed key={index} id={'section'+index}>
                             <MenuImgWrapper>
-                                <MenuSideImg id='soup' src='images/menu-soup.png' alt='salad'/>
+                                <MenuSideImgWrapper id='soup'>
+                                    <Image src='/images/menu-soup.png' width={432} height={425} alt='salad'/>
+                                </MenuSideImgWrapper>
                                 <ImgMask4 id='flour2wrap'>
-                                    <MenuSideImg4 id='flour2' src='images/flour2.png' alt='salad'/>
+                                    <Image id='flour2' src='/images/flour2.png' width={406} height={549} alt='flour2'/>
                                 </ImgMask4>
-                                <MenuSideImg5 id='branch' src='images/branch.png' alt='salad'/>
+                                <MenuBranchWrapper id='branch'>
+                                    <Image src='/images/branch.png' width={173} height={350} alt='branch'/>
+                                </MenuBranchWrapper>
                                 <ImgMask6  id='flour4wrap' inView={inView}>
-                                    <MenuSideImg6 ref={ref} id='flour4' src='images/flour3.png' alt='salad'/>
+                                    <Image ref={ref} id='flour4' src='/images/flour3.png' width={500} height={487} alt='flour4'/>
                                 </ImgMask6>
                             </MenuImgWrapper>
                             {section.map((specification, index2) =>
@@ -86,20 +101,26 @@ const MenuPage = ({dishes, drinks}) => {
                         :
                         <MenuSection key={index} id={'section'+index}>
                             <MenuImgWrapper>
-                                <MenuSideImg
-                                    src={index === 2 ? 'images/menu-potato.png' : 'images/menu-salad.png'}
-                                    id={index === 2 ? 'potatos' : 'salad'}
-                                    ref={index === 2 ? ref : imgRef}
-                                    alt='dish'/>
+                                <MenuSideImgWrapper id={index === 2 ? 'potatos' : 'salad'} ref={index === 2 ? ref : imgRef}>
+                                    <Image src={index === 2 ? '/images/menu-potato.png' : '/images/menu-salad.png'}
+                                           width={442}
+                                           height={423}
+                                           alt='menuImg'/>
+                                </MenuSideImgWrapper>
                                 <ImgMask2 id={index === 2 ? 'flour3wrap' : 'flourwrap'} position={index === 2 ? [13,-114] : [-136,-66]}>
-                                    <MenuSideImg2
-                                        id={index === 2 ? 'flour3' : 'flour'}
-                                        src='images/flour2.png' alt='salad'/>
+                                    <Image id={index === 2 ? 'flour3' : 'flour'}
+                                           src='/images/flour2.png'
+                                           width={406}
+                                           height={549}
+                                           alt='flour'/>
                                 </ImgMask2>
-                                <MenuSideImg3
-                                    src={index === 2 ? 'images/pepper-resized.png' : 'images/tomatos-resized.png'}
-                                    id={index === 2 ? 'pepper' : 'tomatos'}
-                                    alt='salad'/>
+                                <MenuSideImgWrapper2>
+                                    <Image id={index === 2 ? 'pepper' : 'tomatos'}
+                                           src={index === 2 ? '/images/pepper-resized.png' : '/images/tomatos-resized.png'}
+                                           width={140}
+                                           height={140}
+                                           alt='img'/>
+                                </MenuSideImgWrapper2>
                             </MenuImgWrapper>
                             {section.map((specification, index2) =>
                                     <MenuCard

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button, ButtonRoute } from "../../ButtonElement";
+import Image from 'next/image'
 
 import {
     ArrowForward,

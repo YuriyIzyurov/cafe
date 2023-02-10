@@ -12,14 +12,19 @@ import {
     HistoryP,
     HistoryWrapper
 } from "./HistorySectionStyles";
-import {useState} from "react";
-
+import {useEffect, useState} from "react";
+import Image from 'next/image'
+import {registerServicesComponentAnim} from "../../../utility/parallax";
 
 
 
 
 const HistorySection = () => {
     const [hover, setHover] = useState(false)
+
+    useEffect(() => {
+        registerServicesComponentAnim()
+    }, [])
 
     const onHover = () => {
         setHover(!hover)
@@ -30,12 +35,12 @@ const HistorySection = () => {
             <HistoryWrapper>
                 <HistoryBlock>
                     <HistoryImgWrap id='smoke'>
-                        <img src='images/smoke.png'/>
+                        <Image src='/images/smoke.png' width={367} height={341} alt='smoke'/>
                     </HistoryImgWrap>
                     <HistoryImgWrap2 id='tea'>
-                        <img src='images/tea-leaves.png'/>
+                        <Image src='/images/tea-leaves.png' width={200} height={162} alt='leaves'/>
                     </HistoryImgWrap2>
-                    <img src='images/history2.png'/>
+                    <Image src='/images/history2.jpg' width={522} height={411} alt='history'/>
                     <HistoryContent padding='100px'>
                         <HistoryH2>Погрузись</HistoryH2>
                         <HistoryH1>В нашу историю</HistoryH1>
@@ -52,7 +57,7 @@ const HistorySection = () => {
                         </HistoryLink>
                     </HistoryContent>
                     <HistoryImgWrap3 id='branch'>
-                        <img src='images/branch.png'/>
+                        <Image src='/images/branch.png' width={173} height={350} alt='branch'/>
                     </HistoryImgWrap3>
                 </HistoryBlock>
                 <div style={{height: '110px'}}></div> {/*Для центрирования блока*/}
