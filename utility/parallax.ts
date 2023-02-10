@@ -5,7 +5,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 export const registerMainComponentAnim = () => {
 
-        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) return
+       // if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) return
 
         const tl1 = gsap.timeline({
             scrollTrigger: {

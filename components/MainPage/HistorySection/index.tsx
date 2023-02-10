@@ -14,7 +14,7 @@ import {
 } from "./HistorySectionStyles";
 import {useEffect, useState} from "react";
 import Image from 'next/image'
-import {registerServicesComponentAnim} from "../../../utility/parallax";
+import {registerHistoryComponentAnim} from "../../../utility/parallax";
 
 
 
@@ -23,7 +23,7 @@ const HistorySection = () => {
     const [hover, setHover] = useState(false)
 
     useEffect(() => {
-        registerServicesComponentAnim()
+        registerHistoryComponentAnim()
     }, [])
 
     const onHover = () => {
