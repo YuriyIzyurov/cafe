@@ -15,7 +15,7 @@ import {
 } from "../HistorySection/HistorySectionStyles";
 import {Element} from 'react-scroll'
 import Image from 'next/image'
-import {registerHistoryComponentAnim} from "../../../utility/parallax";
+import {registerHistoryComponentAnim, registerServicesComponentAnim} from "../../../utility/parallax";
 
 const Services = ({id}) => {
     const [hover, setHover] = useState(false)
@@ -23,7 +23,7 @@ const Services = ({id}) => {
     const [hover3, setHover3] = useState(false)
 
     useEffect(() => {
-        registerHistoryComponentAnim()
+        registerServicesComponentAnim()
     }, [])
 
 
