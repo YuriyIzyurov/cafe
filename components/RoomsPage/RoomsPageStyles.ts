@@ -13,7 +13,7 @@ export const RoomsContainer = styled.section`
   padding: 80px 24px;
   
   @media screen and (max-width: 768px) {
-    padding: 100px 0;
+    
   }
 `
 export const RoomsSection = styled.section`

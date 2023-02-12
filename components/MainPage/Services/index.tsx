@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {
-    BlackPhone, BlackPhoneActive,
+    BlackPhone, BlackPhoneActive, ServicesBlockImgWrapper,
     ServicesBlockWrapper1, ServicesBlockWrapper2,
-    ServicesBlockWrapper3, ServicesContainer, ServicesImgWrapper, ServicesWrapper
+    ServicesBlockWrapper3, ServicesContainer, ServicesImgWrapper, ServicesP, ServicesWrapper
 } from "./ServicesStyles";
 import {
     ArrowRight, ArrowRightSmall,
@@ -10,12 +10,18 @@ import {
     HistoryContent,
     HistoryH1,
     HistoryH2,
+    HistoryImgWrapper,
     HistoryLink,
     HistoryP
 } from "../HistorySection/HistorySectionStyles";
+import banket from '../../../public/images/banket2.jpg'
+import candles from '../../../public/images/candles2.jpg'
+import waiter from '../../../public/images/waiter2.jpg'
+import flour from '../../../public/images/flour.png'
 import {Element} from 'react-scroll'
 import Image from 'next/image'
 import {registerHistoryComponentAnim, registerServicesComponentAnim} from "../../../utility/parallax";
+import {isMobileDevice} from "../../../utility/deviceChecker";
 
 const Services = ({id}) => {
     const [hover, setHover] = useState(false)
@@ -23,7 +29,7 @@ const Services = ({id}) => {
     const [hover3, setHover3] = useState(false)
 
     useEffect(() => {
-        registerServicesComponentAnim()
+        if(!isMobileDevice()) registerServicesComponentAnim()
     }, [])
 
 
@@ -41,18 +47,21 @@ const Services = ({id}) => {
         <ServicesContainer id={id}>
             <ServicesWrapper>
                <ServicesImgWrapper id='flour'>
-                   <Image src='/images/flour.png' width={700} height={382} alt='flour'/>
+                   <Image src={flour}  alt='flour'/>
                </ServicesImgWrapper>
+
                <ServicesBlockWrapper1>
                 <HistoryBlock mini>
-                    <Image src='/images/banket2.jpg' width={300} height={262} alt='banket'/>
-                    <HistoryContent padding='50px'>
+                    <ServicesBlockImgWrapper>
+                        <Image src={banket}  fill style={{objectFit:"cover"}} alt='banket'/>
+                    </ServicesBlockImgWrapper>
+                    <HistoryContent padding={[30, 50]} mini>
                         <HistoryH1 fontSize='28px'>Банкеты на день рождения</HistoryH1>
-                        <HistoryP>
+                        <ServicesP>
                             В нашем кафе вы можете заказать банкет
                             по любому важному для вас поводу.
                             Мы так же организуем Свадебные обеды и поминальные трапезы.
-                        </HistoryP>
+                        </ServicesP>
                         <HistoryLink href='tel:28‑55-07'
                                      onMouseEnter={onHover}
                                      onMouseLeave={onHover}>
@@ -61,34 +70,41 @@ const Services = ({id}) => {
                     </HistoryContent>
                 </HistoryBlock>
                </ServicesBlockWrapper1>
+
                <ServicesBlockWrapper2>
                  <HistoryBlock reverse mini>
-                     <HistoryContent padding='50px'>
+                     <HistoryContent padding={[30, 50]} mini>
                            <HistoryH1 fontSize='28px'>Проведение корпоративов</HistoryH1>
-                           <HistoryP>
+                           <ServicesP>
                                Для проведения корпоративов мы предлагаем наши банкетные залы,
                                которые вмещают до 45 человек и до 25 человек и позволяют провести мероприятия
                                любого формата и сложности.
-                           </HistoryP>
+                           </ServicesP>
                            <HistoryLink href='/rooms'
                                         onMouseEnter={onHover2}
                                         onMouseLeave={onHover2}>
                                <span>Фото залов</span>{hover2 ? <ArrowRight/> : <ArrowRightSmall/>}
                            </HistoryLink>
                        </HistoryContent>
-                     <Image src='/images/candles2.jpg' width={300} height={260} alt='candles'/>
+                     <ServicesBlockImgWrapper>
+                         <Image src={candles}  fill style={{objectFit:"cover"}} alt='candles'/>
+                     </ServicesBlockImgWrapper>
                    </HistoryBlock>
                </ServicesBlockWrapper2>
+
                <ServicesBlockWrapper3>
                  <HistoryBlock mini>
-                       <Image src='/images/waiter2.jpg' width={300} height={261} alt='waiter'/>
-                       <HistoryContent padding='50px'>
+
+                       <ServicesBlockImgWrapper>
+                           <Image src={waiter}  fill style={{objectFit:"cover"}} alt='waiter'/>
+                       </ServicesBlockImgWrapper>
+                       <HistoryContent padding={[30, 50]} mini>
                            <HistoryH1 fontSize='28px'>Приготовление заказных блюд</HistoryH1>
-                           <HistoryP>
+                           <ServicesP>
                                Банкетное меню составляется персонально под каждого гостя и насчитывает
                                множество вариантов, в состав которых входят в том числе и некоторые
                                блюда, не включенные в основное меню.
-                           </HistoryP>
+                           </ServicesP>
                            <HistoryLink href='/menu'
                                         onMouseEnter={onHover3}
                                         onMouseLeave={onHover3}>
@@ -98,6 +114,7 @@ const Services = ({id}) => {
                        </HistoryContent>
                    </HistoryBlock>
                </ServicesBlockWrapper3>
+
             </ServicesWrapper>
             <div style={{height: '110px'}}></div> {/*Для центрирования блока*/}
         </ServicesContainer>

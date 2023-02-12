@@ -6,7 +6,7 @@ export const MenuContainer = styled.section`
   padding-top: 80px;
   
   @media screen and (max-width: 768px) {
-    padding: 100px 0;
+    
   }
 `
 export const MenuHeader = styled.header`

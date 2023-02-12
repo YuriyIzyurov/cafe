@@ -4,6 +4,7 @@ import Link from "next/link";
 
 export const Button = styled.div`
   min-width: 230px;
+  
   border: ${({color = '#fff', borderless}) => !borderless ? `3px solid ${color}` : 'none'};
   border-left: ${({middleBtn, sectionIsActive,rightBtn }) => (middleBtn && sectionIsActive) || rightBtn ? 'none' : ''};
   border-right: ${({middleBtn, sectionIsActive, rightBtn}) => (middleBtn || sectionIsActive) && !rightBtn ? 'none' : ''};

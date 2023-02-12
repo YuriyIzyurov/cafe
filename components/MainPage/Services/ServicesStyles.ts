@@ -10,19 +10,19 @@ export const ServicesContainer = styled.section`
   background: #161616;
   
   @media screen and (max-width: 768px) {
-    height: 1100px;
+    
   }
 
   @media screen and (max-width: 480px) {
-    height: 1300px;
+    
   }
 `
 
 export const ServicesWrapper = styled.div`
   position: relative;
-  max-width: 1000px;
-  height: 300px;
-  width: 1000px;
+  max-width: 1100px;
+  width: 100%;
+  gap: 10px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -35,30 +35,59 @@ export const ServicesWrapper = styled.div`
   @media screen and (max-width: 768px) {
     padding: 0 20px;
   }
+  @media screen and (max-width: 520px) {
+    padding: 0 15px;
+    gap: 5px;
+  }
+`
+export const ServicesP = styled.p`
+  color: #161616;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 20px 0;
+
+  @media screen and (max-width: 560px) {
+    padding: 3px 0;
+    font-size: 13px;
+  }
+  @media screen and (max-width: 480px) {
+    line-height: 14px;
+  }  
 `
 export const ServicesBlockWrapper1 = styled.div`
-  position: absolute;
-  bottom: 280px;
-  left: 0;
   max-width: 700px;
+  align-self: flex-start;
+  z-index: 0;
+
+  @media screen and (max-width: 900px) {
+    max-width: 600px;
+  }
+`
+export const ServicesBlockImgWrapper = styled.div`
+  position: relative;
 `
 export const ServicesBlockWrapper2 = styled.div`
-  position: absolute;
-  top: 30px;
-  left: 280px;
   max-width: 700px;
+  align-self: flex-end;
   z-index: 0;
+
+  @media screen and (max-width: 900px) {
+    max-width: 600px;
+  }
 `
 export const ServicesBlockWrapper3 = styled.div`
-  position: absolute;
-  top: 300px;
-  left: 0;
   max-width: 700px;
+  align-self: flex-start;
+  z-index: 0;
+  
+  @media screen and (max-width: 900px) {
+    max-width: 600px;
+  }
 `
 export const ServicesImgWrapper = styled.div`
   position: absolute;
-  top: -111px;
-  left: 182px;
+  top: 18%;
+  left: 21%;
 `
 export const BlackPhone = styled(MdLocalPhone)`
   font-size: 17px;

@@ -5,8 +5,6 @@ gsap.registerPlugin(ScrollTrigger)
 
 export const registerMainComponentAnim = () => {
 
-       // if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) return
-
         const tl1 = gsap.timeline({
             scrollTrigger: {
                 trigger: "#about",
@@ -53,8 +51,6 @@ export const registerMainComponentAnim = () => {
 
 export const registerHistoryComponentAnim = () => {
 
-        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) return
-
         const tl1 = gsap.timeline({
             scrollTrigger: {
                 trigger: "#history",
@@ -84,8 +80,6 @@ export const registerHistoryComponentAnim = () => {
 
 export const registerServicesComponentAnim = () => {
 
-        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) return
-
         const tl1 = gsap.timeline({
             scrollTrigger: {
                 trigger: "#services",
@@ -112,7 +106,6 @@ export const registerServicesComponentAnim = () => {
 
 export const activateMenuAnimation = () => {
 
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) return
 
     const sections = [
         {name: "#section0", images: ["#salad", "#tomatos", "#flourwrap", "#flour"], start:["15% top","top top","top top"], end:["bottom top","15% top","35% top"]},

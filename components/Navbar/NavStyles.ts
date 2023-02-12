@@ -35,7 +35,7 @@ export const NavLogo = styled(LinkScroll)`
   cursor: pointer;
 `
 export const LogoH1 = styled.h1`
-  padding:  2px;
+  padding:  3px 30px 0 0;
   font-size: 43px;
   font-weight: 100;
   cursor: pointer;
@@ -79,6 +79,10 @@ export const NavItem = styled.div`
   height: 80px;
   padding: 0 1rem;
   cursor: pointer;
+
+  @media screen and (max-width: 920px) {
+    padding: 0 0.6rem;
+  }
 `
 
 export const NavLinksSmooth = styled(LinkScroll)`

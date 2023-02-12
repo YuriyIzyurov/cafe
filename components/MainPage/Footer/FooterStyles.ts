@@ -15,11 +15,11 @@ export const FooterContainer = styled.footer`
   
 
   @media screen and (max-width: 768px) {
-    height: 1100px;
+   
   }
 
   @media screen and (max-width: 480px) {
-    height: 1300px;
+    justify-content: space-between;
   }
 `
 
@@ -45,6 +45,10 @@ export const FooterBG = styled.div`
     bottom: 0;
     background-color:rgba(0, 0, 0, .3);
   }
+
+  @media screen and (max-width: 480px) {
+    height: 320px;
+  }
 `
 export const FooterBG2 = styled.div`
   position: absolute;
@@ -53,10 +57,14 @@ export const FooterBG2 = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  
+  
+  @media screen and (max-width: 480px) {
+    height: 320px;
+  }
 `
 
 export const FooterWrap = styled.div`
-  padding-top: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -64,6 +72,12 @@ export const FooterWrap = styled.div`
   max-width: 1100px;
   width: 100%;
   margin: 0 auto;
+  padding-top: 60px;
+
+  @media screen and (max-width: 480px) {
+    padding-bottom: 60px;
+    padding-top: 0;
+  }
 `
 export const FooterContentWrapper = styled.div`
 
@@ -105,6 +119,9 @@ export const FooterLinksContainer = styled.div`
   @media screen and (max-width: 820px) {
     padding-top: 32px;
   }
+  @media screen and (max-width: 430px) {
+    flex-direction: column;
+  }
 `
 
 export const FooterLinksWrapper = styled.div`
@@ -112,6 +129,9 @@ export const FooterLinksWrapper = styled.div`
 
   @media screen and (max-width: 820px) {
     flex-direction: column;
+  }
+  @media screen and (max-width: 430px) {
+    flex-direction: row;
   }
 `
 
@@ -125,11 +145,16 @@ export const FooterLinkItems = styled.div`
   color: #fff;
   box-sizing: border-box;
 
-  @media screen and (max-width: 420px) {
-    margin: 0;
-    padding: 10px;
-    width: 100%;
+  @media screen and (max-width: 480px) {
+    margin: 8px;
   }
+  @media screen and (max-width: 430px) {
+    align-items: center;
+    padding: 0;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
 `
 
 export const FooterLinkTitle = styled.h1`

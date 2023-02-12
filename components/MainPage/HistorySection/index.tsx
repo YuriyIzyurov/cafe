@@ -7,14 +7,16 @@ import {
     HistoryH1,
     HistoryH2,
     HistoryImgWrap, HistoryImgWrap2,
-    HistoryImgWrap3,
+    HistoryImgWrap3, HistoryImgWrapper,
     HistoryLink,
     HistoryP,
     HistoryWrapper
 } from "./HistorySectionStyles";
+import history from '../../../public/images/history2.jpg'
 import {useEffect, useState} from "react";
 import Image from 'next/image'
 import {registerHistoryComponentAnim} from "../../../utility/parallax";
+import {isMobileDevice} from "../../../utility/deviceChecker";
 
 
 
@@ -23,7 +25,7 @@ const HistorySection = () => {
     const [hover, setHover] = useState(false)
 
     useEffect(() => {
-        registerHistoryComponentAnim()
+        if(!isMobileDevice()) registerHistoryComponentAnim()
     }, [])
 
     const onHover = () => {
@@ -40,8 +42,10 @@ const HistorySection = () => {
                     <HistoryImgWrap2 id='tea'>
                         <Image src='/images/tea-leaves.png' width={200} height={162} alt='leaves'/>
                     </HistoryImgWrap2>
-                    <Image src='/images/history2.jpg' width={522} height={411} alt='history'/>
-                    <HistoryContent padding='100px'>
+                    <HistoryImgWrapper>
+                        <Image src={history}  alt='history' fill style={{objectFit:"cover"}}/>
+                    </HistoryImgWrapper>
+                    <HistoryContent padding={[70, 100]}>
                         <HistoryH2>Погрузись</HistoryH2>
                         <HistoryH1>В нашу историю</HistoryH1>
                         <HistoryP>
