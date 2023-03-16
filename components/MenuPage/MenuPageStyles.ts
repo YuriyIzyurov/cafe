@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import css from "styled-jsx/css";
 
 export const MenuContainer = styled.section`
   color: #fff;
@@ -24,7 +24,7 @@ export const MenuHeader = styled.header`
 export const MenuToggle = styled.div`
   display: flex;
   justify-content: center;
-  padding: ${({padding = 20}) => `${padding}px 0`};
+  padding-bottom: 20px;
 `
 
 export const MenuWrapper = styled.div`
@@ -39,13 +39,30 @@ export const MenuWrapper = styled.div`
   margin-left: auto;
   padding: 0 24px;
   gap: 10px;
+
+  @media screen and (max-width: 768px) {
+    padding: 0;
+  }
+`
+export const AddMenuWrapper = styled(MenuWrapper)`
+  min-height: calc(100vh - 305px);
 `
 
 const Section = styled.div`
   display: grid;
+  position: relative;
   grid-template-columns: 1fr 1fr;
+  width: 100%;
   gap: 50px;
   margin: 50px 0;
+
+  @media screen and (max-width: 1100px) {
+    gap: 20px;
+  }
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
 `
 export const MenuSection = styled(Section)`
   grid-template-areas: 'header top'  'image middle'  'image footer' 'footer2 footer2';
@@ -57,14 +74,32 @@ export const MenuSectionReversed = styled(Section)`
 
 export const MenuImgWrapper = styled.div`
   grid-area: image;
+  display: ${({isMobile}) => isMobile ? 'none' : 'flex'};
+  align-items: center;
+  min-width: 180px;
+ 
+
+  @media screen and (max-width: 768px) {
+    display: ${({isMobile}) => isMobile ? 'flex' : 'none'};
+    width: ${({isMobile}) => isMobile && '40%'};
+  }
+`
+export const FlexibleImgWrap = styled.div`
   position: relative;
-  min-height: 500px;
+  width: 100%;
+  &:after {
+    content: "";
+    padding-top: 100%;
+    display: block;
+  }
 `
 export const ImgMask2 = styled.div`
   //visibility: hidden;
   overflow: hidden;
-  bottom: ${({position}) => position[0] + 'px'};
-  right: ${({position}) => position[1] + 'px'};
+  width: 81%;
+  height: 110%;
+  bottom: ${({position}) => position[0] + '%'};
+  right: ${({position}) => position[1] + '%'};
   position: absolute;
   z-index: 1;
 
@@ -78,10 +113,20 @@ export const ImgMask2 = styled.div`
     background: linear-gradient(to bottom, transparent, #161617);
     z-index: 100;
   }
+  
+  @media screen and (min-width: 769px) {
+    display: ${({isInvisibleOnDesktop}) => isInvisibleOnDesktop && 'none'};
+  }
+  @media screen and (max-width: 600px) {
+    width: 100%;
+    height: 134%;
+  }
 `
 export const ImgMask4 = styled.div`
   overflow: hidden;
   position: absolute;
+  width: 81%;
+  height: 110%;
   z-index: 1;
   bottom: 110px;
   left: -77px;
@@ -102,6 +147,8 @@ export const ImgMask4 = styled.div`
 export const ImgMask6 = styled.div`
   overflow: hidden;
   position: absolute;
+  width: 100%;
+  height: 97%;
   z-index: 1;
   bottom: -180px;
   left: -117px;
@@ -120,14 +167,18 @@ export const ImgMask6 = styled.div`
 
 export const MenuSideImgWrapper = styled.div`
   position: absolute;
-  top: 40px;
-  left: 40px;
+  width: ${({sizes = [100,100]}) => sizes[0] + '%'};
+  height: ${({sizes = [100,100]}) => sizes[1] + '%'};
+  top: ${({isMobile}) =>  isMobile ? '20px' : '40px'};
+  left: ${({isMobile}) =>  isMobile ? 0 : '40px'};
   z-index: 2;
 `
 export const MenuSideImgWrapper2 = styled.div`
   position: absolute;
-  bottom: 37px;
-  left: 35px;
+  width: 46%;
+  height: 45%;
+  bottom: ${({isMobile}) =>  isMobile ? 0 : '37px'};
+  left: ${({isMobile}) =>  isMobile ? 0 : '35px'};
   z-index: 1;
 `
 const SideImg = styled.img`
@@ -156,6 +207,34 @@ export const MenuSideImg6 = styled.img`
 export const MenuBranchWrapper = styled.div`
   position: absolute;
   z-index: 1;
+  width: 35%;
+  height: 90%;
   bottom: 118px;
   right: -12px;
+`
+export const AddMenuContent = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+`
+export const AddMenuText = styled.div`
+  font-size: 18px;
+`
+export const AddMenuGalary = styled.div`
+  display: flex;
+  width: 1100px;
+  padding-bottom: 60px;
+  //align-content: flex-start;
+  align-self: ${({alignSelf = 'flex-start'}) => alignSelf};
+  justify-content: ${({alignContent = 'flex-start'}) => alignContent};
+  flex-wrap: ${({wrap = 'wrap'}) => wrap};
+`
+export const GalaryImgWrapper = styled.div`
+  position: absolute;
+  top: ${({position}) => position[0]};
+  left: ${({position}) => position[1]};
+  width: ${({width}) => width};
+  height: ${({height}) => height};
 `

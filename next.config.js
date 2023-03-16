@@ -12,4 +12,7 @@ module.exports = {
             { loader: '@next/font/google', options: { subsets: ['cyrillic'] } },
         ],
     },
+    env: {
+        SERVER_URL: process.env.SERVER_URL
+    }
 }

@@ -5,9 +5,8 @@ import React from "react";
 type MenuNavType = {
     position: string
     id: string
-    padding?: number
 }
-const MenuNavigation = ({position, id, padding }:MenuNavType) => {
+const MenuNavigation = ({position, id }:MenuNavType) => {
 
     let isActive
     let middleBtn
@@ -22,7 +21,7 @@ const MenuNavigation = ({position, id, padding }:MenuNavType) => {
         case 'bottom': isActive = [false,false,true], middleBtn = [true,false,false], isBottom = [false,false,false], rightBtn = true
     }
     return (
-        <MenuToggle id={id} padding={padding}>
+        <MenuToggle id={id}>
             <ButtonSmoothScroll
                 to='mainMenu'
                 smooth={true}
@@ -57,7 +56,7 @@ const MenuNavigation = ({position, id, padding }:MenuNavType) => {
             <ButtonSmoothScroll
                 to='addMenu'
                 smooth={true}
-                duration={500}
+                duration={800}
                 spy={true}
                 exact='true'
                 offset={-80}

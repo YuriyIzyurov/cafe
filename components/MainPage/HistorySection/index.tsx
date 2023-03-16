@@ -13,24 +13,33 @@ import {
     HistoryWrapper
 } from "./HistorySectionStyles";
 import history from '../../../public/images/history2.jpg'
-import {useEffect, useState} from "react";
+import {useEffect, useLayoutEffect, useState} from "react";
 import Image from 'next/image'
-import {registerHistoryComponentAnim} from "../../../utility/parallax";
-import {isMobileDevice} from "../../../utility/deviceChecker";
+import {animation} from "../../../utility/parallax";
+import {isMobileDevice, useWindowHeight} from "../../../utility/deviceChecker";
+import {gsap} from "gsap";
+import { OffsetBottom } from "../InfoSection/InfoSectionStyles";
+import AnimatedLink from "../../AnimatedLink";
 
 
 
 
-const HistorySection = () => {
-    const [hover, setHover] = useState(false)
+const HistorySection = ({timeline}) => {
 
-    useEffect(() => {
-        if(!isMobileDevice()) registerHistoryComponentAnim()
-    }, [])
 
-    const onHover = () => {
-        setHover(!hover)
-    }
+
+
+    useLayoutEffect(() => {
+        const ctx = gsap.context(() => {
+            const componentTimeline = animation('history')
+            //добавляем анимацию компонента в мастер анимацию страницы
+            timeline && timeline.add(componentTimeline)
+        })
+        return () => ctx.revert()
+    }, [timeline])
+
+
+
 
     return (
         <HistoryContainer id='history' name='history'>
@@ -45,26 +54,25 @@ const HistorySection = () => {
                     <HistoryImgWrapper>
                         <Image src={history}  alt='history' fill style={{objectFit:"cover"}}/>
                     </HistoryImgWrapper>
-                    <HistoryContent padding={[70, 100]}>
+                    <HistoryContent>
                         <HistoryH2>Погрузись</HistoryH2>
                         <HistoryH1>В нашу историю</HistoryH1>
                         <HistoryP>
-                            С другой стороны постоянный количественный
-                            рост и сфера нашей активности обеспечивает
-                            широкому кругу (специалистов) участие в формировании
-                            направлений прогрессивного развития.
+                            Добро пожаловать в наше кафе на
+                            набережной города Иваново.
+                            Мы рады предложить вам настоящее кулинарное путешествие
+                            и неповторимую атмосферу в историческом месте.
                         </HistoryP>
-                        <HistoryLink href='/history'
-                                     onMouseEnter={onHover}
-                                     onMouseLeave={onHover}>
-                            <span>Больше о нас</span>{hover ? <ArrowRight/> : <ArrowRightSmall/>}
-                        </HistoryLink>
+                        <AnimatedLink
+                            route={'/history'}
+                            text='Больше о нас'
+                            icons={[<ArrowRight/>,<ArrowRightSmall/>]}
+                        />
                     </HistoryContent>
                     <HistoryImgWrap3 id='branch'>
                         <Image src='/images/branch.png' width={173} height={350} alt='branch'/>
                     </HistoryImgWrap3>
                 </HistoryBlock>
-                <div style={{height: '110px'}}></div> {/*Для центрирования блока*/}
             </HistoryWrapper>
         </HistoryContainer>
     );

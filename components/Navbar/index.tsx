@@ -17,9 +17,10 @@ import { pierre } from "../../styles/fonts/fonts";
 type NavbarType = {
     isOutsidePage?:boolean
     isRoomPage?: boolean
+    isReviewsPage?: boolean
     toggle: () => void
 }
-const Navbar:FC<NavbarType> = ({isOutsidePage, toggle, isRoomPage}) => {
+const Navbar:FC<NavbarType> = ({isOutsidePage, toggle, isRoomPage, isReviewsPage}) => {
     const [scrollNav, setScrollNav] = useState(false)
     const {activateScrolling} = useActions()
 
@@ -70,22 +71,25 @@ const Navbar:FC<NavbarType> = ({isOutsidePage, toggle, isRoomPage}) => {
                    {isOutsidePage
                        ? <NavMenu>
                             <NavItem>
-                                <NavLinkNext href='/' onClick={() => scrollTo('about')}>Главная</NavLinkNext>
+                                <NavLinkNext href='/' onClick={() => scrollTo('#about')}>Главная</NavLinkNext>
                             </NavItem>
                             <NavItem>
-                                <NavLinkNext href='/' onClick={() => scrollTo('history')}>О нас</NavLinkNext>
+                                <NavLinkNext href='/' onClick={() => scrollTo('#history')}>О нас</NavLinkNext>
                             </NavItem>
                             <NavItem>
-                                <NavLinkNext href='/' onClick={() => scrollTo('services')}>Услуги</NavLinkNext>
+                                <NavLinkNext href='/' onClick={() => scrollTo('#services')}>Услуги</NavLinkNext>
                             </NavItem>
                             <NavItem>
-                                <NavLinkNext href='/' onClick={() => scrollTo('contacts')}>Контакты</NavLinkNext>
+                                <NavLinkNext href='/' onClick={() => scrollTo('#contacts')}>Контакты</NavLinkNext>
                             </NavItem>
                             <NavItem>
                                 <NavLinkNext className={isRoomPage &&'active'} href='/rooms' >Залы</NavLinkNext>
                             </NavItem>
-                            <NavItem>
-                                <NavLinkNext className={!isRoomPage &&'active'} href='/menu'>Меню</NavLinkNext>
+                           <NavItem>
+                               <NavLinkNext className={isReviewsPage &&'active'} href='/reviews' >Отзывы</NavLinkNext>
+                           </NavItem>
+                            <NavItem last>
+                                <NavLinkNext className={!isRoomPage && !isReviewsPage &&'active'} href='/menu'>Меню</NavLinkNext>
                             </NavItem>
                         </NavMenu>
                        : <NavMenu>
@@ -133,6 +137,9 @@ const Navbar:FC<NavbarType> = ({isOutsidePage, toggle, isRoomPage}) => {
                            <NavLinkNext href='rooms'>Залы</NavLinkNext>
                        </NavItem>
                        <NavItem>
+                            <NavLinkNext href='reviews'>Отзывы</NavLinkNext>
+                       </NavItem>
+                       <NavItem last>
                            <NavLinkNext href='menu'>Меню</NavLinkNext>
                        </NavItem>
                    </NavMenu>}

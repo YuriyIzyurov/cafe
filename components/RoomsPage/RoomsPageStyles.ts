@@ -20,6 +20,12 @@ export const RoomsSection = styled.section`
   display: flex;
   justify-content: space-between;
   flex-direction: ${({flexDirection}) => flexDirection && 'row-reverse'};
+ 
+  
+  @media screen and (max-width: 768px) {
+    flex-direction: column-reverse;  
+    align-items: center;
+  }
 `
 export const GalleryWrapper =styled.div`
   max-width: 550px;
@@ -38,11 +44,20 @@ export const GalleryWrapper =styled.div`
   .image-gallery-icon:hover {
     color: #9f8e7b;
   }
+
+  @media screen and (max-width: 768px) {
+    max-width: none;
+    margin: 10px 0 20px 0;
+  }
 `
 export const RoomsDescription = styled.div`
   color: #fff;
   display: flex;
   width: 550px;
+
+  @media screen and (max-width: 768px) {
+    width: auto;
+  }
 `
 export const RoomContent = styled.div`
   display: flex;
@@ -54,9 +69,27 @@ export const RoomContent = styled.div`
     background-color: antiquewhite;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    padding: 5px;
+    padding: 20px 5px;
+    text-align: center;
+    line-height: 40px;
   }
   ul li {
     font-size: 18px;
+  }
+  span {
+    height: 100px;
+  }
+  
+  @media screen and (max-width: 1000px) {
+    h2 {
+      font-size: 38px;
+      line-height: 30px;
+    }
+    ul li {
+      font-size: 16px;
+    }
+    span {
+      display: none;
+    }
   }
 `

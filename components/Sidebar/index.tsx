@@ -1,23 +1,101 @@
-import React from 'react';
-import {CloseIcon, Icon, SidebarBtnWrap, SidebarContainer, SidebarLink, SidebarMenu, SidebarRoute, SidebarWrapper} from "./SidebarStyles";
+import React, { FC } from 'react';
+import {
+    CloseIcon,
+    Icon,
+    SidebarBtnWrap,
+    SidebarContainer,
+    SidebarLinkNext,
+    SidebarLinkSmooth,
+    SidebarLogoWrapper,
+    SidebarMenu,
+    SidebarRoute,
+    SidebarWrapper
+} from "./SidebarStyles";
+import logo from "public/images/logoSpoon.png";
+import Image from "next/image";
+import { useActions } from '../../hooks/useActions';
 
-const Sidebar = ({isOpen, toggle}) => {
+
+
+//todo:do union type with navbar
+type SidebarType = {
+    isOutsidePage?:boolean
+    isOpen: boolean
+    toggle: () => void
+}
+
+const Sidebar:FC<SidebarType> = ({isOpen, toggle, isOutsidePage}) => {
+
+    const {activateScrolling} = useActions()
+
+    const scrollTo = (target) => {
+        activateScrolling(target)
+    }
+
     return (
-        <SidebarContainer isOpen={isOpen} onClick={toggle}>
+        <SidebarContainer isOpen={isOpen} >
             <Icon onClick={toggle}>
                 <CloseIcon/>
             </Icon>
-            <SidebarWrapper>
+            {!isOutsidePage ?
                 <SidebarMenu>
-                    <SidebarLink to='/' onClick={toggle}>Главная</SidebarLink>
-                    <SidebarLink to='menu' onClick={toggle}>Меню</SidebarLink>
-                    <SidebarLink to='services' onClick={toggle}>Услуги</SidebarLink>
-                    <SidebarLink to='rooms' onClick={toggle}>залы</SidebarLink>
+                    <SidebarLinkSmooth to='about'
+                                       smooth={true}
+                                       duration={500}
+                                       spy={true}
+                                       exact='true'
+                                       offset={-80}
+                                       onClick={toggle}>
+                        Главная
+                    </SidebarLinkSmooth>
+                    <SidebarLinkSmooth to='history'
+                                       smooth={true}
+                                       duration={500}
+                                       spy={true}
+                                       exact='true'
+                                       offset={-80}
+                                       onClick={toggle}>
+                        О нас
+                    </SidebarLinkSmooth>
+                    <SidebarLinkSmooth to='services'
+                                       smooth={true}
+                                       duration={500}
+                                       spy={true}
+                                       exact='true'
+                                       offset={-80}
+                                       onClick={toggle}>
+                        Услуги
+                    </SidebarLinkSmooth>
+                    <SidebarLinkSmooth to='contacts'
+                                       smooth={true}
+                                       duration={500}
+                                       spy={true}
+                                       exact='true'
+                                       offset={-80}
+                                       onClick={toggle}>
+                        Контакты
+                    </SidebarLinkSmooth>
+
+                    <SidebarLinkNext href='rooms' onClick={toggle}>Залы</SidebarLinkNext>
+                    <SidebarLinkNext href='reviews' onClick={toggle}>Отзывы</SidebarLinkNext>
+                    <SidebarLinkNext href='menu' onClick={toggle}>Меню</SidebarLinkNext>
+                    <SidebarLogoWrapper>
+                        <Image src={logo} style={{opacity: 0.8}} alt='logo'/>
+                    </SidebarLogoWrapper>
                 </SidebarMenu>
-                <SidebarBtnWrap>
-                    <SidebarRoute href='signin'>Войти</SidebarRoute>
-                </SidebarBtnWrap>
-            </SidebarWrapper>
+                :
+                <SidebarMenu>
+                    <SidebarLinkNext href='/' onClick={() => scrollTo('#about')}>Главная</SidebarLinkNext>
+                    <SidebarLinkNext href='/' onClick={() => scrollTo('#history')}>О нас</SidebarLinkNext>
+                    <SidebarLinkNext href='/' onClick={() => scrollTo('#services')}>Услуги</SidebarLinkNext>
+                    <SidebarLinkNext href='/' onClick={() => scrollTo('#contacts')}>Контакты</SidebarLinkNext>
+                    <SidebarLinkNext href='rooms' onClick={toggle}>Залы</SidebarLinkNext>
+                    <SidebarLinkNext href='reviews' onClick={toggle}>Отзывы</SidebarLinkNext>
+                    <SidebarLinkNext href='menu' onClick={toggle}>Меню</SidebarLinkNext>
+                    <SidebarLogoWrapper>
+                        <Image src={logo} style={{opacity: 0.8}} alt='logo'/>
+                    </SidebarLogoWrapper>
+                </SidebarMenu>}
         </SidebarContainer>
     );
 };

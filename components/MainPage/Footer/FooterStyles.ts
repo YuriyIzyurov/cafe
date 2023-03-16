@@ -1,17 +1,19 @@
 import styled from "styled-components";
 import Link from "next/link";
-import { BsInstagram} from 'react-icons/bs'
-import { SlSocialVkontakte } from 'react-icons/sl'
-import { MdAlternateEmail } from 'react-icons/md'
+import { BsInstagram, BsWhatsapp} from 'react-icons/bs'
+import { FaViber } from 'react-icons/fa'
 
 
 export const FooterContainer = styled.footer`
-  background-color: #161616;
+  position: relative;
   min-height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  background-color: #161616;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
   
 
   @media screen and (max-width: 768px) {
@@ -19,13 +21,18 @@ export const FooterContainer = styled.footer`
   }
 
   @media screen and (max-width: 480px) {
-    justify-content: space-between;
+    
   }
 `
-
+export const ContentWrapper = styled.div`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`
 export const FooterBG = styled.div`
   position: relative;
-  height: 550px;
+  min-height: calc(65vh - 40px);
   width: 100%;
   background: url(${({url}) => url}) center / cover no-repeat fixed;
   filter: blur(1.5px);
@@ -46,13 +53,19 @@ export const FooterBG = styled.div`
     background-color:rgba(0, 0, 0, .3);
   }
 
-  @media screen and (max-width: 480px) {
-    height: 320px;
+  @media screen and (max-width: 480px),(max-height: 750px) {
+    min-height: calc(60vh - 40px);
+  }
+  @media screen and (max-width: 420px) and (max-height: 750px) {
+    min-height: calc(53vh - 40px);
+  }
+  @media screen and (max-width: 420px) and (max-height: 600px) {
+    min-height: calc(48vh - 40px);
   }
 `
-export const FooterBG2 = styled.div`
+export const FooterBGContent = styled.div`
   position: absolute;
-  height: 550px;
+  min-height: calc(65vh - 40px);
   width: 100%;
   display: flex;
   justify-content: center;
@@ -60,24 +73,20 @@ export const FooterBG2 = styled.div`
   
   
   @media screen and (max-width: 480px) {
-    height: 320px;
+    min-height: calc(60vh - 40px);
+  }
+  @media screen and (max-width: 420px) and (max-height: 600px) {
+    min-height: calc(48vh - 40px);
   }
 `
 
 export const FooterWrap = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
   max-width: 1100px;
   width: 100%;
-  margin: 0 auto;
-  padding-top: 60px;
-
-  @media screen and (max-width: 480px) {
-    padding-bottom: 60px;
-    padding-top: 0;
-  }
+  margin: auto;
+  
 `
 export const FooterContentWrapper = styled.div`
 
@@ -93,6 +102,9 @@ export const FooterH1 = styled.h1`
   }
   @media screen and (max-width: 480px) {
     font-size: 32px;
+  }
+  @media screen and (max-width: 320px) {
+    font-size: 25px;
   }
 `
 
@@ -113,25 +125,29 @@ export const FooterH2 = styled.h2`
 export const FooterLinksContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   align-items: center;
   width: 100%;
+  padding-bottom: 5px;
   
-  @media screen and (max-width: 820px) {
-    padding-top: 32px;
+  @media screen and (max-width: 710px) {
+    justify-content: center;
   }
   @media screen and (max-width: 430px) {
-    flex-direction: column;
+    
   }
 `
 
 export const FooterLinksWrapper = styled.div`
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 
-  @media screen and (max-width: 820px) {
-    flex-direction: column;
+  @media screen and (max-width: 480px) {
+   padding: 10px 12px;
   }
-  @media screen and (max-width: 430px) {
-    flex-direction: row;
+  @media screen and (max-width: 410px) {
+   padding: 0; 
   }
 `
 
@@ -139,22 +155,24 @@ export const FooterLinkItems = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin: 16px;
+  margin: 24px;
   text-align: left;
-  width: 190px;
   color: #fff;
   box-sizing: border-box;
 
+  @media screen and (max-width: 710px),(max-height: 630px) {
+    margin: 12px;
+  }
   @media screen and (max-width: 480px) {
-    margin: 8px;
+    margin: auto;
   }
-  @media screen and (max-width: 430px) {
+  @media screen and (max-width: 410px){
     align-items: center;
-    padding: 0;
-    width: 100%;
-    margin-bottom: 10px;
+    margin: 5px auto;
   }
-  
+  @media screen and (max-width: 420px) and (max-height: 600px) {
+    margin: 1px auto;
+  }
 `
 
 export const FooterLinkTitle = styled.h1`
@@ -162,9 +180,25 @@ export const FooterLinkTitle = styled.h1`
   margin-bottom: 16px;
   color: wheat;
   font-weight: bold;
+
+  @media screen and (max-width: 710px) {
+    margin-bottom: 5px;
+  }
+  @media screen and (max-height: 750px) and (max-width: 420px) {
+    margin-bottom: 2px;
+  }
 `
 export const FooterP = styled.p`
+    width: 190px;
   
+  @media screen and (max-width: 480px),(max-height: 750px) and (max-width: 650px) {
+    line-height: 17px;
+  }
+  @media screen and (max-width: 410px) {
+    width: 240px;
+    line-height: 20px;
+    text-align: center;
+  }
 `
 
 export const FooterLink = styled(Link)`
@@ -182,13 +216,17 @@ export const FooterLink = styled(Link)`
     color: wheat;
     transition: 0.3s ease-out;
   }
+
+  @media screen and (max-height: 750px) and (max-width: 420px) {
+    margin-bottom: 0.3rem;
+  }
 `
 export const InstagramIcon = styled(BsInstagram)`
   color: wheat;
 `
-export const VkIcon = styled(SlSocialVkontakte)`
+export const WhatsAppIcon = styled(BsWhatsapp)`
   color: wheat;
 `
-export const Mail = styled(MdAlternateEmail)`
+export const ViberIcon = styled(FaViber)`
   color: wheat;
 `

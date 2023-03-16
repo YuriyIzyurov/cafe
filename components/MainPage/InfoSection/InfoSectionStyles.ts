@@ -1,22 +1,28 @@
 import styled from "styled-components";
 
 export const InfoContainer = styled.section`
-
-  @media screen and (max-width: 768px) {
-    
-  }
-`
-
-export const InfoWrapper = styled.div`
-  display: grid;
-  z-index: 1;
+  display: flex;
+  justify-content: center;
   min-height: 100vh;
   width: 100%;
   max-width: 1100px;
   margin-right: auto;
   margin-left: auto;
   padding: 0 24px;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+`
+
+export const InfoWrapper = styled.div`
+  max-height: calc(100vh - 80px);
+  display: flex;
   justify-content: center;
+  align-items: center;
+  z-index: 1;
+
+  @media screen and (max-width: 620px) {
+    
+  }
 `
 
 export const InfoRow = styled.div`
@@ -26,81 +32,63 @@ export const InfoRow = styled.div`
   grid-template-areas: 'col1 col2';
 
   @media screen and (max-width: 1400px) {
+    
+  }
+  @media screen and (max-width: 768px) {
     display: flex;
     flex-direction: column;
   }
-  @media screen and (max-width: 768px) {
-    
-  }
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 620px) {
     justify-content: space-evenly;
+    height: 100%;
   }
-  @media screen and (max-width: 395px) {
-    justify-content: flex-start;
-  }
-`
-export const Additional110px = styled.div`
-  height: 110px;
-  display: none;
   
-  @media screen and (max-width: 480px) {
-    display: block;
-  }
-  @media screen and (max-width: 400px) {
-    display: none;
-  }
 `
 
+
 export const Column1 = styled.div`
-  margin-bottom: 15px;
   padding: 0 15px;
   grid-area: col1;
 
-  @media screen and (max-width: 1400px) {
-    align-self: flex-start;
-    margin-top: 60px;
-  }
-  @media screen and (max-width: 560px) {
-    margin-bottom: 60px;
+  @media screen and (max-width: 768px) {
+    margin-bottom: -12px;
   }
   @media screen and (max-width: 480px) {
-    margin-top: 30px;
-    margin-bottom: 0;
+    padding: 0;
   }
 `
 
 export const Column2 = styled.div`
   position: relative;
   grid-area: col2;
-  height: 525px;
-  
-  @media screen and (max-width: 1400px) {
-  width: 100%;
+  max-width: 570px;
+
+  &:after {
+    content: "";
+    padding-top: 100%;
+    display: block;
   }
-  @media screen and (max-width: 920px) {
-    width: 70%;
-    height: 410px;
+
+  @media screen and (max-width: 1400px),(min-width: 1000px) and (max-height: 650px) {
+    width: 83%;
   }
   @media screen and (max-width: 768px) {
-    width: 64%;
-    height: 358px;
+    width: 57%;
   }
-  @media screen and (max-width: 560px) {
-    width: 59%;
-    height: 293px;
+  @media screen and (max-width: 620px),(min-width: 1000px) and (max-height: 560px) {
+    width: 67%;
   }
   @media screen and (max-width: 480px) {
-    width: 61%;
-    height: 251px;
+    width: 71%;
   }
-  @media screen and (max-width: 430px) {
-    width: 65%;
-    height: 228px;
+ 
+  @media screen and (max-width: 768px) and (max-height: 600px){
+    width: 50%;
   }
-  @media screen and (max-width: 370px) {
-    width: 63%;
-    height: 186px;
+  @media screen and (min-width: 600px) and (max-width: 768px) and (max-height: 540px){
+    width: 40%;
   }
+  
 `
 
 export const TextWrapper = styled.div`
@@ -109,19 +97,11 @@ export const TextWrapper = styled.div`
   padding-bottom: 60px;
 
   @media screen and (max-width: 1400px) {
+    max-width: 600px;
     padding-bottom: 10px;
   }
 `
 
-export const TopLine = styled.p`
-  color: #01bf71;
-  font-size: 16px;
-  line-height: 16px;
-  font-weight: 700;
-  letter-spacing: 1.4px;
-  text-transform: uppercase;
-  margin-bottom: 16px;
-`
 
 export const Heading = styled.h1`
   margin-bottom: 24px;
@@ -130,25 +110,48 @@ export const Heading = styled.h1`
   font-weight: 600;
   color: ${({lightText}) => (lightText ? '#f7f8fa' : '#010606')};
 
-  @media screen and (max-width: 630px) {
-    font-size: 52px;
+
+ 
+  @media screen and (max-width: 1400px) {
+    font-size: 60px;
+  }
+  @media screen and (max-width: 1000px) {
+    font-size: 50px;
+  }
+  @media screen and (max-width: 855px) {
+    font-size: 45px;
+  }
+  @media screen and (max-width: 768px) and (max-height: 600px) {
+    margin-bottom: 10px;
+  }
+  }@media screen and (max-width: 620px), (max-width: 768px) and (max-height: 600px) {
+    font-size: 38px;
   }
   @media screen and (max-width: 480px) {
-    font-size: 42px;
+    text-align: center;
+  }
+  @media screen and (max-width: 410px) {
+    font-size: 34px;
+  }
+  @media screen and (max-width: 320px) {
+    font-size: 30px;
   }
 `
 
-export const Subtitle = styled.p`
-  max-width: 440px;
-  margin-bottom: 35px;
-  font-size: 18px;
-  line-height: 24px;
-  color: ${({darkText}) => (darkText ? '#010606' : '#f7f8fa')};
-`
 
 export const BtnWrap = styled.div`
   display: flex;
   justify-content: flex-start;
+
+  @media screen and (max-width: 480px) {
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  @media screen and (max-width: 768px) and (max-height: 600px) {
+    margin-bottom: 10px;
+  }
+  
+  
 `
 
 export const ImgWrap = styled.div`
@@ -166,6 +169,14 @@ export const ImgWrap2 = styled.div`
   left: -41%;
   height: 34%;
   width: 45%;
+
+  @media screen and (max-width: 620px) {
+    left: -35%;
+    bottom: 30%;
+    img {
+      transform: rotate(35deg);
+    }
+  }
 `
 
 export const ImgWrap3 = styled.div`
@@ -214,4 +225,8 @@ export const Img = styled.img`
   width: 100%;
   margin: 0 0 10px 0;
   padding-right: 0;
+`
+export const OffsetBottom = styled.div`
+  height: 80px;
+  width: 100%;
 `

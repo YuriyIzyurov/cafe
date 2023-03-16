@@ -29,13 +29,21 @@ export const NavbarContainer = styled.div`
   width: 100%;
   padding: 0 24px;
   max-width: 1100px;
+
+  @media screen and (max-width: 320px) {
+    padding: 0 5px;
+  }
 `
 
 export const NavLogo = styled(LinkScroll)`
   cursor: pointer;
+
+  @media screen and (max-width: 320px),(max-height: 750px) and (max-width: 650px) {
+    display: flex;
+  }
 `
 export const LogoH1 = styled.h1`
-  padding:  3px 30px 0 0;
+  padding:  3px 24px 0 0;
   font-size: 43px;
   font-weight: 100;
   cursor: pointer;
@@ -44,6 +52,13 @@ export const LogoH1 = styled.h1`
   background-image: linear-gradient(180deg, #5b4428, antiquewhite);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  
+  @media screen and (max-width: 320px),(max-height: 750px) and (max-width: 650px) {
+    padding: 0;
+    font-size: 31px;
+    margin: auto;
+  }
+  
 `
 export const NavLinkNextLogo = styled(Link)`
   cursor: pointer;
@@ -77,11 +92,20 @@ export const NavMenu = styled.ul`
 `
 export const NavItem = styled.div`
   height: 80px;
-  padding: 0 1rem;
+  padding: ${({last}) => !last ? '0 1rem' : '0 0 0 1rem'};
   cursor: pointer;
+  white-space: nowrap;
 
+  @media screen and (max-width: 1000px) {
+    padding: ${({last}) => !last ? '0 0.6rem' : '0 0 0 0.6rem'};
+  }
   @media screen and (max-width: 920px) {
-    padding: 0 0.6rem;
+    padding: ${({last}) => !last ? '0 0.5rem' : '0 0 0 0.5rem'};
+    font-size: 0.9em;
+  }
+  @media screen and (max-width: 855px) {
+    padding: ${({last}) => !last ? '0 0.3rem' : '0 0 0 0.3rem'};
+    font-size: 0.8em;
   }
 `
 

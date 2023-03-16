@@ -8,12 +8,15 @@ import RoomsPage from "../components/RoomsPage";
 const Rooms = () => {
     const [isOpen, setIsOpen] = useState(false)
     const toggle = () => setIsOpen(!isOpen)
+    const closeSidebar = () => {
+        if(isOpen) setIsOpen(!isOpen)
+    }
 
     return (
         <MainContainer keywords={'залы, фотографии'}>
-            <Sidebar isOpen={isOpen} toggle={toggle}/>
+            <Sidebar isOutsidePage isOpen={isOpen} toggle={toggle}/>
             <Navbar isOutsidePage toggle={toggle} isRoomPage/>
-            <RoomsPage/>
+            <RoomsPage closeSidebar={closeSidebar}/>
         </MainContainer>
     );
 };

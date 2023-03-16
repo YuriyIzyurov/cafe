@@ -2,6 +2,11 @@ body,
 html{
   background-color: #161616;
   height: 100%;
+
+  @media screen and (max-width: 768px) {
+    scroll-snap-type: y mandatory;
+    scroll-padding-top: 80px;
+  }
 }
 *,
 *::before,

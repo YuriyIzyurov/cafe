@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {
-    FooterBG, FooterBG2,
+    ContentWrapper,
+    FooterBG, FooterBGContent,
     FooterContainer, FooterContentWrapper, FooterH1,
     FooterH2,
     FooterLink,
@@ -8,18 +9,20 @@ import {
     FooterLinksContainer,
     FooterLinksWrapper,
     FooterLinkTitle, FooterP,
-    FooterWrap, InstagramIcon, Mail, VkIcon
+    FooterWrap, InstagramIcon, ViberIcon, WhatsAppIcon
 } from "./FooterStyles";
-import {ArrowForward, ArrowRight, HeroBtnWrapper, ImgBg} from "../HeroSection/HeroSectionStyles";
+import {ArrowForward, ArrowRight, HeroBtnWrapper} from "../HeroSection/HeroSectionStyles";
 import {Button, ButtonRoute} from "../../ButtonElement";
 import {LogoH1, NavLogo} from "../../Navbar/NavStyles";
+import MainButton from "../../../components/MainButton";
+
 
 const Footer = ({id}) => {
 
     const [hover, setHover] = useState(false)
 
     useEffect(() => {
-        console.log('footer mounted')
+
     }, [])
 
 
@@ -28,33 +31,25 @@ const Footer = ({id}) => {
     }
 
     return (
-        <FooterContainer id={id}>
+        <FooterContainer id={id} >
             <FooterBG url="images/footer2.jpg"/>
-            <FooterBG2>
+            <FooterBGContent>
                 <FooterContentWrapper>
                     <FooterH2>Бронирование</FooterH2>
                     <FooterH1>Закажи себе столик</FooterH1>
                     <HeroBtnWrapper>
-                        <ButtonRoute
-                            href='tel:28‑55-07'
-                            onMouseEnter={onHover}
-                            onMouseLeave={onHover}
-                        >
-                            <Button>
-                                Заказать столик {hover ? <ArrowForward/> : <ArrowRight/>}
-                            </Button>
-                        </ButtonRoute>
+                        <MainButton/>
                     </HeroBtnWrapper>
                 </FooterContentWrapper>
-            </FooterBG2>
+            </FooterBGContent>
             <FooterWrap>
                 <FooterLinksContainer>
                     <FooterLinksWrapper>
-                        <FooterLinkItems>
+                        <FooterLinkItems marginRight>
                             <FooterLinkTitle>Где мы находимся</FooterLinkTitle>
                             <FooterP>
                                 Подгорная ул.7, Иваново
-                                8-915-828-55-07, 28‑55-07
+                                тел. 8-915-828-55-07
                                 ежедневно, 12:00–0:00
                             </FooterP>
                         </FooterLinkItems>
@@ -63,11 +58,11 @@ const Footer = ({id}) => {
                             <FooterLink href='https://www.instagram.com/cafe_ykuzmicha/'>
                                 <InstagramIcon/><span>Инстаграм</span>
                             </FooterLink>
-                            <FooterLink href='vk.com'>
-                               <VkIcon/><span>Группа вконтакте</span>
+                            <FooterLink href='https://wa.me/79158285507'>
+                               <WhatsAppIcon/><span>Написать в WhatsApp</span>
                             </FooterLink>
-                            <FooterLink href="mailto:tyurina.n.82@list.ru">
-                                <Mail/><span>Эл. почта</span>
+                            <FooterLink title="Должен быть установлен Viber для ПК" href="viber://chat?number=%2B79158285507">
+                                <ViberIcon/><span>Написать в Viber</span>
                             </FooterLink>
                         </FooterLinkItems>
                     </FooterLinksWrapper>

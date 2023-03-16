@@ -1,10 +1,25 @@
+import { useQuery } from "@tanstack/react-query";
+import { useState} from "react";
 import MainContainer from "../components/MainContainer";
+import Navbar from "../components/Navbar";
+import ReviewsPage, {ReviewType} from "../components/ReviewsPage";
+import Sidebar from "../components/Sidebar";
+import {ReviewService} from "../services/ReviewService";
+import {DishSpecification} from "utility/types";
 
-const Services = ({users}) => {
+
+const Services = ({reviews}) => {
+    const [isOpen, setIsOpen] = useState(false)
+    const toggle = () => setIsOpen(!isOpen)
+    const closeSidebar = () => {
+        if(isOpen) setIsOpen(!isOpen)
+    }
 
     return (
         <MainContainer keywords={'отзывы'}>
-            <div>Отзывы</div>
+            <Sidebar isOutsidePage isOpen={isOpen} toggle={toggle}/>
+            <Navbar isOutsidePage toggle={toggle} isReviewsPage/>
+            <ReviewsPage closeSidebar={closeSidebar} reviews={reviews}/>
         </MainContainer>
     );
 };
@@ -12,9 +27,18 @@ const Services = ({users}) => {
 export default Services;
 
 export async function getStaticProps(context) {
-    const response = await fetch('https://jsonplaceholder.typicode.com/users')
-    const users = await response.json()
-    return {
-        props: {users}
+
+    try {
+        //const reviews: ReviewType[] = await ReviewService.getReviews()
+        const response1 = await fetch('https://jwt-authorization-nest.vercel.app/reviews')
+
+        const reviews:ReviewType[] = await response1.json()
+
+        return {
+            props: {reviews}, revalidate: 10};
+
+    } catch (e) {
+        console.log("Невозможно загрузить отзывы", e)
+        return {notFound: true};
     }
 }
