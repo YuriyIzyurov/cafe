@@ -4,8 +4,6 @@ import MainContainer from "../components/MainContainer";
 import Navbar from "../components/Navbar";
 import ReviewsPage, {ReviewType} from "../components/ReviewsPage";
 import Sidebar from "../components/Sidebar";
-import {ReviewService} from "../services/ReviewService";
-import {DishSpecification} from "utility/types";
 
 
 const Services = ({reviews}) => {
