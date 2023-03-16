@@ -4,6 +4,7 @@ import MainContainer from "../components/MainContainer";
 import Navbar from "../components/Navbar";
 import ReviewsPage, {ReviewType} from "../components/ReviewsPage";
 import Sidebar from "../components/Sidebar";
+import { ReviewService } from "../services/ReviewService";
 
 
 const Services = ({reviews}) => {
@@ -27,10 +28,10 @@ export default Services;
 export async function getStaticProps(context) {
 
     try {
-        //const reviews: ReviewType[] = await ReviewService.getReviews()
-        const response1 = await fetch('https://jwt-authorization-nest.vercel.app/reviews')
+        const reviews: ReviewType[] = await ReviewService.getReviews()
+        //const response1 = await fetch('https://jwt-authorization-nest.vercel.app/reviews')
 
-        const reviews:ReviewType[] = await response1.json()
+       // const reviews:ReviewType[] = await response1.json()
 
         return {
             props: {reviews}, revalidate: 10};
