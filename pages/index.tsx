@@ -87,13 +87,10 @@ const Index = () => {
 
     //активация плавного авто скроллера
     useEffect(() => {
-        const mainPageScrollTo: HTMLElement = document.getElementById(mainPage.scrollTo)
-        console.log(mainPageScrollTo,mainPage.scrollTo)
-
         if(mainPage.scrollTo) {
             //todo: элемент не успевает загрузиться без делай изза динамик импорта
                 gsap.to(window, {
-                    delay: 0.1,
+                    delay: 0.5,
                     duration: 0.5,
                     scrollTo: {
                         y: mainPage.scrollTo,
@@ -110,15 +107,6 @@ const Index = () => {
 
         slides = document.querySelectorAll('section')
 
-        if(!mainPage.scrollTo) {
-           /* Events.scrollEvent.register('begin', () => {
-                blockScroll()
-            })
-            Events.scrollEvent.register('end', () => {
-                allowScroll()
-            })*/
-        }
-
         for (let i = 0; i < slides.length; i++) {
             offsets.push(-slides[i].offsetTop)
         }
@@ -127,8 +115,6 @@ const Index = () => {
 
         return () => {
             window.removeEventListener("wheel", slideScroll)
-            Events.scrollEvent.remove('begin')
-            Events.scrollEvent.remove('end')
         }
     }, [])
 

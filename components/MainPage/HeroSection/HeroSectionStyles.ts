@@ -10,8 +10,8 @@ export const HeroContainer = styled.section`
   min-height: 100vh;
   position: relative;
   z-index: 1;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+  //scroll-snap-align: start;
+  //scroll-snap-stop: always;
   
   
   :before {

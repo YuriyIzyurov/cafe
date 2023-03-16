@@ -8,8 +8,8 @@ export const ServicesContainer = styled.section`
   justify-content: center;
   margin: 0 auto;
   background: #161616;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+  //scroll-snap-align: start;
+ // scroll-snap-stop: always;
   
   @media screen and (max-width: 768px) {
     
