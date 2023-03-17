@@ -21,7 +21,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 
 
-const InfoSection = ({lightBg, lightText, headline, buttonLabel, alt, timeline}) => {
+const InfoSection = ({lightBg, lightText, headline, buttonLabel, alt, timeline,sectionRef}) => {
 
 
     useLayoutEffect(() => {
@@ -39,7 +39,7 @@ const InfoSection = ({lightBg, lightText, headline, buttonLabel, alt, timeline})
 
     return (
         <>
-            <InfoContainer lightBg={lightBg} id='about'>
+            <InfoContainer ref={sectionRef} lightBg={lightBg} id='about'>
                 <InfoWrapper>
                     <InfoRow>
                         <Column1>

@@ -17,7 +17,7 @@ import {LogoH1, NavLogo} from "../../Navbar/NavStyles";
 import MainButton from "../../../components/MainButton";
 
 
-const Footer = ({id}) => {
+const Footer = ({id,sectionRef}) => {
 
     const [hover, setHover] = useState(false)
 
@@ -31,7 +31,7 @@ const Footer = ({id}) => {
     }
 
     return (
-        <FooterContainer id={id} >
+        <FooterContainer ref={sectionRef} id={id} >
             <FooterBG url="images/footer2.jpg"/>
             <FooterBGContent>
                 <FooterContentWrapper>

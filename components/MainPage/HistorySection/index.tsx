@@ -24,7 +24,7 @@ import AnimatedLink from "../../AnimatedLink";
 
 
 
-const HistorySection = ({timeline}) => {
+const HistorySection = ({timeline,sectionRef}) => {
 
 
 
@@ -42,7 +42,7 @@ const HistorySection = ({timeline}) => {
 
 
     return (
-        <HistoryContainer id='history' name='history'>
+        <HistoryContainer ref={sectionRef} id='history' name='history'>
             <HistoryWrapper>
                 <HistoryBlock>
                     <HistoryImgWrap id='smoke'>

@@ -25,7 +25,7 @@ import AnimatedLink from "../../../components/AnimatedLink";
 
 
 
-const Services = ({timeline}) => {
+const Services = ({timeline, sectionRef}) => {
     const [hover0, setHover] = useState(false)
     const [hover1, setHover2] = useState(false)
     const [hover2, setHover3] = useState(false)
@@ -133,7 +133,7 @@ const Services = ({timeline}) => {
     }
 
     return (
-        <ServicesContainer id='services'>
+        <ServicesContainer ref={sectionRef} id='services'>
             <ServicesWrapper>
                <ServicesImgWrapper id='flour'>
                    <Image src={flour}  alt='flour'/>

@@ -16,10 +16,10 @@ import mainImg from "public/images/main2.jpg";
 import MainButton from "../../MainButton";
 
 
-const HeroSection = () => {
+const HeroSection = ({sectionRef}) => {
     
     return (
-        <HeroContainer id='main'>
+        <HeroContainer ref={sectionRef} id='main'>
             <HeroBg>
                 <Image src={mainImg}  alt='main' fill placeholder="blur" style={{objectFit:"cover"}}/>
             </HeroBg>
