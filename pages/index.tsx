@@ -13,7 +13,7 @@ import dynamic from 'next/dynamic'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger.js';
 import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin.js';
 import {DynamicFooter, DynamicHistorySection, DynamicInfoSection, DynamicServicesSection, DynamicSidebar } from "../components/dynamicComponents";
-import {getPromisesOfElements} from "../utility/helpers";
+import {findCurrentSectionIndex, getPromisesOfElements} from "../utility/helpers";
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
 
 
@@ -91,35 +91,17 @@ const Index = () => {
                     scrub: c.conditions.isSmall ? true : c.conditions.isMedium ? 0.8 : 1.3,
                 })
                 const tl = gsap.timeline()
-                /*const smoothScroll = smoothScrolling()
-                tl.add(smoothScroll)*/
                 setMasterTL(tl)
             }
         );
         return () =>  mm.revert()
     }, []);
 
-
-
     function slideScroll(e) {
 
-        const findCurrentSectionIndex = () => {
-            const currentScrollPosition = window.scrollY;
-            const scrollPositions = refs.map((section, index) => {
-                const el = section.current
-                return el ? (index === 0 ? el.offsetTop : el.offsetTop - 80) : Infinity;
-            });
-            console.log(scrollPositions)
-            for (let i = 0; i < scrollPositions.length; i++) {
-                if (currentScrollPosition < scrollPositions[i]) {
-                    return i - 1;
-                }
-            }
 
-            return refs.length - 1;
-        };
         const pickSection = () => {
-            const currentSectionIndex = findCurrentSectionIndex();
+            const currentSectionIndex = findCurrentSectionIndex(refs);
             const nextSectionIndex = e.deltaY > 0 ? currentSectionIndex + 1 : currentSectionIndex - 1;
 
             if (nextSectionIndex < 0 || nextSectionIndex >= refs.length) {
@@ -128,8 +110,6 @@ const Index = () => {
 
             return refs[nextSectionIndex].current;
         };
-
-
 
         const currentHeight = document.documentElement.clientHeight;
         if (currentHeight && currentHeight > 480) {
@@ -143,30 +123,8 @@ const Index = () => {
                 onComplete: allowScroll,
             });
         }
-        //функция отвечает за плавный авто скролл в нужную сторону, а также следит за размерами окна
-       /* const currentHeight = document.documentElement.clientHeight
-        const heightInPercent = Math.ceil(window.scrollY / (document.documentElement.scrollHeight - currentHeight) * 100)
-
-
-        const pickSection = () => {
-            if(heightInPercent < 10 && e.deltaY > 0) return '#about'
-            else if(heightInPercent < 30) return e.deltaY > 0 ? '#history' : '#main'
-            else if(heightInPercent < 60) return e.deltaY > 0 ? '#services' : '#about'
-            else if(heightInPercent < 90) return e.deltaY > 0 ? '#contacts' : '#history'
-            else if(e.deltaY < 0) return '#services'
-        }
-
-        if(currentHeight && currentHeight > 480)
-        gsap.to(window, {
-            duration: 1.2,
-            scrollTo: {
-                y: pickSection(),
-                offsetY: 80
-            },
-            onStart: blockScroll,
-            onComplete: allowScroll,
-        });*/
     }
+
 
     const toggle = () => setIsOpen(!isOpen)
     const closeSidebar = () => {
@@ -197,5 +155,7 @@ const Index = () => {
     );
 
 };
+
+
 
 export default Index;

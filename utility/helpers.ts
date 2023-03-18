@@ -16,6 +16,21 @@ export  const getPromisesOfElements = (refs: RefObject<HTMLElement>[]): Promise<
         }
     });
 };
+export const findCurrentSectionIndex = (refs: RefObject<HTMLElement>[]) => {
+    const currentScrollPosition = window.scrollY;
+    const scrollPositions = refs.map((section, index) => {
+        const el = section.current
+        return el ? (index === 0 ? el.offsetTop : el.offsetTop - 80) : Infinity;
+    });
+
+    for (let i = 0; i < scrollPositions.length; i++) {
+        if (currentScrollPosition < scrollPositions[i]) {
+            return i - 1;
+        }
+    }
+
+    return refs.length - 1;
+};
 export  const scrollToSection = (section: RefObject<HTMLElement>): void => {
     if (section) {
         gsap.to(window, {

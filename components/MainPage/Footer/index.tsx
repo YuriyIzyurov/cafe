@@ -11,6 +11,7 @@ import {
     FooterLinkTitle, FooterP,
     FooterWrap, InstagramIcon, ViberIcon, WhatsAppIcon
 } from "./FooterStyles";
+import footer2 from '../../../public/images/footer2.jpg'
 import {ArrowForward, ArrowRight, HeroBtnWrapper} from "../HeroSection/HeroSectionStyles";
 import {Button, ButtonRoute} from "../../ButtonElement";
 import {LogoH1, NavLogo} from "../../Navbar/NavStyles";
@@ -19,20 +20,10 @@ import MainButton from "../../../components/MainButton";
 
 const Footer = ({id,sectionRef}) => {
 
-    const [hover, setHover] = useState(false)
-
-    useEffect(() => {
-
-    }, [])
-
-
-    const onHover = () => {
-        setHover(!hover)
-    }
 
     return (
         <FooterContainer ref={sectionRef} id={id} >
-            <FooterBG url="images/footer2.jpg"/>
+            <FooterBG url='images/footer2.jpg'/>
             <FooterBGContent>
                 <FooterContentWrapper>
                     <FooterH2>Бронирование</FooterH2>

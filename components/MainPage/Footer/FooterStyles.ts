@@ -52,6 +52,10 @@ export const FooterBG = styled.div`
     bottom: 0;
     background-color:rgba(0, 0, 0, .3);
   }
+  
+  @media screen and (max-width: 768px) {
+    background: url(${({url}) => url}) center / cover no-repeat;
+  }
 
   @media screen and (max-width: 480px),(max-height: 750px) {
     min-height: calc(60vh - 40px);
