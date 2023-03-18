@@ -14,11 +14,11 @@ import { ReviewService } from "../../services/ReviewService";
 const ReviewsBlock = ({ prevEl, nextEl, reviews } : { prevEl: HTMLElement, nextEl: HTMLElement, reviews: ReviewType[] }) => {
 
 //{ isLoading, error, data }
-    const {data} = useQuery(
+    /*const {data} = useQuery(
           ['reviews'],
            ReviewService.getReviews,
         {initialData: reviews}
-    )
+    )*/
 
 
     const [swiper, setSwiper] = useState(null);
