@@ -68,7 +68,8 @@ export const ServicesContent = styled.div`
   justify-content: center;
   padding: 20px 40px;
   height: 100%;
-  transition: max-height 0.3s;
+  //max-height: ${({isExpanded}) => isExpanded ? '250px' : 'auto'};
+  transition: height 0.3s;
   background: #fff;
 }
 
@@ -83,7 +84,7 @@ export const ServicesContent = styled.div`
   }
     @media screen and (max-width: 450px)  and (max-height: 870px){
       box-shadow: ${({reverse}) => reverse ? '4px 4px 2px -3px #0000006e' : '-4px 4px 2px -3px #0000006e'};
-      max-height: ${({isExpanded}) => isExpanded ? '250px' : '150px'};
+      height: ${({isExpanded}) => isExpanded ? '250px' : '150px'};
     }
   @media screen and (max-width: 450px),(max-height: 700px) {
     padding: 10px 12px 0 12px;
@@ -93,7 +94,7 @@ export const ServicesContent = styled.div`
     }
     @media screen and (max-height: 540px) {
       padding: 6px 8px 0 8px;
-      max-height: ${({isExpanded}) => isExpanded ? '240px' : '130px'};
+      height: ${({isExpanded}) => isExpanded ? '240px' : '130px'};
     }
   
  /* @media screen and (max-height: 870px) {
@@ -110,11 +111,11 @@ export const ServicesP = styled.p`
   font-size: 14px;
   line-height: 20px;
   margin: 20px 0;
-  
+  transition: font-size 0.2s;
   
   @media screen and (max-width: 620px),(max-height: 780px) {
-    font-size: 13px;
-    line-height: 18px;
+    font-size: ${({isExpanded}) => isExpanded ? '15px' : '13px'};
+    line-height: ${({isExpanded}) => isExpanded ? '22px' : '18px'};
     margin: 10px 0;
   }
   @media screen and (max-width: 560px),(max-height: 600px) {

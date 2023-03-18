@@ -157,7 +157,7 @@ const Services = ({timeline, sectionRef}) => {
                                     <ServicesContent reverse={index === 1}
                                                      isExpanded={isExpandedValue}>
                                         <HistoryH1 fontSize='25px'>{e.title}</HistoryH1>
-                                        <ServicesP>
+                                        <ServicesP isExpanded={isExpandedValue}>
                                             {e.text}
                                         </ServicesP>
                                         <ServiceFooter isExpanded={isExpandedValue}>
