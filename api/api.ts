@@ -6,4 +6,5 @@ export const axiosClassic = axios.create({
     headers: {
         'Content-Type': 'application/json',
     },
+    withCredentials: true,
 })
