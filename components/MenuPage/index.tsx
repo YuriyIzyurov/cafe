@@ -17,7 +17,8 @@ import {
     MenuSideImgWrapper,
     MenuSideImgWrapper2,
     MenuToggle,
-    MenuWrapper
+    MenuWrapper,
+    ShadowOnMobDevices
 } from "./MenuPageStyles";
 import MenuCard from "./MenuCard";
 import React, {FC, RefObject, useEffect, useRef, useState} from "react";
@@ -69,8 +70,8 @@ const MenuPage:FC<PropsType> = ({dishes, drinks, closeSidebar}) => {
 
 
     const section1 = dishes.slice(0,4)
-    const section2 = dishes.slice(4,8)
-    const section3 = dishes.slice(8,13)
+    const section2 = dishes.slice(4,7)
+    const section3 = dishes.slice(7,12)
     const sections = [section1,section2,section3]
 
     const sortedDrinks = [
@@ -97,34 +98,36 @@ const MenuPage:FC<PropsType> = ({dishes, drinks, closeSidebar}) => {
                 {sections.map((section, index) =>
                     index === 1 ?
                         <MenuSectionReversed key={index} id={'section'+index}>
-                            <MenuImgWrapper>
-                                <FlexibleImgWrap>
-                                    <MenuSideImgWrapper id='soup' sizes={[87,85]}>
-                                        <Image src={soup} fill style={{objectFit:"contain"}} alt='soup'/>
-                                    </MenuSideImgWrapper>
-                                    <ImgMask4 id='flour2wrap'>
-                                        <Image id='flour2' src={flour2} fill style={{objectFit:"contain"}} alt='flour2'/>
-                                    </ImgMask4>
-                                    <MenuBranchWrapper id='branch'>
-                                        <Image src={branch} fill style={{objectFit:"contain"}} alt='branch'/>
-                                    </MenuBranchWrapper>
-                                    <ImgMask6  id='flour4wrap' inView={inView}>
-                                        <Image ref={ref} id='flour4' src={flour3} fill style={{objectFit:"contain"}} alt='flour4'/>
-                                    </ImgMask6>
-                                </FlexibleImgWrap>
-                            </MenuImgWrapper>
-                            {section.map((specification, index2) =>
-                                    <MenuCard
+                            <AnimatedSectionCompositionSoup reference={ref} inView={inView}/>
+                            {section.map((specification, index2) => {
+                                const isComplexCard = specification.name.includes("Горячие закуски")
+                                return !isComplexCard
+                                    ? <MenuCard
                                         key={specification._id}
                                         name={specification.name}
                                         dishes={specification.dishes}
                                         index={index2}
-                                        sectionIndex={'section'+index}
-                                    />)}
+                                        sectionIndex={'section' + index}
+                                    />
+                                    :
+                                    <MenuCardWrap key={specification._id}>
+                                        <MenuCard
+                                            name={specification.name}
+                                            dishes={specification.dishes}
+                                            index={index2}
+                                            sectionIndex={'section' + index}
+                                            isMobile
+                                        />
+                                        <AnimatedSectionCompositionSoup
+                                            reference={ref}
+                                            inView={inView}
+                                            isMobile/>
+                                    </MenuCardWrap>
+                            })}
                         </MenuSectionReversed>
                         :
                         <MenuSection key={index} id={'section'+index}>
-                            <AnimatedSectionComposition index={index} refOnView={ref} imgRef={imgRef}/>
+                            <AnimatedSectionCompositionSaladAndPotato index={index}/>
                             {section.map((specification, index2) => {
                                 return !specification.name.includes("Салаты из мяса")
                                     ? <MenuCard
@@ -136,7 +139,7 @@ const MenuPage:FC<PropsType> = ({dishes, drinks, closeSidebar}) => {
                                         justifySelf={index === 3}
                                     /> :
                                     <MenuCardWrap key={specification._id}>
-                                        <AnimatedSectionComposition index={index} refOnView={ref} imgRef={imgRef} isMobile/>
+                                        <AnimatedSectionCompositionSaladAndPotato index={index} isMobile/>
                                         <MenuCard
                                             name={specification.name}
                                             dishes={specification.dishes}
@@ -147,10 +150,6 @@ const MenuPage:FC<PropsType> = ({dishes, drinks, closeSidebar}) => {
                                         />
                                     </MenuCardWrap>
 
-                                /* <div style={{display:'flex', position:'relative', background: 'white'}}>
-                                        <div style={{height:'10px', width: '100px', background: 'red'}}></div>
-                                        <div style={{ background: 'blue',position:'absolute',top:0,right:0}}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi deleniti dolores eveniet fugit ipsum nostrum nulla officia omnis, quia sequi.</div>
-                                    </div>*/
                             })}
                         </MenuSection>)}
             </MenuWrapper>
@@ -185,19 +184,23 @@ const MenuPage:FC<PropsType> = ({dishes, drinks, closeSidebar}) => {
     );
 };
 
-type AnimSecPropsType = {
+type AnimSecPropsType1 = {
     index: number
-    refOnView: (node?: Element) => void
-    imgRef:React.MutableRefObject<HTMLDivElement>
     isMobile?: boolean
 }
-function AnimatedSectionComposition({index, refOnView, imgRef, isMobile}:AnimSecPropsType) {
+type AnimSecPropsType2 = {
+    isMobile?: boolean
+    reference: (node?: Element) => void
+    inView: boolean
+}
+function AnimatedSectionCompositionSaladAndPotato({index, isMobile}:AnimSecPropsType1) {
     return (
         <MenuImgWrapper isMobile={isMobile}>
             <FlexibleImgWrap>
+                <ShadowOnMobDevices/>
                 <MenuSideImgWrapper
                     id={index === 2 ? 'potatos' : 'salad'}
-                    ref={index === 2 ? refOnView : imgRef}
+                    //ref={index === 2 ? refOnView : imgRef}
                     sizes={isMobile ? [100,100]:[88,85]}
                     isMobile={isMobile}
                 >
@@ -208,7 +211,7 @@ function AnimatedSectionComposition({index, refOnView, imgRef, isMobile}:AnimSec
                 <ImgMask2
                     id={index === 2 ? 'flour3wrap' : 'flourwrap'}
                     position={index === 2
-                        ? (isMobile ? [11, -111] : [13,-114])
+                        ? (isMobile ? [11, -111] : [10,-31])
                         : (isMobile ? [-55,-17] : [-30,-25])}
                 >
                     <Image id={index === 2 ? 'flour3' : 'flour'}
@@ -232,6 +235,30 @@ function AnimatedSectionComposition({index, refOnView, imgRef, isMobile}:AnimSec
                            fill style={{objectFit:"contain"}}
                            alt='img'/>
                 </MenuSideImgWrapper2>
+            </FlexibleImgWrap>
+        </MenuImgWrapper>
+    )
+}
+function AnimatedSectionCompositionSoup({reference, inView, isMobile}:AnimSecPropsType2) {
+    return (
+        <MenuImgWrapper isMobile={isMobile}>
+            <FlexibleImgWrap isMobile={isMobile} isSoup>
+                <MenuSideImgWrapper
+                    id='soup'
+                    isMobile={isMobile}
+                    sizes={isMobile ? [100,110] : [100,123]}
+                >
+                    <Image src={soup} fill style={{objectFit:"contain"}} alt='soup'/>
+                </MenuSideImgWrapper>
+                <ImgMask4 id='flour2wrap' isMobile={isMobile}>
+                    <Image id='flour2' src={flour2} fill style={{objectFit:"contain"}} alt='flour2'/>
+                </ImgMask4>
+                <MenuBranchWrapper id='branch' isMobile={isMobile}>
+                    <Image src={branch} fill style={{objectFit:"contain"}} alt='branch'/>
+                </MenuBranchWrapper>
+                <ImgMask6  id='flour4wrap' inView={inView} isMobile={isMobile}>
+                    <Image ref={reference} id='flour4' src={flour3} fill style={{objectFit:"contain"}} alt='flour4'/>
+                </ImgMask6>
             </FlexibleImgWrap>
         </MenuImgWrapper>
     )

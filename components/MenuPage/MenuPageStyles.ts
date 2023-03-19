@@ -20,11 +20,26 @@ export const MenuHeader = styled.header`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   opacity: 0.9;
+
+  @media screen and (max-width: 768px) {
+    font-size: 60px;
+    line-height: 60px;
+    padding: 10px 0 0 0;
+  }
+  @media screen and (max-width: 480px) {
+    font-size: 45px;
+    line-height: 45px;
+    padding: 5px 0 0 0;
+  }
 `
 export const MenuToggle = styled.div`
   display: flex;
   justify-content: center;
   padding-bottom: 20px;
+
+  @media screen and (max-width: 480px) {
+  transform: scale(0.7);
+  }
 `
 
 export const MenuWrapper = styled.div`
@@ -63,12 +78,16 @@ const Section = styled.div`
     display: flex;
     flex-direction: column;
   }
+  @media screen and (max-width: 480px) {
+    gap: 30px;
+    margin: 30px 0;
+  }
 `
 export const MenuSection = styled(Section)`
   grid-template-areas: 'header top'  'image middle'  'image footer' 'footer2 footer2';
 `
 export const MenuSectionReversed = styled(Section)`
-  grid-template-areas: 'top header'  'middle image'  'footer image' 'footer2 image';
+  grid-template-areas: 'top header'  'middle image';
 `
 
 
@@ -77,6 +96,8 @@ export const MenuImgWrapper = styled.div`
   display: ${({isMobile}) => isMobile ? 'none' : 'flex'};
   align-items: center;
   min-width: 180px;
+  //max-height: ${({isMobile}) => !isMobile && '55%'};
+  
  
 
   @media screen and (max-width: 768px) {
@@ -89,7 +110,7 @@ export const FlexibleImgWrap = styled.div`
   width: 100%;
   &:after {
     content: "";
-    padding-top: 100%;
+    padding-top: ${({isMobile, isSoup}) => isMobile ? '90%' : (isSoup ? '70%' : '100%')};
     display: block;
   }
 `
@@ -125,12 +146,12 @@ export const ImgMask2 = styled.div`
 export const ImgMask4 = styled.div`
   overflow: hidden;
   position: absolute;
-  width: 81%;
-  height: 110%;
+  width: ${({isMobile}) => isMobile ? '90%' : '81%'};
+  height: ${({isMobile}) => isMobile ? '120%' : '110%'};
   z-index: 1;
-  bottom: 110px;
-  left: -77px;
- // transform: rotate(172deg);
+  bottom: ${({isMobile}) => isMobile ? '150px' : '110px'};
+  left: ${({isMobile}) => isMobile ? '-90px' : '-77px'};
+  transform: ${({isMobile}) => isMobile ? 'rotate(-46deg)' : 'none'};
   
   :after {
     content: '';
@@ -150,8 +171,8 @@ export const ImgMask6 = styled.div`
   width: 100%;
   height: 97%;
   z-index: 1;
-  bottom: -180px;
-  left: -117px;
+  bottom: ${({isMobile}) =>  isMobile ? '-150px' : '-180px'};
+  left: ${({isMobile}) =>  isMobile ? '-85px' : '-117px'};
   
   :after {
     content: '';
@@ -169,9 +190,26 @@ export const MenuSideImgWrapper = styled.div`
   position: absolute;
   width: ${({sizes = [100,100]}) => sizes[0] + '%'};
   height: ${({sizes = [100,100]}) => sizes[1] + '%'};
-  top: ${({isMobile}) =>  isMobile ? '20px' : '40px'};
-  left: ${({isMobile}) =>  isMobile ? 0 : '40px'};
+  top: ${({isMobile,id}) =>  isMobile ? (id === 'soup' ? '-35px' :'20px') : (id === 'soup' ? '-15%' :'40px')};
+  left: ${({isMobile,id}) =>  isMobile ? (id === 'soup' ? '-30px' : 0) : (id === 'soup' ? 0 :'40px')};
   z-index: 2;
+`
+export const ShadowOnMobDevices = styled.div`
+  display: none;
+  background: #161616;
+  position: absolute;
+  width: 25%;
+  height: 80%;
+  right: 8%;
+  top: 20%;
+  z-index: 3;
+  clip-path: circle(70.3% at -64% 50%);
+  opacity: 0.73;
+  box-shadow: 0 0 3px 3px #161616, 0 0 13px 10px #161616;
+
+  @media screen and (max-width: 480px) {
+    display: block;
+  }
 `
 export const MenuSideImgWrapper2 = styled.div`
   position: absolute;
@@ -209,8 +247,8 @@ export const MenuBranchWrapper = styled.div`
   z-index: 1;
   width: 35%;
   height: 90%;
-  bottom: 118px;
-  right: -12px;
+  bottom: ${({isMobile}) =>  isMobile ? 0 : '118px'};
+  right: ${({isMobile}) =>  isMobile ? '10px' : '-12px'};
 `
 export const AddMenuContent = styled.div`
   position: relative;

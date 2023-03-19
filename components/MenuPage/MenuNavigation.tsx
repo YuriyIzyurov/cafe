@@ -66,7 +66,8 @@ const MenuNavigation = ({position, id }:MenuNavType) => {
                         middleBtn={middleBtn[2]}
                         isBottom={isBottom[2]}
                         rightBtn={rightBtn}>
-                    Дополнительное меню
+                    <span className="desktop">Дополнительное меню</span>
+                    <span className="mobile">Доп.меню</span>
                 </Button>
             </ButtonSmoothScroll>
         </MenuToggle>

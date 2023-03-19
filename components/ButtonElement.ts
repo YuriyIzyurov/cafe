@@ -22,6 +22,10 @@ export const Button = styled.button`
   justify-content: center;
   align-items: center;
   transition: all 0.2s ease-in-out;
+
+  span.mobile {
+    display: none;
+  }
   
   &:hover {
     transition: all 0.2s ease-in-out;
@@ -29,8 +33,19 @@ export const Button = styled.button`
     color: ${({sectionIsActive , color}) => sectionIsActive ? color : '#010606'};
   }
 
+  @media screen and (max-width: 768px) {
+    min-width: ${({color}) => color === '#a1907b' && '150px'};
+    padding: ${({color}) => color === '#a1907b' && '6px 15px'};
+    
+    span.desktop {
+      display: none;
+    }
+    span.mobile {
+      display: inline-block;
+    }
+  }
   @media screen and (max-width: 480px), (max-height: 820px) {
-    transform: scale(0.8);
+    transform: ${({color}) => color !== '#a1907b' && 'scale(0.8)'};
   }
   @media screen and (max-width: 320px) {
     min-width: 150px;
