@@ -40,6 +40,7 @@ import pepper from '../../public/images/pepper-resized.png'
 import tomatos from '../../public/images/tomatos-resized.png'
 import { DishSpecification,DrinksSpecification } from "../../utility/types";
 import { MenuCardWrap } from "./MenuCard/MenuCardStyles";
+import {gsap} from "gsap";
 
 
 
@@ -82,9 +83,21 @@ const MenuPage:FC<PropsType> = ({dishes, drinks, closeSidebar}) => {
         drinks[11]
     ]
 
+    //создание мастер анимации страницы и ее удалении при анмаунте
     useEffect(() => {
-        activateMenuAnimation()
-    }, [])
+
+        const mm = gsap.matchMedia();
+        mm.add(
+            {
+                isSmall: '(max-width: 768px)',
+                isLarge: '(min-width: 769px)',
+            },
+            (c) => {
+                activateMenuAnimation(c.conditions.isSmall)
+            }
+        );
+        return () =>  mm.revert()
+    }, []);
 
 
     return (
@@ -250,8 +263,8 @@ function AnimatedSectionCompositionSoup({reference, inView, isMobile}:AnimSecPro
                 >
                     <Image src={soup} fill style={{objectFit:"contain"}} alt='soup'/>
                 </MenuSideImgWrapper>
-                <ImgMask4 id='flour2wrap' isMobile={isMobile}>
-                    <Image id='flour2' src={flour2} fill style={{objectFit:"contain"}} alt='flour2'/>
+                <ImgMask4 id='flour2wrap' isMobile={isMobile} >
+                    <Image id='flour2' src={flour2} fill style={{objectFit:"contain", transform: 'rotate(-43deg)'}} alt='flour2'/>
                 </ImgMask4>
                 <MenuBranchWrapper id='branch' isMobile={isMobile}>
                     <Image src={branch} fill style={{objectFit:"contain"}} alt='branch'/>

@@ -151,7 +151,7 @@ export const ImgMask4 = styled.div`
   z-index: 1;
   bottom: ${({isMobile}) => isMobile ? '150px' : '110px'};
   left: ${({isMobile}) => isMobile ? '-90px' : '-77px'};
-  transform: ${({isMobile}) => isMobile ? 'rotate(-46deg)' : 'none'};
+  
   
   :after {
     content: '';
@@ -169,9 +169,9 @@ export const ImgMask6 = styled.div`
   overflow: hidden;
   position: absolute;
   width: 100%;
-  height: 97%;
+  height: 125%;
   z-index: 1;
-  bottom: ${({isMobile}) =>  isMobile ? '-150px' : '-180px'};
+  bottom: ${({isMobile}) =>  isMobile ? '-140px' : '-180px'};
   left: ${({isMobile}) =>  isMobile ? '-85px' : '-117px'};
   
   :after {
@@ -179,7 +179,8 @@ export const ImgMask6 = styled.div`
     position: absolute;
     bottom: 0;
     left: 70px;
-    width: ${({inView}) => inView ? '9%': '53%'};
+    //width: ${({inView}) => inView ? '9%': '53%'};
+    width: 60%;
     height: 30px;
     background: linear-gradient(to bottom, transparent, #161617);
     z-index: 100;
@@ -275,4 +276,8 @@ export const GalaryImgWrapper = styled.div`
   left: ${({position}) => position[1]};
   width: ${({width}) => width};
   height: ${({height}) => height};
+  
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `
