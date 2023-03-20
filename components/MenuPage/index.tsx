@@ -93,7 +93,7 @@ const MenuPage:FC<PropsType> = ({dishes, drinks, closeSidebar}) => {
                 isLarge: '(min-width: 769px)',
             },
             (c) => {
-                activateMenuAnimation(c.conditions.isSmall)
+               activateMenuAnimation(c.conditions.isSmall)
             }
         );
         return () =>  mm.revert()
@@ -123,13 +123,14 @@ const MenuPage:FC<PropsType> = ({dishes, drinks, closeSidebar}) => {
                                         sectionIndex={'section' + index}
                                     />
                                     :
-                                    <MenuCardWrap key={specification._id}>
+                                    <MenuCardWrap key={specification._id} justifyContent='flex-end' reducedCard={true}>
                                         <MenuCard
                                             name={specification.name}
                                             dishes={specification.dishes}
                                             index={index2}
                                             sectionIndex={'section' + index}
                                             isMobile
+                                            rightPosition={true}
                                         />
                                         <AnimatedSectionCompositionSoup
                                             reference={ref}
@@ -142,24 +143,25 @@ const MenuPage:FC<PropsType> = ({dishes, drinks, closeSidebar}) => {
                         <MenuSection key={index} id={'section'+index}>
                             <AnimatedSectionCompositionSaladAndPotato index={index}/>
                             {section.map((specification, index2) => {
-                                return !specification.name.includes("Салаты из мяса")
+                                const saladImg = specification.name.includes("Салаты из мяса")
+                                const potatoImg = specification.name.includes("Гарниры")
+                                return !(saladImg || potatoImg)
                                     ? <MenuCard
                                         key={specification._id}
                                         name={specification.name}
                                         dishes={specification.dishes}
                                         index={index2}
                                         sectionIndex={'section'+index}
-                                        justifySelf={index === 3}
                                     /> :
-                                    <MenuCardWrap key={specification._id}>
+                                    <MenuCardWrap key={specification._id} reducedCard={potatoImg && true}>
                                         <AnimatedSectionCompositionSaladAndPotato index={index} isMobile/>
                                         <MenuCard
                                             name={specification.name}
                                             dishes={specification.dishes}
                                             index={index2}
                                             sectionIndex={'section'+index}
-                                            justifySelf={index === 3}
                                             isMobile
+                                            leftPosition={true}
                                         />
                                     </MenuCardWrap>
 
@@ -207,44 +209,48 @@ type AnimSecPropsType2 = {
     inView: boolean
 }
 function AnimatedSectionCompositionSaladAndPotato({index, isMobile}:AnimSecPropsType1) {
+    const isPotato = index === 2
     return (
         <MenuImgWrapper isMobile={isMobile}>
             <FlexibleImgWrap>
-                <ShadowOnMobDevices/>
+                <ShadowOnMobDevices reducedShadow={isPotato}/>
                 <MenuSideImgWrapper
-                    id={index === 2 ? 'potatos' : 'salad'}
+                    id={isPotato ? 'potatos' : 'salad'}
                     //ref={index === 2 ? refOnView : imgRef}
                     sizes={isMobile ? [100,100]:[88,85]}
                     isMobile={isMobile}
                 >
-                    <Image src={index === 2 ? potato : salad}
+                    <Image src={isPotato ? potato : salad}
                            fill style={{objectFit:"contain"}}
                            alt='menuImg'/>
                 </MenuSideImgWrapper>
                 <ImgMask2
-                    id={index === 2 ? 'flour3wrap' : 'flourwrap'}
-                    position={index === 2
-                        ? (isMobile ? [11, -111] : [10,-31])
+                    id={isPotato ? 'flour3wrap' : 'flourwrap'}
+                    position={isPotato
+                        ? (isMobile ? [-43, -18] : [10,-31])
                         : (isMobile ? [-55,-17] : [-30,-25])}
                 >
-                    <Image id={index === 2 ? 'flour3' : 'flour'}
+                    <Image id={isPotato ? 'flour3' : 'flour'}
                            src={flour2}
-                           fill style={{objectFit:"contain"}}
+                           fill style={{objectFit:"contain", transform: isPotato && 'rotate(-20deg)'}}
                            alt='flour2'/>
                 </ImgMask2>
                 <ImgMask2
-                    id={index === 2 ? 'mobile-flour3wrap' : 'mobile-flourwrap'}
-                    position={index === 2 ? [13,13] : [21,-12]}
+                    id={isPotato ? 'mobile-flour3wrap' : 'mobile-flourwrap'}
+                    position={isPotato ? [33,8] : [21,-12]}
                     isInvisibleOnDesktop
                 >
-                    <Image id={index === 2 ? 'mobile-flour3' : 'mobile-flour'}
+                    <Image id={isPotato ? 'mobile-flour3' : 'mobile-flour'}
                            src={flour2}
-                           fill style={{objectFit:"contain", transform: "scaleX(-1) "}}
+                           fill style={{
+                        objectFit: "contain",
+                        transform: isPotato ? "scaleX(-1) rotate(-21deg)" : "scaleX(-1)"
+                    }}
                            alt='flour2'/>
                 </ImgMask2>
                 <MenuSideImgWrapper2 isMobile={isMobile}>
-                    <Image id={index === 2 ? 'pepper' : 'tomatos'}
-                           src={index === 2 ? pepper : tomatos}
+                    <Image id={isPotato ? 'pepper' : 'tomatos'}
+                           src={isPotato ? pepper : tomatos}
                            fill style={{objectFit:"contain"}}
                            alt='img'/>
                 </MenuSideImgWrapper2>
@@ -255,11 +261,12 @@ function AnimatedSectionCompositionSaladAndPotato({index, isMobile}:AnimSecProps
 function AnimatedSectionCompositionSoup({reference, inView, isMobile}:AnimSecPropsType2) {
     return (
         <MenuImgWrapper isMobile={isMobile}>
-            <FlexibleImgWrap isMobile={isMobile} isSoup>
+            <FlexibleImgWrap isMobile={isMobile}>
+                <ShadowOnMobDevices isLeft/>
                 <MenuSideImgWrapper
                     id='soup'
                     isMobile={isMobile}
-                    sizes={isMobile ? [100,110] : [100,123]}
+                    sizes={[100,100]}
                 >
                     <Image src={soup} fill style={{objectFit:"contain"}} alt='soup'/>
                 </MenuSideImgWrapper>
@@ -267,7 +274,7 @@ function AnimatedSectionCompositionSoup({reference, inView, isMobile}:AnimSecPro
                     <Image id='flour2' src={flour2} fill style={{objectFit:"contain", transform: 'rotate(-43deg)'}} alt='flour2'/>
                 </ImgMask4>
                 <MenuBranchWrapper id='branch' isMobile={isMobile}>
-                    <Image src={branch} fill style={{objectFit:"contain"}} alt='branch'/>
+                    <Image src={branch} fill style={{objectFit:"contain",transform: 'rotate(15deg)'}} alt='branch'/>
                 </MenuBranchWrapper>
                 <ImgMask6  id='flour4wrap' inView={inView} isMobile={isMobile}>
                     <Image ref={reference} id='flour4' src={flour3} fill style={{objectFit:"contain"}} alt='flour4'/>

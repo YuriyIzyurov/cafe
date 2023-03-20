@@ -110,7 +110,7 @@ export const FlexibleImgWrap = styled.div`
   width: 100%;
   &:after {
     content: "";
-    padding-top: ${({isMobile, isSoup}) => isMobile ? '90%' : (isSoup ? '70%' : '100%')};
+    padding-top: 100%;
     display: block;
   }
 `
@@ -149,8 +149,8 @@ export const ImgMask4 = styled.div`
   width: ${({isMobile}) => isMobile ? '90%' : '81%'};
   height: ${({isMobile}) => isMobile ? '120%' : '110%'};
   z-index: 1;
-  bottom: ${({isMobile}) => isMobile ? '150px' : '110px'};
-  left: ${({isMobile}) => isMobile ? '-90px' : '-77px'};
+  bottom: ${({isMobile}) => isMobile ? '52%' : '45%'};
+  left: ${({isMobile}) => isMobile ? '-40%' : '-20%'};
   
   
   :after {
@@ -171,8 +171,10 @@ export const ImgMask6 = styled.div`
   width: 100%;
   height: 125%;
   z-index: 1;
-  bottom: ${({isMobile}) =>  isMobile ? '-140px' : '-180px'};
-  left: ${({isMobile}) =>  isMobile ? '-85px' : '-117px'};
+  //bottom: ${({isMobile}) =>  isMobile ? '-140px' : '-80%'};
+  //left: ${({isMobile}) =>  isMobile ? '-85px' : '-20%'};
+  bottom: -80%;
+  left: -20%;
   
   :after {
     content: '';
@@ -191,8 +193,8 @@ export const MenuSideImgWrapper = styled.div`
   position: absolute;
   width: ${({sizes = [100,100]}) => sizes[0] + '%'};
   height: ${({sizes = [100,100]}) => sizes[1] + '%'};
-  top: ${({isMobile,id}) =>  isMobile ? (id === 'soup' ? '-35px' :'20px') : (id === 'soup' ? '-15%' :'40px')};
-  left: ${({isMobile,id}) =>  isMobile ? (id === 'soup' ? '-30px' : 0) : (id === 'soup' ? 0 :'40px')};
+  top: ${({isMobile,id}) =>  isMobile ? 0 : (id === 'soup' ? '-15%' :'40px')};
+  left: ${({isMobile,id}) =>  isMobile ? 0 : (id === 'soup' ? 0 :'40px')};
   z-index: 2;
 `
 export const ShadowOnMobDevices = styled.div`
@@ -200,16 +202,20 @@ export const ShadowOnMobDevices = styled.div`
   background: #161616;
   position: absolute;
   width: 25%;
-  height: 80%;
-  right: 8%;
-  top: 20%;
+  height: ${({isLeft,reducedShadow}) => isLeft ? '76%' : (reducedShadow ? '70%' : '81%')};
+  right: ${({isLeft}) => isLeft ? '70%' : '8%'};
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 3;
-  clip-path: circle(70.3% at -64% 50%);
+  clip-path: ${({isLeft}) => isLeft ? 'circle(75% at 182% 49%)' : 'circle(70.3% at -64% 50%)'};
   opacity: 0.73;
   box-shadow: 0 0 3px 3px #161616, 0 0 13px 10px #161616;
 
   @media screen and (max-width: 480px) {
     display: block;
+  }
+  @media screen and (max-width: 420px) {
+    display: none;
   }
 `
 export const MenuSideImgWrapper2 = styled.div`
@@ -248,8 +254,8 @@ export const MenuBranchWrapper = styled.div`
   z-index: 1;
   width: 35%;
   height: 90%;
-  bottom: ${({isMobile}) =>  isMobile ? 0 : '118px'};
-  right: ${({isMobile}) =>  isMobile ? '10px' : '-12px'};
+  bottom: ${({isMobile}) =>  isMobile ? '-23%' : '118px'};
+  right: ${({isMobile}) =>  isMobile ? 0 : '-12px'};
 `
 export const AddMenuContent = styled.div`
   position: relative;

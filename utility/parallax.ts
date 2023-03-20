@@ -184,15 +184,19 @@ export function activateMenuAnimation(isSmall:boolean){
         {
             name: "#section0",
             images: ["#salad", "#tomatos", "#flourwrap", "#flour", "#mobile-flourwrap", "#mobile-flour"],
-            start:["15% top","top top", `${isSmall ? "35% top" : "top 30%"}` , "top top"],
+            start:["15% top",`${isSmall ? "top 10%" : "top top"}`, `${isSmall ? "35% top" : "top 30%"}` , "top top"],
             end:["bottom top","15% top",`${isSmall ? "70% top" : "top top"}`, "35% top"]},
         {
             name: "#section1",
             images: ["#soup", "#branch", "#flour2wrap", "#flour2", "#flour4wrap", "#flour4"],
-            start:["top top","top 30%",`${isSmall ? "top 60%" : "top center"}`, `${isSmall ? "top 30%" : "15% top"}`],
-            end:["bottom top","15% top",`${isSmall ? "top 30%" : "top top"}`,`${isSmall ? "top top" : "35% top"}`]
+            start:[`${isSmall ? "top center" : "top top"}`,`${isSmall ? "top 80%" : "top 30%"}`,`${isSmall ? "top 60%" : "top center"}`, `${isSmall ? "top 30%" : "15% top"}`],
+            end:[`${isSmall ? "15% top" : "bottom top"}`,`${isSmall ? "top 40%" : "15% top"}`,`${isSmall ? "top 30%" : "top top"}`,`${isSmall ? "top top" : "35% top"}`]
         },
-        {name: "#section2", images: ["#potatos", "#pepper", "#flour3wrap", "#flour3","#mobile-flour3wrap", "#mobile-flour3"], start:["top center","top center","top center"], end:["top top","top top","top top"]}
+        {
+            name: "#section2",
+            images: ["#potatos", "#pepper", "#flour3wrap", "#flour3","#mobile-flour3wrap", "#mobile-flour3"],
+            start:[`${isSmall ? "top 60%" : "top center"}`,`${isSmall ? "top 80%" : "top center"}`,`${isSmall ? "top 60%" : "top center"}`,"top 80%"],
+            end:[`${isSmall ? "15% top" : "top top"}`,`${isSmall ? "top 40%" : "top top"}`,`${isSmall ? "top 40%" : "top top"}`,"top 60%"]}
     ]
     const drinks = ["#vodka", "#liquor", "#whisky", "#vinered", "#vine", "#beer", "#tea", "#limonade" ]
 

@@ -8,7 +8,7 @@ export const MenuCardContainer = styled.main`
   align-items: center;
   width: 100%;
   min-width: 290px;
-  z-index: 3;
+  z-index: 4;
 
 
   @media screen and (max-width: 768px) {
@@ -19,17 +19,26 @@ export const MenuCardContainer = styled.main`
     ${({isMobile}) => isMobile && css`
       position: absolute;
       top: 0;
-      right:0;
     `}
+    left:${({rightPosition}) => rightPosition && 0};
+    right:${({rightPosition}) => !rightPosition && 0};
+  }
+  @media screen and (max-width: 420px) {
+    ${({isMobile}) => isMobile && css`
+      position: absolute;
+      top: 0;
+    `}
+    left:${({rightPosition}) => rightPosition && 0};
+    right:${({rightPosition}) => !rightPosition && 0};
   }
 `
 export const MenuCardWrap = styled.div`
   position: relative;
   display: flex;
-  min-height: 260px;
+  min-height: ${({reducedCard}) => reducedCard ? '220px' : '260px'};
 
   @media (max-width: 480px) {
-    
+    justify-content: ${({justifyContent}) => justifyContent};
   }
 `
 export const MenuH2 = styled.h2`
@@ -53,13 +62,32 @@ export const TestBG = styled.div`
 `
 
 export const CardContent = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
+  
  
+`
+export const ShadowBG = styled.div`
+  display: none;
+  background: #161616;
+  position: absolute;
+  width: 60%;
+  height: ${({leftPosition}) => leftPosition ? '71%' : '100%'};
+  right: ${({leftPosition}) => leftPosition ? '40%' : '5%'};
+  top: ${({leftPosition}) => leftPosition && '16%'};
+  opacity: 0.73;
+  box-shadow: 0 0 3px 3px #161616, 0 3px 13px 6px #161616;
+  z-index: 1;
+  
+  @media screen and (max-width: 420px) {
+    display: ${({rightPosition,leftPosition}) => (rightPosition || leftPosition) && 'block'};
+  }
 `
 export const CardPosition = styled.div`
   display: flex;
+  z-index: 2;
 `
 export const Dots = styled.span`
   flex-grow: 1;

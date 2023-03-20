@@ -6,7 +6,7 @@ import {
     MenuH2,
     MenuImg,
     PositionName,
-    PositionPrice, Ruble
+    PositionPrice, Ruble, ShadowBG
 } from "./MenuCardStyles";
 import React from "react";
 import { Dish } from "../../../utility/types";
@@ -21,12 +21,13 @@ type MenuType = {
     dishes: Dish[]
     index: number
     sectionIndex: string
-    justifySelf?: boolean
+    rightPosition?: boolean
+    leftPosition?: boolean
     isMobile?: boolean
 }
 
 
-const MenuCard:React.FC<MenuType> = ({name, dishes, index, isMobile, justifySelf}) => {
+const MenuCard:React.FC<MenuType> = ({name, dishes, index, isMobile, rightPosition, leftPosition}) => {
 
     const setGrid = () => {
         switch (index) {
@@ -39,7 +40,7 @@ const MenuCard:React.FC<MenuType> = ({name, dishes, index, isMobile, justifySelf
     }
 
     return (
-        <MenuCardContainer area={setGrid()} justifySelf isMobile={isMobile}>
+        <MenuCardContainer area={setGrid()} rightPosition={rightPosition} isMobile={isMobile}>
                 <MenuImg url='images/splash.png'>
                     <MenuH2>{name}</MenuH2>
                 </MenuImg>
@@ -48,6 +49,7 @@ const MenuCard:React.FC<MenuType> = ({name, dishes, index, isMobile, justifySelf
                         const fontSize = dish.name.length > 37 || isMobile ? '0.8rem' : dish.name.length > 30 ? '0.9rem' : '1rem'
                         return <Position key={dish._id} {...dish} fontSize={fontSize}/>
                     })}
+                    <ShadowBG rightPosition={rightPosition} leftPosition={leftPosition}/>
                 </CardContent>
         </MenuCardContainer>
     );
