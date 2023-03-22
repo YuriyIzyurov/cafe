@@ -26,14 +26,23 @@ const InfoSection = ({lightBg, lightText, headline, buttonLabel, alt, timeline,s
 
     useLayoutEffect(() => {
 
-        const ctx = gsap.context(() => {
-            const anim = animation('main')
+        const mm = gsap.matchMedia();
+        mm.add(
+            {
+                isDesktop: '(min-width: 481px)',
+                isMobile: '(max-width: 480px)',
+            },
+            (c) => {
+                ScrollTrigger.defaults({
+                    scrub: c.conditions.isMobile ? 2.6  : 1.3,
+                })
+                const anim = animation('main', c.conditions.isMobile)
 
-            //добавляем анимацию компонента в мастер анимацию страницы
-            timeline && timeline.add(anim)
-        })
-
-        return () => ctx.revert()
+                //добавляем анимацию компонента в мастер анимацию страницы
+                timeline && timeline.add(anim)
+            }
+        );
+        return () =>  mm.revert()
     }, [timeline])
 
 

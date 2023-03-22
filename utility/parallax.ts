@@ -36,51 +36,50 @@ export const smoothScrolling = () => {
     return tlFromTop
 }*/
 
-export const animation = (section: SectionType) => {
-
+export const animation = (section: SectionType, isMobile?: boolean) => {
     switch (section) {
-        case "main": return registerMainComponentAnim()
+        case "main": return registerMainComponentAnim(isMobile)
         case "history": return registerHistoryComponentAnim()
         case "services": return registerServicesComponentAnim()
     }
 }
 
-function registerMainComponentAnim(){
+function registerMainComponentAnim(isMobile:boolean){
     const animatedMainImg: AnimatedElement[] = [
         {
             id: "#solt",
             moveFrom: [{y:350}, {y:0}],
-            moveTo: [{y:0}, {y:-650}],
+            moveTo: [{y:0}, {y:isMobile ? -300 : -650}],
         },
         {
             id: "#spoon",
             moveFrom: [{y:450}, {y:0}],
-            moveTo: [{y:0}, {y:-650}],
+            moveTo: [{y:0}, {y:isMobile ? -300 : -650}],
         },
         {
             id: "#salad2",
             moveFrom: [{y:300}, {y:0}],
-            moveTo: [{y:0}, {y:-700}],
+            moveTo: [{y:0}, {y:isMobile ? -250 : -700}],
         },
         {
             id: "#dish",
-            moveFrom: [{y:600, rotation:-120}, {y:0, rotation:0}],
-            moveTo: [{y:0, rotation:0}, {y:-500, rotation:130}],
+            moveFrom: [{y:600, rotation: isMobile ? -180 :-120}, {y:0, rotation:0}],
+            moveTo: [{y:0, rotation:0}, {y:isMobile ? -200 : -500, rotation: isMobile ? 100: 130}],
         },
         {
             id: "#pepper",
             moveFrom: [{y:650}, {y:0}],
-            moveTo: [{y:0}, {y:-440}],
+            moveTo: [{y:0}, {y:isMobile ? -170 : -440}],
         },
         {
             id: "#salad",
             moveFrom: [{y:250}, {y:0}],
-            moveTo: [{y:0}, {y:-470}],
+            moveTo: [{y:0}, {y:isMobile ? -180 : -470}],
         },
         {
             id: "#tomatos",
             moveFrom: [{y:700}, {y:0}],
-            moveTo: [{y:0}, {y:-400}],
+            moveTo: [{y:0}, {y:isMobile ? -150 : -400}],
         },]
     const tlFromTop = gsap.timeline({
         scrollTrigger: {
@@ -94,7 +93,7 @@ function registerMainComponentAnim(){
             trigger: "#about",
             start: "bottom 90%",
             end: "bottom 20%",
-
+            scrub: isMobile ? 1.5 : 1.3
         }
     })
 
@@ -160,6 +159,7 @@ function registerServicesComponentAnim(){
                 trigger: "#services",
                 start: "top 90%",
                 end: "top 20%",
+                scrub: 1
             }
         })
         const tlFromBottom = gsap.timeline({
@@ -167,6 +167,7 @@ function registerServicesComponentAnim(){
                 trigger: "#services",
                 start: "bottom 90%",
                 end: "bottom 20%",
+                scrub: 1
             }
         })
 

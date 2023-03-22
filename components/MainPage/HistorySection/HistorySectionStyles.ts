@@ -14,8 +14,8 @@ export const HistoryContainer = styled.section`
   justify-content: center;
   color: #fff;
   background: ${({lightBg}) => (lightBg ? '#f9f9f9' : '#161616')};
-  //scroll-snap-align: start;
-  //scroll-snap-stop: always;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 
   @media screen and (max-width: 450px) and (max-height: 530px) {
     padding: 0 8px;
@@ -204,7 +204,7 @@ export const HistoryImgWrap = styled.div`
           left: 20%;
      }
   
-     @media screen and (max-width: 510px), (max-height: 680px) and (max-width: 710px){
+     @media screen and  (max-height: 680px){
           display: none;
      }
      @media screen and (max-height: 810px) and (max-width: 710px) {

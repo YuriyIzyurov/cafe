@@ -8,8 +8,9 @@ export const ServicesContainer = styled.section`
   justify-content: center;
   margin: 0 auto;
   background: #161616;
-  //scroll-snap-align: start;
- // scroll-snap-stop: always;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  overflow-x: hidden;
   
   @media screen and (max-width: 768px) {
     
@@ -170,7 +171,7 @@ export const ServicesBlockWrapper = styled.section`
     max-width: 600px;
   }
   @media screen and (max-width: 450px) {
-    z-index: ${({zIndex}) => zIndex===1 ? 3 : zIndex===3 ? 1 : 2};
+    z-index: ${({zIndex}) => zIndex===1 ? 4 : zIndex===3 ? 2 : 3};
   }
   @media screen and (max-width: 320px) {
     align-self: flex-start;
@@ -178,8 +179,22 @@ export const ServicesBlockWrapper = styled.section`
 `
 export const ServicesImgWrapper = styled.div`
   position: absolute;
+  width: 700px;
+  height: 382px;
   top: 18%;
   left: 21%;
+ 
+  
+  @media screen and (max-width: 900px) {
+    left: 5%;
+  }
+  @media screen and (max-width: 480px) {
+    .img {
+      transform: rotate(115deg) scale(1.1);
+    }
+    left: -43%;
+    top: 26%;
+  }
 `
 export const BlackPhone = styled(MdLocalPhone)`
   font-size: 17px;
@@ -195,6 +210,7 @@ export const ServiceFooter = styled.div`
   @media screen and (max-width: 450px) {
     padding: 3px 0;
     background: #fff;
+  }
 `
 
 export const SpreadTextIconDown = styled(MdArrowDropDown)`

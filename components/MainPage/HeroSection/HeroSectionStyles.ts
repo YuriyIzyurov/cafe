@@ -10,8 +10,8 @@ export const HeroContainer = styled.section`
   min-height: 100vh;
   position: relative;
   z-index: 1;
-  //scroll-snap-align: start;
-  //scroll-snap-stop: always;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
   
   
   :before {
@@ -21,7 +21,7 @@ export const HeroContainer = styled.section`
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(180deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 100%),
+    background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.6) 100%),
     linear-gradient(180deg, rgba(0,0,0,0.5) 0%, transparent 100%);
     z-index: 2;
   }
@@ -101,6 +101,7 @@ export const HeroP = styled.p`
   font-size: 24px;
   text-align: center;
   max-width: 600px;
+  backdrop-filter: blur(3px);
   
   
   @media screen and (max-width: 480px),(max-height: 700px) {

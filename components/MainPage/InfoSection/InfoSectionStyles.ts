@@ -9,8 +9,8 @@ export const InfoContainer = styled.section`
   margin-right: auto;
   margin-left: auto;
   padding: 0 24px;
- // scroll-snap-align: start;
- // scroll-snap-stop: always;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 `
 
 export const InfoWrapper = styled.div`

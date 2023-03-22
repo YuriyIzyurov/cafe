@@ -29,6 +29,7 @@ export const NavbarContainer = styled.div`
   width: 100%;
   padding: 0 24px;
   max-width: 1100px;
+  backdrop-filter: blur(5px);
 
   @media screen and (max-width: 320px) {
     padding: 0 5px;
