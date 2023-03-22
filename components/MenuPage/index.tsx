@@ -5,6 +5,7 @@ import {
     ImgMask6,
     MenuBranchWrapper,
     MenuContainer,
+    MenuFooter,
     MenuHeader,
     MenuImgWrapper,
     MenuSection,
@@ -41,6 +42,9 @@ import tomatos from '../../public/images/tomatos-resized.png'
 import { DishSpecification,DrinksSpecification } from "../../utility/types";
 import { MenuCardWrap } from "./MenuCard/MenuCardStyles";
 import {gsap} from "gsap";
+import favicon from "public/images/favicon.ico";
+import { TextBlockHeader, TextBlockP } from "../ReviewsPage/ReviewsPageStyles";
+import logo from "public/images/logoSpoon.png";
 
 
 
@@ -189,11 +193,20 @@ const MenuPage:FC<PropsType> = ({dishes, drinks, closeSidebar}) => {
 
             {/*-----Дополнительное меню под заказ----*/}
             <MenuNavigation id='addMenu' position='bottom'/>
-            <MenuHeader padding='30px 0 50px 0'>
+            <MenuHeader padding='30px 0 50px 0' additionalPadding>
                 Блюда на заказ
             </MenuHeader>
             <AddMenuWrapper>
                 <AdditionalMenu/>
+                <MenuFooter>
+                    <TextBlockHeader>
+                        УКузьмича
+                    </TextBlockHeader>
+                    <TextBlockP light>
+                        Просто | Вкусно | По-домашнему
+                    </TextBlockP>
+                    <Image src={logo} style={{opacity: 0.8}} alt='logo'/>
+                </MenuFooter>
             </AddMenuWrapper>
         </MenuContainer>
     );

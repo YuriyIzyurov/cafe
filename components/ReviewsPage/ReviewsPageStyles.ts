@@ -168,7 +168,7 @@ export const TextBlockP = styled.p`
   line-height: 1.5rem;
   letter-spacing: 2.1px;
   text-transform: uppercase;
-  color: #161616;
+  color: ${({light}) => light ? '#fff' : '#161616'};
   padding: 10px 0 25px 0;
   white-space: nowrap;
   

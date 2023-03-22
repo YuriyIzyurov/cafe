@@ -13,7 +13,7 @@ export const MenuCardContainer = styled.main`
 
   @media screen and (max-width: 768px) {
     width: ${({isMobile}) => isMobile && '60%'};
-    padding-left: ${({isMobile}) => !isMobile && '10px'};
+    padding-left: 10px;
   }
   @media screen and (max-width: 480px) {
     ${({isMobile}) => isMobile && css`

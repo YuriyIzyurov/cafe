@@ -23,12 +23,12 @@ export const MenuHeader = styled.header`
 
   @media screen and (max-width: 768px) {
     font-size: 60px;
-    line-height: 60px;
+    line-height: ${({additionalPadding}) => additionalPadding ? '90px' : '60px'};
     padding: 10px 0 0 0;
   }
   @media screen and (max-width: 480px) {
     font-size: 45px;
-    line-height: 45px;
+    line-height: ${({additionalPadding}) => additionalPadding ? '70px' : '45px'};
     padding: 5px 0 0 0;
   }
 `
@@ -60,7 +60,16 @@ export const MenuWrapper = styled.div`
   }
 `
 export const AddMenuWrapper = styled(MenuWrapper)`
+  justify-content: space-between;
   min-height: calc(100vh - 305px);
+
+  @media screen and (max-width: 768px) {
+    min-height: calc(100vh - 250px);
+    justify-content: space-evenly;
+  }
+  @media screen and (max-width: 480px) {
+    min-height: calc(100vh - 210px);
+  }
 `
 
 const Section = styled.div`
@@ -266,6 +275,26 @@ export const AddMenuContent = styled.div`
 `
 export const AddMenuText = styled.div`
   font-size: 18px;
+  z-index: 3;
+
+
+  @media screen and (max-width: 610px) {
+    ul li span {
+      background-color: rgba(22, 22, 22, 0.6);
+    }
+  }
+  @media screen and (max-width: 480px) {
+    font-size: 16px;
+`
+export const MenuFooter = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 10px;
+
+  @media screen and (max-width: 768px) {
+    padding-bottom: 30px;
 `
 export const AddMenuGalary = styled.div`
   display: flex;
@@ -282,8 +311,16 @@ export const GalaryImgWrapper = styled.div`
   left: ${({position}) => position[1]};
   width: ${({width}) => width};
   height: ${({height}) => height};
+  z-index: ${({id}) => id.includes('smoke') && 2};
   
   @media screen and (max-width: 768px) {
-    display: none;
+    left: ${({position}) => position[1] === '75%' && '71%'};
+    top: ${({position}) => position[1] === '75%' ? '10%' : position[1] === '7%' ? '73%' : '' };
+  }
+  @media screen and (max-width: 610px) {
+    top: ${({position}) => position[0] === '46%' && '34%'};
+  } 
+  @media screen and (max-width: 480px) {
+    opacity: ${({id}) => !id.includes('smoke') && 0.8};
   }
 `

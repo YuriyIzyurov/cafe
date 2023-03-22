@@ -274,25 +274,41 @@ export function activateMenuAnimation(isSmall:boolean){
         scrollTrigger: {
             trigger: '#additionalMenuSection',
             start: "top bottom",
-            end: "top top",
-            scrub: 0.5
+            end: "top 40%",
+            scrub: 0.5,
+
         }
     })
-    tl1.from('#smoke1', {y: 200, scale: 1.05, ease: "power1.out"}, 0)
-    tl1.from('#pig', { x: -100, scale: 1.2, ease: "power1.out"}, 0)
-    tl1.from('#fish', { x: 100, scale: 1.2, ease: "power1.out"}, 0)
+    tl1.from('#smoke1', {y: 100, scale: isSmall ? 1 : 1.05, ease: "power1.easeInOut"}, 0)
+    tl1.from('#pig', {
+        x: isSmall ? -20 : -50,
+        scale: isSmall ? 1 : 1.2,
+        ease: "power1.easeInOut"
+    }, 0)
+    tl1.from('#fish', { x: isSmall ? 20 : 50, scale: isSmall ? 1 : 1.2, ease: "power1.easeInOut"}, 0)
+
 
     const tl2 = gsap.timeline({
         scrollTrigger: {
             trigger: '#additionalMenuSection',
-            start: "top center",
-            end: "top top",
-            scrub: 0.5
+            start: "top 60%",
+            end: "top 30%",
+            scrub: 0.5,
         }
     })
-    tl2.from('#smoke2', {y: 50, scale: 1.1, ease: "power1.out"}, 0)
-    tl2.from('#pig2', { x: 100, y: 100, scale: 1.2, ease: "power1.out"}, 0)
-    tl2.from('#fish2', { x: -100, y: 100, scale: 1.2, ease: "power1.out"}, 0)
+    tl2.from('#smoke2', {y: 30, scale: isSmall ? 1 : 1.1, ease: "power1.out"}, 0)
+    tl2.from('#pig2', {
+        x: isSmall ? 20 : 50,
+        y: isSmall ? 20 : 50,
+        scale: isSmall ? 1 : 1.2,
+        ease: "power1.out"
+    }, 0)
+    tl2.from('#fish2', {
+        x: isSmall ? -20 : -50,
+        y: isSmall ? 20 : 50,
+        scale: isSmall ? 1 : 1.2,
+        ease: "power1.out"
+    }, 0)
 
 
     masterTimeLine.add(tl1).add(tl2)

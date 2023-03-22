@@ -156,7 +156,7 @@ const ReviewsPage:FC<{reviews: ReviewType[], closeSidebar: () => void}> = ({revi
                             УКузьмича
                         </TextBlockHeader>
                         <TextBlockP>
-                            Быстро | Вкусно | По-домашнему
+                            Просто | Вкусно | По-домашнему
                         </TextBlockP>
                         <Image src={favicon} style={{opacity: 0.7}} alt='logo'/>
                     </TextBlockThird>

@@ -7,7 +7,8 @@ export const CardWrapper = styled.div`
   margin: 10px 0;
   width: 95%;
   height: 200px;
-  color: #ffffff;
+  background: #fff;
+  color: black;
   border: 1px solid #161616;
   border-radius: 5px;
   box-shadow: 1px 1px 8px black;
@@ -22,6 +23,7 @@ export const CardHeader = styled.header`
   span {
     padding: 0 7px;
     font-size: 13px;
+    font-weight: bold;
     text-align: center;
   }
   span:first-child {
@@ -53,8 +55,9 @@ export const CardText = styled.div`
     position: absolute;
     bottom: 0;
     right: 5px;
-    opacity: .5;
+    opacity: .7;
     font-size: 0.9rem;
+    font-weight: bold;
   }
 `
 export const Star = styled(FaStar)`
