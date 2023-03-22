@@ -35,6 +35,7 @@ export const MenuCardContainer = styled.main`
 export const MenuCardWrap = styled.div`
   position: relative;
   display: flex;
+  overflow-x: clip;
   min-height: ${({reducedCard}) => reducedCard ? '220px' : '260px'};
 
   @media (max-width: 480px) {

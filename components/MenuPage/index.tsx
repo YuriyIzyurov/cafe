@@ -174,7 +174,7 @@ const MenuPage:FC<PropsType> = ({dishes, drinks, closeSidebar}) => {
             </MenuWrapper>
 
             {/*-----Напитки и бар----*/}
-            <MenuNavigation id='drinkMenu' position='middle'/>
+           {/* <MenuNavigation id='drinkMenu' position='middle'/>
             <MenuHeader padding='20px 0 20px 0' >
                 Напитки
             </MenuHeader>
@@ -189,7 +189,7 @@ const MenuPage:FC<PropsType> = ({dishes, drinks, closeSidebar}) => {
                             />
                         )}
                 </BarSection>
-            </MenuWrapper>
+            </MenuWrapper>*/}
 
             {/*-----Дополнительное меню под заказ----*/}
             <MenuNavigation id='addMenu' position='bottom'/>

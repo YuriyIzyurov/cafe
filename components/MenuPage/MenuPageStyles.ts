@@ -97,6 +97,8 @@ export const MenuSection = styled(Section)`
 `
 export const MenuSectionReversed = styled(Section)`
   grid-template-areas: 'top header'  'middle image';
+ 
+ 
 `
 
 
@@ -203,8 +205,9 @@ export const MenuSideImgWrapper = styled.div`
   width: ${({sizes = [100,100]}) => sizes[0] + '%'};
   height: ${({sizes = [100,100]}) => sizes[1] + '%'};
   top: ${({isMobile,id}) =>  isMobile ? 0 : (id === 'soup' ? '-15%' :'40px')};
-  left: ${({isMobile,id}) =>  isMobile ? 0 : (id === 'soup' ? 0 :'40px')};
+  left: ${({isMobile,id}) =>  isMobile ?  0 : (id === 'soup' ? 0 :'40px')};
   z-index: 2;
+  
 `
 export const ShadowOnMobDevices = styled.div`
   display: none;
@@ -272,6 +275,7 @@ export const AddMenuContent = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+  overflow-x: clip;
 `
 export const AddMenuText = styled.div`
   font-size: 18px;
