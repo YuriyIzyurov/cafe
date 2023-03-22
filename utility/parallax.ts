@@ -93,7 +93,6 @@ function registerMainComponentAnim(isMobile:boolean){
             trigger: "#about",
             start: "bottom 90%",
             end: "bottom 20%",
-            scrub: isMobile ? 1.5 : 1.3
         }
     })
 

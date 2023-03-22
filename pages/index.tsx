@@ -85,10 +85,11 @@ const Index = () => {
                 isSmall: '(max-height: 600px)',
                 isMedium: '(max-height: 800px)',
                 isLarge: '(min-height: 801px)',
+                isMobile: '(min-width: 768px)',
             },
             (c) => {
                 ScrollTrigger.defaults({
-                    scrub: c.conditions.isSmall ? true : c.conditions.isMedium ? 0.8 : 1.3,
+                    scrub: (c.conditions.isSmall || c.conditions.isMobile) ? true : c.conditions.isMedium ? 0.8 : 1.3,
                 })
                 const tl = gsap.timeline()
                 setMasterTL(tl)
