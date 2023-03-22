@@ -33,9 +33,6 @@ const InfoSection = ({lightBg, lightText, headline, buttonLabel, alt, timeline,s
                 isMobile: '(max-width: 480px)',
             },
             (c) => {
-                ScrollTrigger.defaults({
-                    scrub: c.conditions.isMobile ? 2.6  : 1.3,
-                })
                 const anim = animation('main', c.conditions.isMobile)
 
                 //добавляем анимацию компонента в мастер анимацию страницы
