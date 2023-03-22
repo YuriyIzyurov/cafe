@@ -157,16 +157,14 @@ function registerServicesComponentAnim(){
             scrollTrigger: {
                 trigger: "#services",
                 start: "top 90%",
-                end: "top 20%",
-                scrub: 1
+                end: "top 20%"
             }
         })
         const tlFromBottom = gsap.timeline({
             scrollTrigger: {
                 trigger: "#services",
                 start: "bottom 90%",
-                end: "bottom 20%",
-                scrub: 1
+                end: "bottom 20%"
             }
         })
 
