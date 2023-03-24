@@ -6,6 +6,72 @@ export const ReviewsContainer = styled.div`
   width: 100%;
   padding-top: 80px;
 `
+export const ModalBG = styled.div`
+  display: ${({modalIsOpen}) => modalIsOpen ? 'flex' : 'none'};
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0,0,0,0.5);
+  position: fixed;
+  top: 0;
+  left:0;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+`
+export const ModalCard = styled.div`
+  background-color: #fff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  max-width: 30%;
+  min-width: 400px;
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 20px;
+    h1 {
+      font-size: 1rem;
+    }
+    span {
+      font-size: 1.5rem;
+      line-height: 1rem;
+    }
+  }
+  main {
+    p {
+      padding: 5px 20px;
+    }
+  }
+  footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 20px;
+    
+    span {
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: bold;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    min-width: 320px;
+    header {
+      h1{
+        font-size: 0.85rem;
+        line-height: 1.5rem;
+      }
+      span {
+        font-size: 1.35rem;
+        padding-top: 1px;
+      }
+    }
+  }
+`
 export const ReviewsSection = styled.section`
   width: 100%;
   position: relative;

@@ -4,14 +4,14 @@ import { Navigation, A11y } from 'swiper';
 import 'swiper/css';
 import {useState} from "react";
 import ReviewCard from "./ReviewCard";
-import { ReviewType } from ".";
+import {ModalDataType, ReviewType} from ".";
 import {useQuery} from "@tanstack/react-query";
 import { ReviewService } from "../../services/ReviewService";
 
 
 
 
-const ReviewsBlock = ({ prevEl, nextEl, reviews } : { prevEl: HTMLElement, nextEl: HTMLElement, reviews: ReviewType[] }) => {
+const ReviewsBlock = ({ prevEl, nextEl, reviews, getReviewData } : { prevEl: HTMLElement, nextEl: HTMLElement, reviews: ReviewType[], getReviewData:(arg: ModalDataType) => void }) => {
 
 //{ isLoading, error, data }
     const {data} = useQuery(
@@ -25,7 +25,7 @@ const ReviewsBlock = ({ prevEl, nextEl, reviews } : { prevEl: HTMLElement, nextE
 
     const slides = reviews.map((review, index) =>
         <SwiperSlide key={index}>
-            <ReviewCard key={'card'+index} {...review}/>
+            <ReviewCard key={'card'+index} {...review} getReviewData={getReviewData}/>
         </SwiperSlide>)
 
     //todo: пофиксить перемотку последнего слайда

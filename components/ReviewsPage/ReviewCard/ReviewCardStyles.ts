@@ -46,18 +46,33 @@ export const CardText = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+  overflow: hidden;
+  padding-bottom: 20px;
   
   p{
-    padding: 10px 20px;
+    overflow-y: auto;
+    padding: 5px 0 0 10px;
     font-size: 16px;
+    line-height: 20px;
   }
-  span {
-    position: absolute;
-    bottom: 0;
-    right: 5px;
-    opacity: .7;
-    font-size: 0.9rem;
-    font-weight: bold;
+`
+export const CardFooter = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  bottom: 0;
+  opacity: .7;
+  font-size: 0.9rem;
+  font-weight: bold;
+`
+export const ReadMore = styled.span`
+  font-size: 0.8rem;
+  margin-right: 20px;
+  white-space: nowrap;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
   }
 `
 export const Star = styled(FaStar)`

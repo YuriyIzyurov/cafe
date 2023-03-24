@@ -24,6 +24,7 @@ import CustomForm from "../../utility/customForm";
 import {CloseIcon, Icon } from "../Sidebar/SidebarStyles";
 gsap.registerPlugin(ScrollTrigger);
 
+export type ModalDataType = Pick<ReviewType, 'name' | 'rating' | 'text' | 'updatedAt'>;
 export type ReviewType = {
     name: string
     rating: number
@@ -32,9 +33,10 @@ export type ReviewType = {
     createdAt: string
     updatedAt: string
     _id: string
+    getReviewData: (arg: ModalDataType) => void
 }
 
-const ReviewsPage:FC<{reviews: ReviewType[], closeSidebar: () => void}> = ({reviews, closeSidebar}) => {
+const ReviewsPage:FC<{reviews: ReviewType[], closeSidebar: () => void, getReviewData: (arg: ModalDataType) => void}> = ({reviews, closeSidebar, getReviewData}) => {
     const [hover, setHover] = useState(false)
     const [prevEl, setPrevEl] = useState<HTMLElement | null>(null);
     const [nextEl, setNextEl] = useState<HTMLElement | null>(null);
@@ -111,7 +113,7 @@ const ReviewsPage:FC<{reviews: ReviewType[], closeSidebar: () => void}> = ({revi
                         </TextBlockHeader>
 
                         {/*слайдер*/}
-                        <ReviewsBlock reviews={reviews} prevEl={prevEl} nextEl={nextEl}/>
+                        <ReviewsBlock reviews={reviews} getReviewData={getReviewData} prevEl={prevEl} nextEl={nextEl}/>
 
                         <ReviewsFooter>
                             <PaginationButton ref={(node) => setPrevEl(node)}>

@@ -2,23 +2,35 @@ import { useQuery } from "@tanstack/react-query";
 import { useState} from "react";
 import MainContainer from "../components/MainContainer";
 import Navbar from "../components/Navbar";
-import ReviewsPage, {ReviewType} from "../components/ReviewsPage";
+import ReviewsPage, {ModalDataType, ReviewType} from "../components/ReviewsPage";
 import Sidebar from "../components/Sidebar";
 import { ReviewService } from "../services/ReviewService";
+import ModalReviewWindow from "../components/ModalReviewWindow";
 
 
 const Services = ({reviews}) => {
     const [isOpen, setIsOpen] = useState(false)
+    const [modalIsOpen, setModalIsOpen] = useState(false)
+    const [reviewData, setReviewData] = useState<null|ModalDataType>(null)
+
     const toggle = () => setIsOpen(!isOpen)
     const closeSidebar = () => {
         if(isOpen) setIsOpen(!isOpen)
     }
+    const getReviewData = (reviewData: ModalDataType) => {
+        setReviewData(reviewData)
+        setModalIsOpen(!modalIsOpen)
+    }
+    const closeModal = () => {
+        if(modalIsOpen) setModalIsOpen(!modalIsOpen)
+    }
 
     return (
         <MainContainer keywords={'отзывы'}>
+            <ModalReviewWindow modalIsOpen={modalIsOpen} reviewData={reviewData} closeModal={closeModal}/>
             <Sidebar isOutsidePage isOpen={isOpen} toggle={toggle}/>
             <Navbar isOutsidePage toggle={toggle} isReviewsPage/>
-            <ReviewsPage closeSidebar={closeSidebar} reviews={reviews}/>
+            <ReviewsPage closeSidebar={closeSidebar} reviews={reviews} getReviewData={getReviewData}/>
         </MainContainer>
     );
 };
