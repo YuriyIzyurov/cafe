@@ -15,7 +15,7 @@ export const HistoryContainer = styled.section`
   color: #fff;
   background: ${({lightBg}) => (lightBg ? '#f9f9f9' : '#161616')};
   scroll-snap-align: start;
-  scroll-snap-stop: always;
+  
 
   @media screen and (max-width: 450px) and (max-height: 530px) {
     padding: 0 8px;

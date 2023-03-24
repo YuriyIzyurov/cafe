@@ -9,7 +9,6 @@ export const ServicesContainer = styled.section`
   margin: 0 auto;
   background: #161616;
   scroll-snap-align: start;
-  scroll-snap-stop: always;
   overflow-x: hidden;
   
   @media screen and (max-width: 768px) {
