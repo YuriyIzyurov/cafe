@@ -26,20 +26,23 @@ const InfoSection = ({lightBg, lightText, headline, buttonLabel, alt, timeline,s
 
     useLayoutEffect(() => {
 
-        const mm = gsap.matchMedia();
-        mm.add(
-            {
-                isDesktop: '(min-width: 481px)',
-                isMobile: '(max-width: 480px)',
-            },
-            (c) => {
-                const anim = animation('main', c.conditions.isMobile)
+        let mm
+        if(timeline) {
+            mm = gsap.matchMedia();
+            mm.add(
+                {
+                    isDesktop: '(min-width: 481px)',
+                    isMobile: '(max-width: 480px)',
+                },
+                (c) => {
+                    const anim = animation('main', c.conditions.isMobile)
+                    //добавляем анимацию компонента в мастер анимацию страницы
+                    timeline && timeline.add(anim)
+                }
+            );
+        }
 
-                //добавляем анимацию компонента в мастер анимацию страницы
-                timeline && timeline.add(anim)
-            }
-        );
-        return () =>  mm.revert()
+        return () => mm && mm.revert()
     }, [timeline])
 
 

@@ -30,12 +30,13 @@ const HistorySection = ({timeline,sectionRef}) => {
 
 
     useLayoutEffect(() => {
-        const ctx = gsap.context(() => {
+        let ctx
+        if(timeline) ctx = gsap.context(() => {
             const componentTimeline = animation('history')
             //добавляем анимацию компонента в мастер анимацию страницы
             timeline && timeline.add(componentTimeline)
         })
-        return () => ctx.revert()
+        return () => ctx && ctx.revert()
     }, [timeline])
 
 

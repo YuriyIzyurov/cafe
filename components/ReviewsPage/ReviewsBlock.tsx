@@ -23,7 +23,7 @@ const ReviewsBlock = ({ prevEl, nextEl, reviews, getReviewData } : { prevEl: HTM
 
     const [swiper, setSwiper] = useState(null);
 
-    const slides = reviews.map((review, index) =>
+    const slides = data.map((review, index) =>
         <SwiperSlide key={index}>
             <ReviewCard key={'card'+index} {...review} getReviewData={getReviewData}/>
         </SwiperSlide>)
