@@ -14,7 +14,7 @@ const ModalReviewWindow:FC<PropsType> = ({modalIsOpen, reviewData, closeModal}) 
     if(!reviewData) return null
     return (
         <ModalBG modalIsOpen={modalIsOpen} >
-            <ModalCard>
+            <ModalCard modalIsOpen={modalIsOpen}>
                 <header>
                     <h1>{reviewData.name}</h1>
                     <span>{[...Array(5)].map((star, index) => <Star key={index}/> )}</span>

@@ -7,7 +7,9 @@ export const ReviewsContainer = styled.div`
   padding-top: 80px;
 `
 export const ModalBG = styled.div`
-  display: ${({modalIsOpen}) => modalIsOpen ? 'flex' : 'none'};
+  //display: ${({modalIsOpen}) => modalIsOpen ? 'flex' : 'none'};
+  display: flex;
+  opacity: ${({modalIsOpen}) => modalIsOpen ? 1 : 0};
   height: 100vh;
   width: 100vw;
   background-color: rgba(0,0,0,0.5);
@@ -17,14 +19,20 @@ export const ModalBG = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 10;
+  transition: opacity 0.3s;
+  pointer-events: ${({modalIsOpen}) => modalIsOpen ? 'all' : 'none'};
 `
 export const ModalCard = styled.div`
+  transform: ${({modalIsOpen}) => modalIsOpen ? 'scale(1)' : 'scale(0.2)'};
   background-color: #fff;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   max-width: 30%;
   min-width: 400px;
+  transition: transform 0.4s;
+  
+  
   
   header {
     display: flex;

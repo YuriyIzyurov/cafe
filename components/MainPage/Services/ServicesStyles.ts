@@ -189,6 +189,7 @@ export const ServicesImgWrapper = styled.div`
     left: 5%;
   }
   @media screen and (max-width: 480px) {
+    display: none;
     .img {
       transform: rotate(115deg) scale(1.1);
     }
