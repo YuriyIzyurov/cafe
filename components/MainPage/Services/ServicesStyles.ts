@@ -182,15 +182,20 @@ export const ServicesImgWrapper = styled.div`
   height: 382px;
   top: 18%;
   left: 21%;
+  .mobileImg {
+    display: none;
+  }
  
   
   @media screen and (max-width: 900px) {
     left: 5%;
   }
   @media screen and (max-width: 480px) {
-    display: none;
-    .img {
-      transform: rotate(115deg) scale(1.1);
+    .desktopImg {
+      display: none;
+    }
+    .mobileImg {
+      display: block;
     }
     left: -43%;
     top: 26%;

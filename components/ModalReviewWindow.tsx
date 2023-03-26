@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import {ModalDataType} from "../components/ReviewsPage";
 import { ModalBG, ModalCard } from "./ReviewsPage/ReviewsPageStyles";
 import {Star} from "../components/ReviewsPage/ReviewCard/ReviewCardStyles";
@@ -18,7 +18,10 @@ const ModalReviewWindow:FC<PropsType> = ({modalIsOpen, reviewData, closeModal}) 
             <ModalCard modalIsOpen={modalIsOpen}>
                 <header>
                     <h1>{reviewData.name}</h1>
-                    <span>{[...Array(5)].map((star, index) => <Star key={index}/> )}</span>
+                    <span>{[...Array(5)].map((star, index) => {
+                        const color = index + 1 <= reviewData.rating ? 'orange' : 'grey'
+                        return <Star key={index} color={color}/>
+                    } )}</span>
                 </header>
                 <CardDivider width={'90%'}/>
                 <main>

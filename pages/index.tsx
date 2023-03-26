@@ -112,7 +112,7 @@ const Index = () => {
             },
             (c) => {
                 ScrollTrigger.defaults({
-                    scrub: c.conditions.isSmall  ? true : c.conditions.isMedium ? 0.8 : c.conditions.isMobile ?  0.6 : 1.3,
+                    scrub: c.conditions.isSmall  ? true : c.conditions.isMedium ? 0.8 : c.conditions.isMobile ?  0.65 : 1.3,
                 })
 
                 const tl = gsap.timeline()

@@ -91,17 +91,26 @@ export const CardPosition = styled.div`
   z-index: 2;
 `
 export const Dots = styled.span`
+  min-width: 10px;
   flex-grow: 1;
   border-bottom: 2px dotted white;
 `
-export const PositionName = styled.div`
+export const PositionName = styled.span`
+  position: relative;
   display: flex;
-  align-items: center;
   max-width: 320px;
-  font-size: ${({fontSize}) => fontSize};
+  font-size: ${({fontSize = '1rem'}) => fontSize};
+  
+  @media screen and (max-width: 480px) {
+    font-size: ${({isSmallFont }) => isSmallFont && '0.8rem'};
+    //line-height: ${({isSmallFont }) => isSmallFont && '0.8rem'};
+  }
+  @media screen and (max-width: 410px) {
+   // max-width: ${({isSmallFont }) => isSmallFont && '180px'};
+  }
 `
 export const PositionPrice = styled.div`
-  min-width: 60px;
+  min-width: ${({width}) => width ? '52px' : '56px'};
   display: flex;
   align-items: flex-end;
 `

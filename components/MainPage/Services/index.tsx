@@ -137,7 +137,8 @@ const Services = ({timeline, sectionRef}) => {
         <ServicesContainer ref={sectionRef} id='services'>
             <ServicesWrapper>
                 <ServicesImgWrapper id='flour'>
-                    <Image className='img' src={flour} fill style={{objectFit:"cover"}} alt='flour'/>
+                    <Image className='desktopImg' src={flour} fill style={{objectFit:"cover"}} alt='flour'/>
+                    <Image className='mobileImg' src={flour} fill style={{objectFit:"cover",transform: 'rotate(115deg) scale(1.1)'}} alt='flour'/>
                 </ServicesImgWrapper>
                 {serviceContent.map((e, index) => {
                     const isExpandedValue = index===0 ? isExpanded0 : index===1 ? isExpanded1 : isExpanded2

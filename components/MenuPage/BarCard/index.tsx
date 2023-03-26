@@ -93,10 +93,12 @@ const BarCard: FC<CardType> = ({name, drinks, index}) => {
                     </CardTable>
                     <CardContent>
                         {drinks.map((drink) => {
-                            const fontSize = drink.name.length > 37 ? '0.8rem' : drink.name.length > 30 ? '0.9rem' : '1rem'
+                            //const fontSize = drink.name.length > 34 ? '0.8rem' : drink.name.length > 30 ? '0.9rem' : '1rem'
+                            //const parts = drink.name.length > 20 ? drink.name.split('Кайпер');
+                            //const name = parts[0] + 'Кайпер\n' + parts[1];
                             return (
                                 <CardPosition key={drink._id}>
-                                    <PositionName fontSize={fontSize}>
+                                    <PositionName isSmallFont={name.includes('Виски')}>
                                         {drink.name}
                                     </PositionName>
                                     <Dots/>

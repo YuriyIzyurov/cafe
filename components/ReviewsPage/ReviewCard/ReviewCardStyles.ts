@@ -47,13 +47,13 @@ export const CardText = styled.div`
   align-items: center;
   position: relative;
   overflow: hidden;
-  padding-bottom: 20px;
+  padding-bottom: 23px;
   
   p{
     overflow: hidden;
-    padding: 5px 0 0 10px;
-    font-size: 16px;
-    line-height: 20px;
+    padding: 5px 8px 0 8px;
+    line-height: 18px;
+    font-size: 0.95rem;
   }
 `
 export const CardFooter = styled.div`
@@ -62,9 +62,9 @@ export const CardFooter = styled.div`
   flex-direction: column;
   width: 100%;
   bottom: 0;
-  opacity: .7;
   font-size: 0.9rem;
   font-weight: bold;
+  box-shadow: -20px 10px 9px 14px #fff, -20px 14px 3px 17px #fff;
 `
 export const ReadMore = styled.span`
   font-size: 0.8rem;
@@ -76,7 +76,7 @@ export const ReadMore = styled.span`
   }
 `
 export const Star = styled(FaStar)`
-  color: orange;
+  color: ${({color}) => color};
   cursor: pointer;
   transition: color 200ms;
 `

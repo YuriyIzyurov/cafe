@@ -19,7 +19,10 @@ const ReviewCard:FC<ReviewType & PropsType> = ({name,rating,text, approved, upda
             <CardHeader>
                 <span>{name}</span>
                 <span>
-                    {[...Array(5)].map((star, index) => <Star key={index}/>)}
+                    {[...Array(5)].map((star, index) => {
+                        const color = index + 1 <= rating ? 'orange' : 'grey'
+                        return <Star key={index} color={color}/>
+                    })}
                 </span>
             </CardHeader>
             <CardDivider/>
