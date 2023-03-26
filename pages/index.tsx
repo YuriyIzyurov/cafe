@@ -13,9 +13,8 @@ import dynamic from 'next/dynamic'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger.js';
 import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin.js';
 import {DynamicFooter, DynamicHistorySection, DynamicInfoSection, DynamicServicesSection, DynamicSidebar } from "../components/dynamicComponents";
-import {findCurrentSectionIndex, getPromisesOfElements} from "../utility/helpers";
+import {findCurrentSectionIndex, getPromisesOfElements, isScreenHeightGreaterThan} from "../utility/helpers";
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
-
 
 
 const Index = () => {
@@ -43,8 +42,26 @@ const Index = () => {
         = Array.from({ length: 5 }).map(() => useRef(null));
 
 
+
     //активация плавного авто скроллера
     useEffect(() => {
+        let startY: number | null = null;
+
+        function handleTouchStart(event: TouchEvent) {
+            startY = event.touches[0].pageY;
+        }
+
+        function handleTouchEnd(event: TouchEvent) {
+            if (startY === null) return
+            const deltaY = event.changedTouches[0].clientY - startY;
+
+            if (Math.abs(deltaY) > 20) {
+                slideScroll(event,startY);
+            }
+            startY = null;
+        }
+
+
         if(mainPage.scrollTo) {
             const promises: Promise<RefObject<HTMLElement>>[] = getPromisesOfElements(refs)
             Promise.all(promises).then((sections) => {
@@ -67,12 +84,16 @@ const Index = () => {
 
         //слушатели событий на колесико мыши и свайп
         window.addEventListener("wheel", slideScroll)
+        window.addEventListener('touchstart', handleTouchStart,{ passive: false });
+        window.addEventListener('touchend', handleTouchEnd,{ passive: false });
 
 
         if(!isVisible) setVisible(true)
 
         return () => {
             window.removeEventListener("wheel", slideScroll)
+            window.removeEventListener('touchstart', handleTouchStart);
+            window.removeEventListener('touchend', handleTouchEnd);
         }
     }, [])
 
@@ -89,47 +110,63 @@ const Index = () => {
             },
             (c) => {
                 ScrollTrigger.defaults({
-                    scrub: c.conditions.isSmall  ? true : c.conditions.isMedium ? 0.8 : c.conditions.isMobile ?  0.3 : 1.3,
+                    scrub: c.conditions.isSmall  ? true : c.conditions.isMedium ? 0.8 : c.conditions.isMobile ?  0.6 : 1.3,
                 })
 
-                if(!c.conditions.isMobile) {
-                    const tl = gsap.timeline()
-                    setMasterTL(tl)
-                }
+                const tl = gsap.timeline()
+                setMasterTL(tl)
             }
         );
         return () =>  mm.revert()
     }, []);
 
-    function slideScroll(e) {
 
+    //функции обработчики событий скролла и свайпа
 
-        const pickSection = () => {
-            const currentSectionIndex = findCurrentSectionIndex(refs);
-            const nextSectionIndex = e.deltaY > 0 ? currentSectionIndex + 1 : currentSectionIndex - 1;
+    function slideScroll(e:Event, startY?: number):void {
+        const isTouchEvent = e.type === 'touchend';
+        const isWheelEvent = e.type === 'wheel' || e.type === 'mousewheel';
 
-            if (nextSectionIndex < 0 || nextSectionIndex >= refs.length) {
-                return refs[currentSectionIndex].current;
+        const pickSection = (currentIndex:number, nextIndex:number): HTMLElement => {
+            if (nextIndex < 0 || nextIndex >= refs.length) {
+                return refs[currentIndex].current;
             }
-
-            return refs[nextSectionIndex].current;
+            return refs[nextIndex].current;
         };
 
-        const currentHeight = document.documentElement.clientHeight;
-        if (currentHeight && currentHeight > 480) {
-            gsap.to(window, {
-                duration: 1.2,
-                scrollTo: {
-                    y: pickSection(),
-                    offsetY: 80
-                },
-                onStart: blockScroll,
-                onComplete: allowScroll,
-            });
+        if (isTouchEvent) {
+            const touchEvent = e as TouchEvent;
+
+            if (isScreenHeightGreaterThan(480)) {
+                const lastTouch = touchEvent.changedTouches[0].pageY
+                const currentSectionIndex = findCurrentSectionIndex(refs, lastTouch);
+                const nextSectionIndex = startY > lastTouch ? currentSectionIndex + 1 : currentSectionIndex - 1;
+                const section = pickSection(currentSectionIndex,nextSectionIndex)
+                scrollToSection(section,0.8);
+            }
+        } else if (isWheelEvent) {
+            const wheelEvent = e as WheelEvent;
+            if (isScreenHeightGreaterThan(480)) {
+                const currentSectionIndex = findCurrentSectionIndex(refs, window.scrollY);
+                const nextSectionIndex = wheelEvent.deltaY > 0 ? currentSectionIndex + 1 : currentSectionIndex - 1;
+                const section = pickSection(currentSectionIndex,nextSectionIndex)
+                scrollToSection(section, 1.2);
+            }
         }
     }
 
 
+    function scrollToSection(section: HTMLElement, speed: number) {
+        gsap.to(window, {
+            duration: speed,
+            scrollTo: {
+                y: section,
+                offsetY: 80
+            },
+            onStart: blockScroll,
+            onComplete: allowScroll,
+        });
+    }
     const toggle = () => setIsOpen(!isOpen)
     const closeSidebar = () => {
         if(isOpen) setIsOpen(!isOpen)

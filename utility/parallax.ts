@@ -15,27 +15,6 @@ interface AnimatedElement {
     moveTo: Position[]
 }
 
-
-/*
-export const smoothScrolling = () => {
-    const tlFromTop = gsap.timeline({
-        scrollTrigger: {
-            trigger: "#about",
-            start: "top bottom",
-            markers: true
-        }
-    })
-    tlFromTop.to(window, {
-        duration: 2,
-        scrollTo: {
-            y: "#about",
-            //autoKill: true,onAutoKill: () => console.log('anim killed'),
-            offsetY: 80
-        },
-    })
-    return tlFromTop
-}*/
-
 export const animation = (section: SectionType, isMobile?: boolean) => {
     switch (section) {
         case "main": return registerMainComponentAnim(isMobile)
