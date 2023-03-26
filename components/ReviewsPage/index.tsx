@@ -33,7 +33,6 @@ export type ReviewType = {
     createdAt: string
     updatedAt: string
     _id: string
-    getReviewData: (arg: ModalDataType) => void
 }
 
 const ReviewsPage:FC<{reviews: ReviewType[], closeSidebar: () => void, getReviewData: (arg: ModalDataType) => void}> = ({reviews, closeSidebar, getReviewData}) => {

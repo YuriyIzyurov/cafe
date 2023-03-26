@@ -1,18 +1,20 @@
 import { ReviewsBlockWrapper} from "./ReviewsPageStyles";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, A11y } from 'swiper';
+import SwiperCore,{ Navigation, A11y, Virtual } from 'swiper';
 import 'swiper/css';
-import {useState} from "react";
-import ReviewCard from "./ReviewCard";
+import React, {useState} from "react";
+import ReviewCard, {CardDivider} from "./ReviewCard";
 import {ModalDataType, ReviewType} from ".";
 import {useQuery} from "@tanstack/react-query";
 import { ReviewService } from "../../services/ReviewService";
+import {getMessageTime} from "../../utility/time";
+
 
 
 
 
 const ReviewsBlock = ({ prevEl, nextEl, reviews, getReviewData } : { prevEl: HTMLElement, nextEl: HTMLElement, reviews: ReviewType[], getReviewData:(arg: ModalDataType) => void }) => {
-
+    const [swiper, setSwiperLocal] = useState<SwiperCore | null>(null);
 //{ isLoading, error, data }
     const {data} = useQuery(
           ['reviews'],
@@ -21,18 +23,10 @@ const ReviewsBlock = ({ prevEl, nextEl, reviews, getReviewData } : { prevEl: HTM
     )
 
 
-    const [swiper, setSwiper] = useState(null);
-
-    const slides = data.map((review, index) =>
-        <SwiperSlide key={index}>
-            <ReviewCard key={'card'+index} {...review} getReviewData={getReviewData}/>
-        </SwiperSlide>)
-
-    //todo: пофиксить перемотку последнего слайда
     return (
         <ReviewsBlockWrapper>
             <Swiper
-                modules={[Navigation, A11y]}
+                modules={[Navigation, A11y, Virtual]}
                 navigation={{
                     prevEl,
                     nextEl,
@@ -40,6 +34,7 @@ const ReviewsBlock = ({ prevEl, nextEl, reviews, getReviewData } : { prevEl: HTM
                 }}
                 centerInsufficientSlides={true}
                 grabCursor={true}
+                virtual
                 slidesOffsetBefore={10}
                 breakpoints={{
                     480: {
@@ -59,9 +54,20 @@ const ReviewsBlock = ({ prevEl, nextEl, reviews, getReviewData } : { prevEl: HTM
                         spaceBetween: 0
                     }
                 }}
-                onSwiper={(swiper) => setSwiper(swiper)}
             >
-                {slides}
+                {data.map((review, index) => {
+                    const textShortened = review.text.length > 200 ? review.text.slice(0, 200).padEnd(203, '.') : review.text
+                    const time = getMessageTime(review.updatedAt)
+                    return <SwiperSlide key={review._id} virtualIndex={index}>
+                        <ReviewCard
+                            key={'card' + index}
+                            {...review}
+                            textShortened={textShortened}
+                            time={time}
+                            getReviewData={getReviewData}
+                        />
+                    </SwiperSlide>
+                })}
             </Swiper>
         </ReviewsBlockWrapper>
     );

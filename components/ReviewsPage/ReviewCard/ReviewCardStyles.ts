@@ -50,7 +50,7 @@ export const CardText = styled.div`
   padding-bottom: 20px;
   
   p{
-    overflow-y: auto;
+    overflow: hidden;
     padding: 5px 0 0 10px;
     font-size: 16px;
     line-height: 20px;

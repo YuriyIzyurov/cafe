@@ -54,7 +54,7 @@ const CustomForm:FC<{ setFormActive: Dispatch<boolean>, setBtnDisabled: Dispatch
                              required: 'Обязательное поле',
                              minLength: {value: 2, message: 'Минимум 2 символа'},
                              maxLength: {value: 31, message: 'Максимум 31 символ'},
-                             pattern: {value: /^[a-zа-яё_\-\s]+$/iu, message: 'Только русские, латинские буквы и дефис'},
+                             pattern: {value: /^[a-zа-яё_\-\s0-9]+$/iu, message: 'Только русские, латинские буквы, цифры и дефис'},
                              validate: (value) => {
                                  const words = value.split(' ')
                                  return words.length <= 2 && words.every(word => word.length <= 15) || "Неверный формат имени"

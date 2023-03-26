@@ -45,10 +45,12 @@ const Index = () => {
 
     //активация плавного авто скроллера
     useEffect(() => {
+        let pageY: number | null = null;
         let startY: number | null = null;
 
         function handleTouchStart(event: TouchEvent) {
-            startY = event.touches[0].pageY;
+            pageY = event.touches[0].pageY;
+            startY = event.touches[0].clientY;
         }
 
         function handleTouchEnd(event: TouchEvent) {
@@ -56,7 +58,7 @@ const Index = () => {
             const deltaY = event.changedTouches[0].clientY - startY;
 
             if (Math.abs(deltaY) > 20) {
-                slideScroll(event,startY);
+                slideScroll(event,pageY);
             }
             startY = null;
         }
