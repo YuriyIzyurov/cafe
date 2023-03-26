@@ -3,7 +3,8 @@ import {ModalDataType} from "../components/ReviewsPage";
 import { ModalBG, ModalCard } from "./ReviewsPage/ReviewsPageStyles";
 import {Star} from "../components/ReviewsPage/ReviewCard/ReviewCardStyles";
 import {CardDivider} from "../components/ReviewsPage/ReviewCard";
-import { GetMessageTime } from "../utility/time";
+import { getMessageTime } from "../utility/time";
+
 
 type PropsType = {
     modalIsOpen: boolean
@@ -26,7 +27,7 @@ const ModalReviewWindow:FC<PropsType> = ({modalIsOpen, reviewData, closeModal}) 
                 <CardDivider width={'90%'}/>
                 <footer>
                     <span onClick={closeModal}>Закрыть</span>
-                    <GetMessageTime date={reviewData.updatedAt}/>
+                    <span>{getMessageTime(reviewData.updatedAt)}</span>
                 </footer>
             </ModalCard>
         </ModalBG>
