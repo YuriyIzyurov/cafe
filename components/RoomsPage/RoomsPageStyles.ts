@@ -32,14 +32,14 @@ export const GalleryWrapper =styled.div`
 
   .image-gallery-thumbnail {
     &.active {
-      border: 4px solid #9f8e7b;
+      border: 3px solid #9f8e7b;
     }
     &:hover {
-      border: 4px solid #9f8e7b;
+      border: 3px solid #9f8e7b;
     }
   }
   .image-gallery-thumbnail:focus {
-    border: 4px solid #9f8e7b;
+    border: 3px solid #9f8e7b;
   }
   .image-gallery-icon:hover {
     color: #9f8e7b;

@@ -52,6 +52,16 @@ const rooms = [
         images: ['/images/rooms/room4-1.jpg','/images/rooms/room4-2.jpg','/images/rooms/room4-3.jpg','/images/rooms/room4-4.jpg']
     }*/]
 
+const handleScreenChange = (isFullScreen:boolean) => {
+    if (screen.orientation.lock && isFullScreen) {
+        if (screen.orientation.type.startsWith('portrait')) {
+            screen.orientation.lock('landscape')
+        } else {
+            screen.orientation.unlock();
+        }
+    }
+}
+
 
 export default () => (
     <>
@@ -90,6 +100,7 @@ export default () => (
                         }*/
                     ]}
                                   showPlayButton={false}
+                                  onScreenChange={(isFullScreen:boolean) => handleScreenChange(isFullScreen)}
                                   lazyload={true}/>
                 </GalleryWrapper>
                 <RoomsDescription>
