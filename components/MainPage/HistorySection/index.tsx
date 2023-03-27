@@ -31,7 +31,7 @@ const HistorySection = ({timeline,sectionRef}) => {
 
     useLayoutEffect(() => {
         let ctx
-        if(timeline) ctx = gsap.context(() => {
+        if(window.innerWidth > 768 && timeline) ctx = gsap.context(() => {
             const componentTimeline = animation('history')
             //добавляем анимацию компонента в мастер анимацию страницы
             timeline && timeline.add(componentTimeline)
