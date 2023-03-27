@@ -11,6 +11,7 @@ export const HeroContainer = styled.section`
   position: relative;
   z-index: 1;
   scroll-snap-align: start;
+  scroll-snap-stop: always;
  
   
   :before {

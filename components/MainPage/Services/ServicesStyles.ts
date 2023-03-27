@@ -10,6 +10,7 @@ export const ServicesContainer = styled.section`
   background: #161616;
   overflow-x: hidden;
   scroll-snap-align: start;
+  scroll-snap-stop: always;
  
 `
 

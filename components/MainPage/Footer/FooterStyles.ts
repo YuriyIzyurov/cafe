@@ -13,6 +13,7 @@ export const FooterContainer = styled.footer`
   align-items: center;
   background-color: #161616;
   scroll-snap-align: start;
+  scroll-snap-stop: always;
 `
 export const ContentWrapper = styled.div`
   height: 100%;
