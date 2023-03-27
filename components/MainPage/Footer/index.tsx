@@ -16,6 +16,8 @@ import {ArrowForward, ArrowRight, HeroBtnWrapper} from "../HeroSection/HeroSecti
 import {Button, ButtonRoute} from "../../ButtonElement";
 import {LogoH1, NavLogo} from "../../Navbar/NavStyles";
 import MainButton from "../../../components/MainButton";
+import footerBG from "public/images/footer2.jpg";
+import Image from "next/image";
 
 
 const Footer = ({id,sectionRef}) => {
@@ -23,7 +25,9 @@ const Footer = ({id,sectionRef}) => {
 
     return (
         <FooterContainer ref={sectionRef} id={id} >
-            <FooterBG url='images/footer2.jpg'/>
+            <FooterBG>
+                <Image src={footerBG}  alt='footerImg' fill placeholder="blur" style={{objectFit:"cover"}}/>
+            </FooterBG>
             <FooterBGContent>
                 <FooterContentWrapper>
                     <FooterH2>Бронирование</FooterH2>

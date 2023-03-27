@@ -65,7 +65,7 @@ const HistorySection = ({timeline,sectionRef}) => {
                             и неповторимую атмосферу в историческом месте.
                         </HistoryP>
                         <AnimatedLink
-                            route={'/history'}
+                            route={'/reviews'}
                             text='Больше о нас'
                             icons={[<ArrowRight/>,<ArrowRightSmall/>]}
                         />

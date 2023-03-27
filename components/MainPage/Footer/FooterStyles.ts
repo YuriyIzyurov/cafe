@@ -34,8 +34,7 @@ export const FooterBG = styled.div`
   position: relative;
   min-height: calc(65vh - 40px);
   width: 100%;
-  background: url(${({url}) => url}) center / cover no-repeat fixed;
-  filter: blur(1.5px);
+  filter: blur(1px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,6 +43,7 @@ export const FooterBG = styled.div`
     content: '';
     display: block;
     position: absolute;
+    z-index: 1;
     width: 100%;
     height: 100%;
     top: 0;
