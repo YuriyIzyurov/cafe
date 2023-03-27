@@ -86,16 +86,16 @@ const Index = () => {
 
         //слушатели событий на колесико мыши и свайп
         window.addEventListener("wheel", slideScroll)
-        window.addEventListener('touchstart', handleTouchStart,{ passive: false });
-        window.addEventListener('touchend', handleTouchEnd,{ passive: false });
+       // window.addEventListener('touchstart', handleTouchStart,{ passive: false });
+        //window.addEventListener('touchend', handleTouchEnd,{ passive: false });
 
 
         if(!isVisible) setVisible(true)
 
         return () => {
             window.removeEventListener("wheel", slideScroll)
-            window.removeEventListener('touchstart', handleTouchStart);
-            window.removeEventListener('touchend', handleTouchEnd);
+           // window.removeEventListener('touchstart', handleTouchStart);
+           // window.removeEventListener('touchend', handleTouchEnd);
         }
     }, [])
 

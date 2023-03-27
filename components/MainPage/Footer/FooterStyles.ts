@@ -12,17 +12,7 @@ export const FooterContainer = styled.footer`
   justify-content: flex-start;
   align-items: center;
   background-color: #161616;
-  //scroll-snap-align: start;
-  
-  
-
-  @media screen and (max-width: 768px) {
-   
-  }
-
-  @media screen and (max-width: 480px) {
-    
-  }
+  scroll-snap-align: start;
 `
 export const ContentWrapper = styled.div`
   height: 100%;
