@@ -9,7 +9,7 @@ export const ServicesContainer = styled.section`
   margin: 0 auto;
   background: #161616;
   overflow-x: hidden;
-  scroll-snap-align: start;
+  scroll-snap-align: var(--snap-align);
   scroll-snap-stop: always;
  
 `

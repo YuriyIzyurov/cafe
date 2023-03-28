@@ -4,7 +4,6 @@ const useScrollBlock = () => {
 
     const blockScroll = () => {
         //отключаем снап эффект при авто скролле
-
         if (typeof document === "undefined") return
         const { body } = document
         body.addEventListener('mousewheel',  MouseWheelHandler, { passive: false })
@@ -12,8 +11,6 @@ const useScrollBlock = () => {
     }
     const allowScroll = () => {
         //включаем снап эффект при авто скролле
-
-
         if (typeof document === "undefined") return
         const { body } = document
         body.removeEventListener('mousewheel',  MouseWheelHandler, )

@@ -16,7 +16,7 @@ import {DynamicFooter, DynamicHistorySection, DynamicInfoSection, DynamicService
 import {findCurrentSectionIndex, getPromisesOfElements, isScreenHeightGreaterThan} from "../utility/helpers";
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
 
-
+type Direction = 'up' | 'down'
 const Index = () => {
 
     const { data, isLoading, error} = useGetProductsQuery(6) //получаем данные с сервера
@@ -36,31 +36,87 @@ const Index = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [isVisible, setVisible] = useState(false)
     const [masterTL, setMasterTL] = useState(null)
+    const [scrolling, setScrolling] = useState(false);
+    const [scrollTop, setScrollTop] = useState(0);
+
+    const touchRef = useRef(null)
 
     //ссылки на секции, порядок [main, about, history, services, contacts]
     const refs: RefObject<HTMLElement>[]
-        = Array.from({ length: 5 }).map(() => useRef(null));
+        = Array.from({ length: 5 }).map(() => useRef(null))
 
 
 
     //активация плавного авто скроллера
     useEffect(() => {
-        let pageY: number | null = null;
-        let startY: number | null = null;
+        let timer: NodeJS.Timeout = null
+        let isScrolling = false
+        let scrollDirection: Direction | null = null
+        let prevScrollPos = window.scrollY
+        let startMovePos = null
 
-        function handleTouchStart(event: TouchEvent) {
-            pageY = event.touches[0].pageY;
-            startY = event.touches[0].clientY;
-        }
+        const handleScroll = (e) => {
 
-        function handleTouchEnd(event: TouchEvent) {
-            if (startY === null) return
-            const deltaY = event.changedTouches[0].clientY - startY;
-
-            if (Math.abs(deltaY) > 20) {
-                slideScroll(event,pageY);
+            if (!isScrolling) {
+                const currentScrollPos = window.scrollY
+                if (currentScrollPos > prevScrollPos) {
+                    scrollDirection = "down"
+                } else if (currentScrollPos < prevScrollPos) {
+                    scrollDirection = "up"
+                }
+                isScrolling = true
             }
-            startY = null;
+
+            clearTimeout(timer);
+
+            timer = setTimeout(() => {
+                isScrolling = false
+                timer = null
+                scrollDirection = null
+                prevScrollPos = window.scrollY
+                touchRef.current.style.touchAction = ''
+                refs[3].current.style.touchAction = ''
+            }, 100)
+        }
+        const handleTouchEnd = () => {
+            console.log('sss')
+            if(isScrolling) {
+                touchRef.current.style.touchAction = 'none'
+                refs[3].current.style.touchAction = 'none'
+            }
+        }
+        function handleTouchMove(e) {
+            if (!startMovePos) {
+                startMovePos = e.changedTouches[0].clientY;
+            }
+            if (startMovePos) {
+                const currentMovePos = e.changedTouches[0].clientY;
+                const swipeDirection = currentMovePos > startMovePos ? "down" : "up";
+
+/*
+                if (swipeDirection === "up" && scrollDirection === "up") {
+
+                } else if (swipeDirection === "down" && scrollDirection === "down") {
+
+                }*/
+
+                startMovePos = currentMovePos;
+            }
+            /*if(!startMovePos) {
+                startMovePos = e.changedTouches[0].clientY
+            }
+            if(startMovePos) {
+                const currentMovePos = e.changedTouches[0].clientY
+                const swipeDirection = currentMovePos > startMovePos ? "down" : "up"
+
+                if (swipeDirection === "up" && scrollDirection === "up") {
+                    e.preventDefault()
+                } else if (swipeDirection === "down" && scrollDirection === "down") {
+                    e.preventDefault()
+                }
+
+                startMovePos = currentMovePos
+            }*/
         }
 
 
@@ -84,18 +140,20 @@ const Index = () => {
         }
 
 
-        //слушатели событий на колесико мыши и свайп
+        //слушатели событий на колесико мыши, и скролл
         window.addEventListener("wheel", slideScroll)
-       // window.addEventListener('touchstart', handleTouchStart,{ passive: false });
-        //window.addEventListener('touchend', handleTouchEnd,{ passive: false });
+        window.addEventListener('scroll', handleScroll)
+        window.addEventListener('touchmove', handleTouchMove,{passive: false})
+        window.addEventListener('touchend', handleTouchEnd)
 
 
         if(!isVisible) setVisible(true)
 
         return () => {
             window.removeEventListener("wheel", slideScroll)
-           // window.removeEventListener('touchstart', handleTouchStart);
-           // window.removeEventListener('touchend', handleTouchEnd);
+            window.removeEventListener('scroll', handleScroll)
+            window.removeEventListener('touchmove', handleTouchMove)
+            window.removeEventListener('touchend', handleTouchEnd)
         }
     }, [])
 
@@ -175,12 +233,11 @@ const Index = () => {
     }
 
 
-
     return (
         <MainContainer>
           {isVisible && <DynamicSidebar isOpen={isOpen} toggle={toggle}/>}
           <Navbar toggle={toggle} />
-          <div onClick={closeSidebar}>
+          <div onClick={closeSidebar} ref={touchRef}>
               <HeroSection sectionRef={refs[0]}/>
               {/*стандартая подгрузка компонентов*/}
               {/*  <InfoSection timeline={masterTL} {...homeObjOne}/>

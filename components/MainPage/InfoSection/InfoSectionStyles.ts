@@ -9,7 +9,7 @@ export const InfoContainer = styled.section`
   margin-right: auto;
   margin-left: auto;
   padding: 0 24px;
-  scroll-snap-align: start;
+  scroll-snap-align: var(--snap-align);
   scroll-snap-stop: always;
   
 `

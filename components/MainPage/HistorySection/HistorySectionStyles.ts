@@ -14,7 +14,7 @@ export const HistoryContainer = styled.section`
   justify-content: center;
   color: #fff;
   background: ${({lightBg}) => (lightBg ? '#f9f9f9' : '#161616')};
-  scroll-snap-align: start;
+  scroll-snap-align: var(--snap-align);
   scroll-snap-stop: always;
   
 
@@ -201,7 +201,7 @@ export const HistoryImgWrap = styled.div`
   z-index: -1;
 
      @media screen and (max-width: 710px) {
-          top: -30%;
+          top: -27%;
           left: 20%;
      }
   

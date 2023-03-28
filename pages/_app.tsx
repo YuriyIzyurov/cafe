@@ -23,6 +23,7 @@ export default function MyApp({ Component, pageProps } : AppProps) : JSX.Element
                 :root {
                   --font-base: ${mons.style.fontFamily};
                   --font-caligraphic: ${pierre.style.fontFamily};
+                  --snap-align: start;
                 }`}
                 </style>
                 <Component {...pageProps} />
