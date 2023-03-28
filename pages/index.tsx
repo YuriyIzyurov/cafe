@@ -42,8 +42,7 @@ const Index = () => {
     const touchRef = useRef(null)
 
     //ссылки на секции, порядок [main, about, history, services, contacts]
-    const refs: RefObject<HTMLElement>[]
-        = Array.from({ length: 5 }).map(() => useRef(null))
+    const refs: RefObject<HTMLElement>[] = Array.from({ length: 5 }).map(() => useRef(null))
 
 
 
@@ -74,14 +73,16 @@ const Index = () => {
                 timer = null
                 scrollDirection = null
                 prevScrollPos = window.scrollY
-                touchRef.current.style.touchAction = ''
-                refs[3].current.style.touchAction = ''
+                refs.map((section) => {
+                    section.current.style.touchAction = ''
+                })
             }, 100)
         }
         const handleTouchEnd = () => {
             if(isScrolling) {
-                touchRef.current.style.touchAction = 'none'
-                refs[3].current.style.touchAction = 'none'
+                refs.map((section) => {
+                    section.current.style.touchAction = 'none'
+                })
             }
         }
         function handleTouchMove(e) {
@@ -236,7 +237,7 @@ const Index = () => {
         <MainContainer>
           {isVisible && <DynamicSidebar isOpen={isOpen} toggle={toggle}/>}
           <Navbar toggle={toggle} />
-          <div onClick={closeSidebar} ref={touchRef}>
+          <div onClick={closeSidebar}>
               <HeroSection sectionRef={refs[0]}/>
               {/*стандартая подгрузка компонентов*/}
               {/*  <InfoSection timeline={masterTL} {...homeObjOne}/>
