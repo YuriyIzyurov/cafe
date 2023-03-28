@@ -32,39 +32,40 @@ function registerMainComponentAnim(isMobile:boolean){
         },
         {
             id: "#spoon",
-            moveFrom: [{y:450}, {y:0}],
+            moveFrom: [{y:isMobile ? 1400 : 450}, {y:0}],
             moveTo: [{y:0}, {y:isMobile ? -300 : -650}],
         },
         {
             id: "#salad2",
-            moveFrom: [{y:300}, {y:0}],
+            moveFrom: [{y: 300}, {y:0}],
             moveTo: [{y:0}, {y:isMobile ? -250 : -700}],
         },
         {
             id: "#dish",
-            moveFrom: [{y:600, rotation: isMobile ? -180 :-120}, {y:0, rotation:0}],
+            moveFrom: [{y:isMobile ? 900 : 600, rotation: isMobile ? -180 :-120}, {y:0, rotation:0}],
             moveTo: [{y:0, rotation:0}, {y:isMobile ? -200 : -500, rotation: isMobile ? 100: 130}],
         },
         {
             id: "#pepper",
-            moveFrom: [{y:650}, {y:0}],
+            moveFrom: [{y:isMobile ? 2100 : 650}, {y:0}],
             moveTo: [{y:0}, {y:isMobile ? -170 : -440}],
         },
         {
             id: "#salad",
-            moveFrom: [{y:250}, {y:0}],
+            moveFrom: [{y: isMobile ? 1600 : 250}, {y:0}],
             moveTo: [{y:0}, {y:isMobile ? -180 : -470}],
         },
         {
             id: "#tomatos",
-            moveFrom: [{y:700}, {y:0}],
+            moveFrom: [{y:isMobile ? 2400 : 700}, {y:0}],
             moveTo: [{y:0}, {y:isMobile ? -150 : -400}],
         },]
     const tlFromTop = gsap.timeline({
         scrollTrigger: {
             trigger: "#about",
-            start: "top 90%",
-            end: "top 20%",
+            start: isMobile ? "top 60%" : "top 90%",
+            end: isMobile ? "top 10%" : "top 20%",
+            markers: true
         }
     })
     const tlFromBottom = gsap.timeline({

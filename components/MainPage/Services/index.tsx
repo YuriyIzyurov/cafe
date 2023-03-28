@@ -16,7 +16,6 @@ import banket from '../../../public/images/banket2.jpg'
 import candles from '../../../public/images/candles2.jpg'
 import waiter from '../../../public/images/waiter2.jpg'
 import flour from '../../../public/images/flour.png'
-import flourMobile from '../../../public/images/flourMobile.png'
 import Image from 'next/image'
 import { animation } from "../../../utility/parallax";
 import {gsap} from "gsap";
@@ -139,7 +138,6 @@ const Services = ({timeline, sectionRef}) => {
             <ServicesWrapper>
                 <ServicesImgWrapper id='flour'>
                     <Image className='desktopImg' src={flour} fill style={{objectFit:"cover"}} alt='flour'/>
-                    <Image className='mobileImg' src={flourMobile} fill style={{objectFit:"cover"}} alt='flour'/>
                 </ServicesImgWrapper>
                 {serviceContent.map((e, index) => {
                     const isExpandedValue = index===0 ? isExpanded0 : index===1 ? isExpanded1 : isExpanded2

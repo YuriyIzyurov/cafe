@@ -27,7 +27,7 @@ const InfoSection = ({lightBg, lightText, headline, buttonLabel, alt, timeline,s
     useLayoutEffect(() => {
 
         let mm
-        if(window.innerWidth > 768 && timeline) {
+        if(timeline) {
             mm = gsap.matchMedia();
             mm.add(
                 {
