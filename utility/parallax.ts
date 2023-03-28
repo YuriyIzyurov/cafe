@@ -65,7 +65,6 @@ function registerMainComponentAnim(isMobile:boolean){
             trigger: "#about",
             start: isMobile ? "top 60%" : "top 90%",
             end: isMobile ? "top 10%" : "top 20%",
-            markers: true
         }
     })
     const tlFromBottom = gsap.timeline({
