@@ -17,7 +17,9 @@ export  const getPromisesOfElements = (refs: RefObject<HTMLElement>[]): Promise<
     });
 };
 export const findCurrentSectionIndex = (refs: RefObject<HTMLElement>[], scrollY: number) => {
-    const currentScrollPosition = scrollY;
+
+    //добавил пикселей, так как почему то в режиме Ф12 откуда-то прибавляется 1пкс и сбивает
+    const currentScrollPosition = scrollY + 10;
     const scrollPositions = refs.map((section, index) => {
         const el = section.current
         return el ? (index === 0 ? el.offsetTop : el.offsetTop - 80) : Infinity;
@@ -31,21 +33,8 @@ export const findCurrentSectionIndex = (refs: RefObject<HTMLElement>[], scrollY:
     return refs.length - 1;
 };
 
-export function isScreenHeightGreaterThan(minHeight) {
-    const currentHeight = document.documentElement.clientHeight;
-    return currentHeight && currentHeight > minHeight;
+export function isScreenHeightGreaterThan(minHeight, minWidth) {
+    const currentHeight = window.innerHeight;
+    const currentWidth = window.innerWidth;
+    return (currentHeight && currentHeight > minHeight) && (currentWidth && currentWidth > minWidth);
 }
-
-export  const scrollToSection = (section: RefObject<HTMLElement>): void => {
-    if (section) {
-        gsap.to(window, {
-            duration: 0.5,
-            scrollTo: {
-                y: section.current,
-                offsetY: 80,
-            },
-            onStart: () => console.log('start'),
-            onComplete: () => console.log('end'),
-        });
-    }
-};

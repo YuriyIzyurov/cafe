@@ -26,7 +26,7 @@ const CustomForm:FC<{ setFormActive: Dispatch<boolean>, setBtnDisabled: Dispatch
 
     const onSubmit = async data => {
         const res = await ReviewService.createReview(data)
-        console.log(res)
+
 
         setSuccess(!success)
         setBtnDisabled(true)

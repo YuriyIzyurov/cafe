@@ -36,10 +36,8 @@ const Index = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [isVisible, setVisible] = useState(false)
     const [masterTL, setMasterTL] = useState(null)
-    const [scrolling, setScrolling] = useState(false);
-    const [scrollTop, setScrollTop] = useState(0);
 
-    const touchRef = useRef(null)
+
 
     //ссылки на секции, порядок [main, about, history, services, contacts]
     const refs: RefObject<HTMLElement>[] = Array.from({ length: 5 }).map(() => useRef(null))
@@ -85,39 +83,7 @@ const Index = () => {
                 })
             }
         }
-        function handleTouchMove(e) {
-            if (!startMovePos) {
-                startMovePos = e.changedTouches[0].clientY;
-            }
-            if (startMovePos) {
-                const currentMovePos = e.changedTouches[0].clientY;
-                const swipeDirection = currentMovePos > startMovePos ? "down" : "up";
 
-/*
-                if (swipeDirection === "up" && scrollDirection === "up") {
-
-                } else if (swipeDirection === "down" && scrollDirection === "down") {
-
-                }*/
-
-                startMovePos = currentMovePos;
-            }
-            /*if(!startMovePos) {
-                startMovePos = e.changedTouches[0].clientY
-            }
-            if(startMovePos) {
-                const currentMovePos = e.changedTouches[0].clientY
-                const swipeDirection = currentMovePos > startMovePos ? "down" : "up"
-
-                if (swipeDirection === "up" && scrollDirection === "up") {
-                    e.preventDefault()
-                } else if (swipeDirection === "down" && scrollDirection === "down") {
-                    e.preventDefault()
-                }
-
-                startMovePos = currentMovePos
-            }*/
-        }
 
 
         if(mainPage.scrollTo) {
@@ -143,7 +109,6 @@ const Index = () => {
         //слушатели событий на колесико мыши, и скролл
         window.addEventListener("wheel", slideScroll)
         window.addEventListener('scroll', handleScroll)
-        window.addEventListener('touchmove', handleTouchMove,{passive: false})
         window.addEventListener('touchend', handleTouchEnd)
 
 
@@ -152,7 +117,6 @@ const Index = () => {
         return () => {
             window.removeEventListener("wheel", slideScroll)
             window.removeEventListener('scroll', handleScroll)
-            window.removeEventListener('touchmove', handleTouchMove)
             window.removeEventListener('touchend', handleTouchEnd)
         }
     }, [])
@@ -183,36 +147,23 @@ const Index = () => {
 
     //функции обработчики событий скролла и свайпа
 
-    function slideScroll(e:Event, startY?: number):void {
-        const isTouchEvent = e.type === 'touchend';
-        const isWheelEvent = e.type === 'wheel' || e.type === 'mousewheel';
+    function slideScroll(e: WheelEvent): void {
 
-        const pickSection = (currentIndex:number, nextIndex:number): HTMLElement => {
+        const pickSection = (currentIndex: number, nextIndex: number): HTMLElement => {
             if (nextIndex < 0 || nextIndex >= refs.length) {
                 return refs[currentIndex].current;
             }
             return refs[nextIndex].current;
         };
 
-        if (isTouchEvent) {
-            const touchEvent = e as TouchEvent;
+        if (isScreenHeightGreaterThan(480, 768)) {
+            const currentSectionIndex = findCurrentSectionIndex(refs, window.scrollY);
+            const nextSectionIndex = e.deltaY > 0 ? currentSectionIndex + 1 : currentSectionIndex - 1;
+            const section = pickSection(currentSectionIndex, nextSectionIndex)
 
-            if (isScreenHeightGreaterThan(480)) {
-                const lastTouch = touchEvent.changedTouches[0].pageY
-                const currentSectionIndex = findCurrentSectionIndex(refs, lastTouch);
-                const nextSectionIndex = startY > lastTouch ? currentSectionIndex + 1 : currentSectionIndex - 1;
-                const section = pickSection(currentSectionIndex,nextSectionIndex)
-                scrollToSection(section,0.8);
-            }
-        } else if (isWheelEvent) {
-            const wheelEvent = e as WheelEvent;
-            if (isScreenHeightGreaterThan(480)) {
-                const currentSectionIndex = findCurrentSectionIndex(refs, window.scrollY);
-                const nextSectionIndex = wheelEvent.deltaY > 0 ? currentSectionIndex + 1 : currentSectionIndex - 1;
-                const section = pickSection(currentSectionIndex,nextSectionIndex)
-                scrollToSection(section, 1.2);
-            }
+            scrollToSection(section, 1.2);
         }
+
     }
 
 

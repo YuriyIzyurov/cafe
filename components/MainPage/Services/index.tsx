@@ -70,7 +70,6 @@ const Services = ({timeline, sectionRef}) => {
     useLayoutEffect(() => {
         let ctx
         if(window.innerWidth > 768 && timeline) ctx = gsap.context(() => {
-            console.log('created')
             const componentTimeline = animation('services')
             //добавляем анимацию компонента в мастер анимацию страницы
             timeline && timeline.add(componentTimeline)
