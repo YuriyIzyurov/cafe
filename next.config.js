@@ -13,6 +13,7 @@ module.exports = {
         ],
     },
     env: {
-        SERVER_URL: process.env.SERVER_URL
+        SERVER_URL: process.env.SERVER_URL,
+        LOCAL_SERVER_URL: process.env.LOCAL_SERVER_URL
     }
 }

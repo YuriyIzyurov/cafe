@@ -12,7 +12,8 @@ import {
     StyledInput,
     StyledTextArea, SuccessBlock, SuccessMessage
 } from "./customFormStyles";
-import {ReviewService} from "../../services/ReviewService";
+import {ReviewService} from "../../services/review.service";
+
 
 
 

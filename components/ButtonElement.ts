@@ -66,3 +66,12 @@ export const ReviewButton = styled(Button)`
     color: #fff;
   }
 `
+export const LoginButton = styled(Button)`
+  border: 1px solid #fff;
+  color: #fff;
+
+  &:hover {
+    background: #fff;
+    color: #161616;
+  }
+`

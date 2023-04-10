@@ -5,7 +5,7 @@ const MainContainer = ({children, keywords = ''}) => {
         <>
             <Head>
                 <meta charSet="utf-8"/>
-                <meta name="viewport" content="width=device-width, shrink-to-fit=no"/>
+                <meta name="viewport" content="width=device-width, shrink-to-fit=yes"/>
                 <meta name="description" content="Кафе У Кузьмича официальный сайт"/>
                 <meta name="keywords" content={'кафе, иваново, у кузьмича, ' + keywords}/>
                 <title>Кафе "У Кузьмича"</title>

@@ -61,7 +61,7 @@ function Position ({fontSize, name, price}:PositionProps) {
             <PositionName fontSize={fontSize}>
                 {name}
             </PositionName>
-            <Dots></Dots>
+            <Dots/>
             <PositionPrice>
                 {price}
                 <Ruble>₽</Ruble>

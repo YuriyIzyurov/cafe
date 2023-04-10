@@ -5,9 +5,6 @@ export const MenuContainer = styled.section`
   color: #fff;
   padding-top: 80px;
   
-  @media screen and (max-width: 768px) {
-    
-  }
 `
 export const MenuHeader = styled.header`
   padding: ${({padding}) => padding};
@@ -243,24 +240,6 @@ const SideImg = styled.img`
   z-index: 1;
 `
 
-export const MenuSideImg2 = styled.img`
-  max-width: 98%; //чтоб не торчал лишний пиксель
-`
-export const MenuSideImg3 = styled(SideImg)`
-  bottom: 37px;
-  left: 35px;
-  width: 140px;
-`
-export const MenuSideImg4 = styled.img`
-  max-width: 98%;
-`
-export const MenuSideImg5 = styled(SideImg)`
-  bottom: 118px;
-  right: -12px;
-`
-export const MenuSideImg6 = styled.img`
-  max-width: 98%;
-`
 export const MenuBranchWrapper = styled.div`
   position: absolute;
   z-index: 1;
@@ -327,4 +306,9 @@ export const GalaryImgWrapper = styled.div`
   @media screen and (max-width: 480px) {
     opacity: ${({id}) => !id.includes('smoke') && 0.8};
   }
+`
+export const BtnWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 10px;
 `

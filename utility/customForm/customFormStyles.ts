@@ -56,8 +56,9 @@ export const FieldWrapper = styled.div`
 `
 export const ErrorMessage = styled.span`
   position: absolute;
-  bottom: -2px;
-  left: 0;
+  bottom: ${({isLoginError}) => isLoginError? '10%' : '-2px'};
+  left: ${({isLoginError}) => isLoginError? '50%' : 0};
+  transform: ${({isLoginError}) => isLoginError && 'translateX(-50%)'};
   color: #ff3107;
   font-size: 13px;
   font-weight: 600;

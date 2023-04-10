@@ -4,6 +4,8 @@ import Navbar from "../components/Navbar";
 import {FC, useState} from "react";
 import MenuPage from "../components/MenuPage";
 import {DishSpecification, DrinksSpecification} from "../utility/types";
+import {useTypedSelector} from "../hooks/useTypedSelector";
+import {MenuService} from "../services/menu.service";
 
 
 type PropsType = {
@@ -12,6 +14,7 @@ type PropsType = {
 }
 const Menu:FC<PropsType> = ({dishes, drinks}) => {
 
+    const {user} = useTypedSelector(state => state)
     const [isOpen, setIsOpen] = useState(false)
 
     const toggle = () => setIsOpen(!isOpen)
@@ -24,8 +27,8 @@ const Menu:FC<PropsType> = ({dishes, drinks}) => {
     return (
         <MainContainer keywords={'меню'}>
             <Sidebar isOutsidePage isOpen={isOpen} toggle={toggle}/>
-            <Navbar isOutsidePage toggle={toggle} />
-            <MenuPage closeSidebar={closeSidebar} dishes={dishes} drinks={drinks}/>
+            <Navbar isOutsidePage toggle={toggle} currentProfile={user.user}/>
+            <MenuPage closeSidebar={closeSidebar} dishes={dishes} drinks={drinks} currentProfile={user.user}/>
         </MainContainer>
     );
 };
@@ -33,8 +36,6 @@ const Menu:FC<PropsType> = ({dishes, drinks}) => {
 export default Menu;
 
 export async function getStaticProps(context) {
-
-
 
     const response1 = await fetch('https://jwt-authorization-nest.vercel.app/dishes')
     const response2 = await fetch('https://jwt-authorization-nest.vercel.app/drinks')

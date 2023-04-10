@@ -3,7 +3,7 @@ import photo2 from "public/images/reviews/photo2.jpg";
 import photo3 from "public/images/reviews/photo3.jpg";
 import favicon from "public/images/favicon.ico";
 import Image from "next/image";
-import React, {FC, useEffect, useRef, useState} from "react";
+import React, {FC, memo, useEffect, useRef, useState} from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger.js';
 import {
@@ -22,9 +22,10 @@ import {Button, ButtonRoute, ReviewButton} from "../ButtonElement";
 import ReviewsBlock from "./ReviewsBlock";
 import CustomForm from "../../utility/customForm";
 import {CloseIcon, Icon } from "../Sidebar/SidebarStyles";
+import {IUser} from "../../services/auth.service";
 gsap.registerPlugin(ScrollTrigger);
 
-export type ModalDataType = Pick<ReviewType, 'name' | 'rating' | 'text' | 'updatedAt'>;
+export type ReviewDataType = Pick<ReviewType, 'name' | 'rating' | 'text' | 'updatedAt'>;
 export type ReviewType = {
     name: string
     rating: number
@@ -35,7 +36,13 @@ export type ReviewType = {
     _id: string
 }
 
-const ReviewsPage:FC<{reviews: ReviewType[], closeSidebar: () => void, getReviewData: (arg: ModalDataType) => void}> = ({reviews, closeSidebar, getReviewData}) => {
+const ReviewsPage:FC<{
+    reviews: ReviewType[],
+    closeSidebar: () => void,
+    getReviewData: (arg: ReviewDataType) => void,
+    goToLoginForm: () => void,
+    currentProfile: IUser | null
+}> = memo(({reviews, closeSidebar, getReviewData, goToLoginForm, currentProfile}) => {
     const [hover, setHover] = useState(false)
     const [prevEl, setPrevEl] = useState<HTMLElement | null>(null);
     const [nextEl, setNextEl] = useState<HTMLElement | null>(null);
@@ -112,7 +119,12 @@ const ReviewsPage:FC<{reviews: ReviewType[], closeSidebar: () => void, getReview
                         </TextBlockHeader>
 
                         {/*слайдер*/}
-                        <ReviewsBlock reviews={reviews} getReviewData={getReviewData} prevEl={prevEl} nextEl={nextEl}/>
+                        <ReviewsBlock
+                            reviews={reviews}
+                            getReviewData={getReviewData}
+                            currentProfile={currentProfile}
+                            prevEl={prevEl}
+                            nextEl={nextEl}/>
 
                         <ReviewsFooter>
                             <PaginationButton ref={(node) => setPrevEl(node)}>
@@ -159,11 +171,11 @@ const ReviewsPage:FC<{reviews: ReviewType[], closeSidebar: () => void, getReview
                         <TextBlockP>
                             Просто | Вкусно | По-домашнему
                         </TextBlockP>
-                        <Image src={favicon} style={{opacity: 0.7}} alt='logo'/>
+                        <Image onClick={goToLoginForm} src={favicon} style={{opacity: 0.7}} alt='logo'/>
                     </TextBlockThird>
             </ReviewsSection>
         </ReviewsContainer>
     );
-};
+})
 
 export default ReviewsPage;

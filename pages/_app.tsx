@@ -16,6 +16,8 @@ export default function MyApp({ Component, pageProps } : AppProps) : JSX.Element
 
     const [queryClient] = useState(() => new QueryClient())
 
+    //todo: посмотреть, что даст, если обернуть в <PersistGate persistor={persistor}>
+
     return (
         <QueryClientProvider client={queryClient}>
             <Provider store={store}>

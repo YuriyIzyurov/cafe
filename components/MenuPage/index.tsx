@@ -1,5 +1,5 @@
 import {
-    AddMenuWrapper, FlexibleImgWrap,
+    AddMenuWrapper, BtnWrapper, FlexibleImgWrap,
     ImgMask2,
     ImgMask4,
     ImgMask6,
@@ -10,11 +10,6 @@ import {
     MenuImgWrapper,
     MenuSection,
     MenuSectionReversed,
-    MenuSideImg2,
-    MenuSideImg3,
-    MenuSideImg4,
-    MenuSideImg5,
-    MenuSideImg6,
     MenuSideImgWrapper,
     MenuSideImgWrapper2,
     MenuToggle,
@@ -27,7 +22,7 @@ import {activateMenuAnimation} from "../../utility/parallax";
 import { useInView } from 'react-intersection-observer';
 import BarCard from "./BarCard";
 import {BarSection} from "./BarCard/BarCardStyles";
-import {Button, ButtonSmoothScroll} from "../ButtonElement";
+
 import MenuNavigation from "./MenuNavigation";
 import Image from 'next/image'
 import AdditionalMenu from "./AddMenu";
@@ -45,6 +40,8 @@ import {gsap} from "gsap";
 import favicon from "public/images/favicon.ico";
 import { TextBlockHeader, TextBlockP } from "../ReviewsPage/ReviewsPageStyles";
 import logo from "public/images/logoSpoon.png";
+import {IUser} from "../../services/auth.service";
+import {Button, ButtonRoute} from "../../components/ButtonElement";
 
 
 
@@ -58,13 +55,14 @@ type PropsType = {
     dishes: DishSpecification[]
     drinks: DrinksSpecification[]
     closeSidebar: () => void
+    currentProfile : IUser | null
 }
 type UseInViewReturnType = {
     ref: (node?: Element) => void;
     inView: boolean;
 };
 
-const MenuPage:FC<PropsType> = ({dishes, drinks, closeSidebar}) => {
+const MenuPage:FC<PropsType> = ({dishes, drinks, closeSidebar, currentProfile}) => {
 
     const { ref, inView }:UseInViewReturnType = useInView({
         /* Optional options */
@@ -106,8 +104,14 @@ const MenuPage:FC<PropsType> = ({dishes, drinks, closeSidebar}) => {
 
     return (
         <MenuContainer id='menu' onClick={closeSidebar}>
-            {/*-----Основное меню----*/}
+            {currentProfile &&
+                <BtnWrapper>
+                    <ButtonRoute href='/menu-redactor'>
+                        <Button>Редактор меню</Button>
+                    </ButtonRoute>
+                </BtnWrapper>}
             <MenuNavigation id='mainMenu' position='top'/>
+            {/*-----Основное меню----*/}
             <MenuHeader padding='20px 0 0 0'>
                 Основное меню
             </MenuHeader>
@@ -243,10 +247,15 @@ function AnimatedSectionCompositionSaladAndPotato({index, isMobile}:AnimSecProps
                         ? (isMobile ? [-43, -18] : [10,-31])
                         : (isMobile ? [-55,-17] : [-30,-25])}
                 >
-                    <Image id={isPotato ? 'flour3' : 'flour'}
-                           src={flour2}
-                           fill style={{objectFit:"contain", transform: isPotato && 'rotate(-20deg)'}}
-                           alt='flour2'/>
+                    {isPotato ?
+                        <Image id='flour3'
+                               src={flour2}
+                               fill style={{objectFit:"contain", transform: 'rotate(-20deg)'}}
+                               alt='potatoes'/>
+                        : <Image id='flour'
+                                 src={flour2}
+                                 fill style={{objectFit:"contain"}}
+                                 alt='flour'/>}
                 </ImgMask2>
                 <ImgMask2
                     id={isPotato ? 'mobile-flour3wrap' : 'mobile-flourwrap'}

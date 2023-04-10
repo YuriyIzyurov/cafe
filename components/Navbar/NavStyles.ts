@@ -35,7 +35,53 @@ export const NavbarContainer = styled.div`
     padding: 0 5px;
   }
 `
-
+export const UserProfileWrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  
+  span {
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 16px;
+  }
+`
+export const ProfileAvatar = styled.div`
+  cursor: pointer;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 2;
+`
+export const LogoutIcon = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1;
+  
+  pointer-events: ${({active}) => active ? 'all' : 'none'};
+  right: ${({active}) => active ? '-40%' : '27%'};
+  opacity: ${({active}) => active ? 1 : 0};
+ 
+  
+  top: 40%;
+  transform: translateY(-50%);
+  font-size: 30px;
+  color: #fff;
+  transition: right 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  
+  span {
+    font-size: 13px;
+  }
+`
 export const NavLogo = styled(LinkScroll)`
   cursor: pointer;
 

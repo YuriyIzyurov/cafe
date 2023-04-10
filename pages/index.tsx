@@ -21,7 +21,7 @@ const Index = () => {
 
     const { data, isLoading, error} = useGetProductsQuery(6) //получаем данные с сервера
     const {addItem} = useActions() //используем экшены
-    const {cart} = useTypedSelector(state => state) //доступ к стейту
+    const {user} = useTypedSelector(state => state) //доступ к стейту
 
     //автоскролл после перехода из другой страницы на эту
     const {mainPage} = useTypedSelector(state => state)
@@ -72,7 +72,7 @@ const Index = () => {
                 scrollDirection = null
                 prevScrollPos = window.scrollY
                 refs.map((section) => {
-                    section.current.style.touchAction = ''
+                    if(section.current) section.current.style.touchAction = ''
                 })
             }, 100)
         }
@@ -187,7 +187,7 @@ const Index = () => {
     return (
         <MainContainer>
           {isVisible && <DynamicSidebar isOpen={isOpen} toggle={toggle}/>}
-          <Navbar toggle={toggle} />
+          <Navbar toggle={toggle} currentProfile={user.user}/>
           <div onClick={closeSidebar}>
               <HeroSection sectionRef={refs[0]}/>
               {/*стандартая подгрузка компонентов*/}

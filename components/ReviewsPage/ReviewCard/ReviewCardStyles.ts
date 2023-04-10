@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { FaStar } from 'react-icons/fa'
-
+import { AiOutlineCheck, AiOutlineClose } from 'react-icons/ai';
 export const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -79,4 +79,44 @@ export const Star = styled(FaStar)`
   color: ${({color}) => color};
   cursor: pointer;
   transition: color 200ms;
+`
+export const NotiWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 13px;
+  font-weight: bold;
+  
+`
+export const OkIcon = styled(AiOutlineCheck)`
+  color: green; 
+  font-size: 18px;
+`
+export const NoIcon = styled(AiOutlineClose)`
+  color: red; 
+  font-size: 18px;
+`
+export const ApproveSection = styled.div`
+  display: flex;
+  gap: 8px;
+`
+export const ApproveBtnWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  border: 1px solid #161616;
+  border-radius: 4px;
+  transition: background-color 0.2s ease-in-out;
+  
+  &:hover {
+   background: orange; 
+  }
+  span {
+    padding-right: 2px;
+  }
+`
+export const Approved = styled.div`
+  position: absolute;
+  left: 10px;
+  top: 10%;
+  transform: scale(1.3);
 `

@@ -20,6 +20,7 @@ interface CommonSpecification {
     _id: string;
     name: string;
     __v: number;
+    dishes: Dish[];
 }
 
 export interface DishSpecification extends CommonSpecification {

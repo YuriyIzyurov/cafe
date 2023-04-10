@@ -31,8 +31,14 @@ export const ModalCard = styled.div`
   max-width: 30%;
   min-width: 400px;
   transition: transform 0.4s;
-  
-  
+
+  @media screen and (max-width: 480px) {
+    min-width: 320px; 
+  }
+`
+export const FullRevWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   
   header {
     display: flex;
@@ -48,26 +54,27 @@ export const ModalCard = styled.div`
   }
   main {
     p {
-      padding: 5px 20px;
+      padding: 10px 20px;
     }
   }
   footer {
     display: flex;
     justify-content: space-between;
     padding: 5px 20px;
-    
+
     span {
-      cursor: pointer;
       font-size: 1rem;
       font-weight: bold;
+    }
+    span:first-child {
+      cursor: pointer;
       &:hover {
         text-decoration: underline;
       }
     }
   }
-  
+
   @media screen and (max-width: 480px) {
-    min-width: 320px;
     header {
       h1{
         font-size: 0.85rem;
@@ -306,5 +313,26 @@ export const ReviewForm = styled.aside`
   @media screen and (max-width: 768px) {
     left: ${({isFormActive}) => isFormActive ? 0 : '-100%'};
     z-index: 3;
+  }
+`
+export const LoginFormWrapper = styled.form`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 90px 50px;
+  min-height: 370px;
+  background: #161616;
+`
+export const EnterAttention = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  font-size: 22px;
+  
+  div {
+    text-align: center;
+    margin-bottom: 50px;
   }
 `

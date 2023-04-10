@@ -2,26 +2,48 @@ import { ReviewsBlockWrapper} from "./ReviewsPageStyles";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore,{ Navigation, A11y, Virtual } from 'swiper';
 import 'swiper/css';
-import React, {useState} from "react";
+import React, {FC, useState} from "react";
 import ReviewCard, {CardDivider} from "./ReviewCard";
-import {ModalDataType, ReviewType} from ".";
-import {useQuery} from "@tanstack/react-query";
-import { ReviewService } from "../../services/ReviewService";
+import {ReviewDataType, ReviewType} from ".";
+import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {getMessageTime} from "../../utility/time";
+import { ReviewService } from "../../services/review.service";
+import {IUser} from "../../services/auth.service";
 
 
 
 
+type PropsType = {
+    prevEl: HTMLElement,
+    nextEl: HTMLElement,
+    reviews: ReviewType[],
+    getReviewData:(arg: ReviewDataType) => void
+    currentProfile : IUser | null
+}
 
-const ReviewsBlock = ({ prevEl, nextEl, reviews, getReviewData } : { prevEl: HTMLElement, nextEl: HTMLElement, reviews: ReviewType[], getReviewData:(arg: ModalDataType) => void }) => {
+const ReviewsBlock:FC<PropsType> = ({ prevEl, nextEl, reviews, getReviewData, currentProfile }) => {
     const [swiper, setSwiperLocal] = useState<SwiperCore | null>(null);
 //{ isLoading, error, data }
+    const queryClient = useQueryClient()
     const {data} = useQuery(
           ['reviews'],
            ReviewService.getReviews,
         {initialData: reviews}
     )
-
+    const {mutate} = useMutation(fetchDataHandler,{
+        onSuccess:()=>{
+            queryClient.invalidateQueries(['reviews'])
+        }
+    })
+    async function fetchDataHandler({type, id}) {
+        if(type === 'PUT')
+            return ReviewService.updateReview(id)
+        else if(type === 'DELETE')
+            return ReviewService.deleteReview(id)
+    }
+    const handleMutate = ({type, id}) => {
+        mutate({type, id})
+    }
 
     return (
         <ReviewsBlockWrapper>
@@ -65,6 +87,8 @@ const ReviewsBlock = ({ prevEl, nextEl, reviews, getReviewData } : { prevEl: HTM
                             textShortened={textShortened}
                             time={time}
                             getReviewData={getReviewData}
+                            mutate={handleMutate}
+                            isStatusShown={!!currentProfile}
                         />
                     </SwiperSlide>
                 })}

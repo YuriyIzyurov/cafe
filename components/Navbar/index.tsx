@@ -9,9 +9,12 @@ import {
     NavMenu
 } from "./NavStyles";
 import { FaBars } from 'react-icons/fa';
-import {FC, useEffect, useState} from "react";
+import {FC, memo, useEffect, useState} from "react";
 import { useActions } from "../../hooks/useActions";
-import { pierre } from "../../styles/fonts/fonts";
+import { IUser } from "../../services/auth.service";
+import {getAccessToken} from "../../utility/auth.helper";
+import UserProfile from "./UserProfile";
+
 
 
 type NavbarType = {
@@ -19,10 +22,13 @@ type NavbarType = {
     isRoomPage?: boolean
     isReviewsPage?: boolean
     toggle: () => void
+    closeModal?: () => void
+    currentProfile? : IUser | null
 }
-const Navbar:FC<NavbarType> = ({isOutsidePage, toggle, isRoomPage, isReviewsPage}) => {
+const Navbar:FC<NavbarType> = memo(({isOutsidePage, toggle, isRoomPage, isReviewsPage, currentProfile}) => {
     const [scrollNav, setScrollNav] = useState(false)
-    const {activateScrolling} = useActions()
+    const {activateScrolling, checkAuth} = useActions()
+
 
     const changeNav = () => {
         if(window.scrollY >= 80) {
@@ -31,6 +37,9 @@ const Navbar:FC<NavbarType> = ({isOutsidePage, toggle, isRoomPage, isReviewsPage
     }
 
     useEffect(() => {
+        if(!currentProfile && getAccessToken()) {
+            checkAuth()
+        }
         if(!isOutsidePage) window.addEventListener('scroll', changeNav)
 
         return () => {
@@ -48,10 +57,16 @@ const Navbar:FC<NavbarType> = ({isOutsidePage, toggle, isRoomPage, isReviewsPage
            <Nav scrollNav={!isOutsidePage ? scrollNav : true}>
                <NavbarContainer>
                    {isOutsidePage
-                       ? <NavLinkNextLogo href='/'>
-                           <LogoH1>УКузьмича</LogoH1>
-                        </NavLinkNextLogo>
-                       : <NavLogo
+                       ? (!currentProfile
+                           ?
+                           <NavLinkNextLogo href='/'>
+                               <LogoH1>УКузьмича</LogoH1>
+                           </NavLinkNextLogo>
+                           :
+                           <UserProfile name={currentProfile.username}/>)
+                       : (!currentProfile
+                           ?
+                           <NavLogo
                             to='main'
                             smooth={true}
                             duration={500}
@@ -60,13 +75,13 @@ const Navbar:FC<NavbarType> = ({isOutsidePage, toggle, isRoomPage, isReviewsPage
                             offset={-80}
                         >
                            <LogoH1>УКузьмича</LogoH1>
-                        </NavLogo>}
-
+                        </NavLogo>
+                           :
+                           <UserProfile name={currentProfile.username}/>)}
 
                    <MobileIcon onClick={toggle}>
                         <FaBars/>
                    </MobileIcon>
-
 
                    {isOutsidePage
                        ? <NavMenu>
@@ -150,5 +165,5 @@ const Navbar:FC<NavbarType> = ({isOutsidePage, toggle, isRoomPage, isReviewsPage
            </Nav>
         </>
     );
-};
+})
 export default Navbar;
