@@ -23,7 +23,7 @@ import ReviewsBlock from "./ReviewsBlock";
 import CustomForm from "../../utility/customForm";
 import {CloseIcon, Icon } from "../Sidebar/SidebarStyles";
 import {IUser} from "../../services/auth.service";
-import {LOGO_NAME} from "../../utility/constants";
+import {LOGO_NAME, REVIEW_HISTORY} from "../../utility/constants";
 gsap.registerPlugin(ScrollTrigger);
 
 export type ReviewDataType = Pick<ReviewType, 'name' | 'rating' | 'text' | 'updatedAt'>;
@@ -97,7 +97,7 @@ const ReviewsPage:FC<{
                         Наша история
                     </TextBlockHeader>
                     <p>
-                        Наше кафе на набережной города Иваново в историческом месте открылось 25 лет назад. За это время мы стали любимым местом для многих гостей. Мы гордимся нашей историей и традициями, которые передаются из поколения в поколение. Мы всегда рады удивить вас новыми блюдами и оставить незабываемые впечатления. Спасибо, что выбираете нас и делаете нас частью вашей жизни!
+                        {REVIEW_HISTORY}
                     </p>
                         <ButtonRoute
                             href='/rooms'
