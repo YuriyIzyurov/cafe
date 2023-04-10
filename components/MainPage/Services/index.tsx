@@ -21,6 +21,7 @@ import { animation } from "../../../utility/parallax";
 import {gsap} from "gsap";
 import { useOutside } from '../../../hooks/useOutside';
 import AnimatedLink from "../../../components/AnimatedLink";
+import {SERVICE_1_LINK, SERVICE_1_TEXT, SERVICE_1_TITLE, SERVICE_2_TEXT, SERVICE_2_TITLE, SERVICE_3_TEXT, SERVICE_3_TITLE} from '../../../utility/constants';
 
 
 
@@ -102,23 +103,20 @@ const Services = ({timeline, sectionRef}) => {
 
 
     const serviceContent = [{
-        title: 'Банкеты на день рождения',
-        text: 'В нашем кафе вы можете заказать банкет по любому важному для вас поводу.' +
-            'Мы так же организуем Свадебные обеды и поминальные трапезы.' ,
+        title: SERVICE_1_TITLE,
+        text: SERVICE_1_TEXT ,
         img: banket,
-        link: 'tel:28‑55-07',
+        link: SERVICE_1_LINK,
         buttonText: 'Позвонить',
     },{
-        title: 'Проведение корпоративов',
-        text: 'Для проведения корпоративов мы предлагаем банкетные залы,' +
-            'которые вмещают до 40 и 25 человек и позволяют провести мероприятия любого формата' ,
+        title: SERVICE_2_TITLE,
+        text: SERVICE_2_TEXT ,
         img: candles,
         link: '/rooms',
         buttonText: 'Фото залов',
     },{
-        title: 'Приготовление заказных блюд',
-        text: 'Банкетное меню составляется персонально под каждого гостя и включает' +
-            ' также и блюда, не входящие в основное меню.' ,
+        title: SERVICE_3_TITLE,
+        text: SERVICE_3_TEXT,
         img: waiter,
         link: '/menu',
         buttonText: 'Меню',

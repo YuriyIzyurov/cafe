@@ -37,11 +37,11 @@ import tomatos from '../../public/images/tomatos-resized.png'
 import { DishSpecification,DrinksSpecification } from "../../utility/types";
 import { MenuCardWrap } from "./MenuCard/MenuCardStyles";
 import {gsap} from "gsap";
-import favicon from "public/images/favicon.ico";
 import { TextBlockHeader, TextBlockP } from "../ReviewsPage/ReviewsPageStyles";
 import logo from "public/images/logoSpoon.png";
 import {IUser} from "../../services/auth.service";
 import {Button, ButtonRoute} from "../../components/ButtonElement";
+import {LOGO_NAME} from "../../utility/constants";
 
 
 
@@ -204,7 +204,7 @@ const MenuPage:FC<PropsType> = ({dishes, drinks, closeSidebar, currentProfile}) 
                 <AdditionalMenu/>
                 <MenuFooter>
                     <TextBlockHeader>
-                        УКузьмича
+                        {LOGO_NAME}
                     </TextBlockHeader>
                     <TextBlockP light>
                         Просто | Вкусно | По-домашнему

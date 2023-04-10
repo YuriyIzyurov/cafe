@@ -20,6 +20,7 @@ import {isMobileDevice, useWindowHeight} from "../../../utility/deviceChecker";
 import {gsap} from "gsap";
 import { OffsetBottom } from "../InfoSection/InfoSectionStyles";
 import AnimatedLink from "../../AnimatedLink";
+import { HISTORY_TEXT } from "../../../utility/constants";
 
 
 
@@ -58,10 +59,7 @@ const HistorySection = ({timeline,sectionRef}) => {
                         <HistoryH2>Погрузись</HistoryH2>
                         <HistoryH1>В нашу историю</HistoryH1>
                         <HistoryP>
-                            Добро пожаловать в наше кафе на
-                            набережной города Иваново.
-                            Мы рады предложить вам настоящее кулинарное путешествие
-                            и неповторимую атмосферу в историческом месте.
+                            {HISTORY_TEXT}
                         </HistoryP>
                         <AnimatedLink
                             route={'/reviews'}

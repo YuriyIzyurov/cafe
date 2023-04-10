@@ -16,8 +16,9 @@ import {ArrowForward, ArrowRight, HeroBtnWrapper} from "../HeroSection/HeroSecti
 import {Button, ButtonRoute} from "../../ButtonElement";
 import {LogoH1, NavLogo} from "../../Navbar/NavStyles";
 import MainButton from "../../../components/MainButton";
-import footerBG from "public/images/footer2.jpg";
+import footerBG from "public/images/photo_bg/footer2.jpg";
 import Image from "next/image";
+import {FOOTER_ADDRESS, INSTAGRAM_HREF, LOGO_NAME, VIBER_HREF, WHATSAPP_HREF} from '../../../utility/constants';
 
 
 const Footer = ({id,sectionRef}) => {
@@ -43,26 +44,24 @@ const Footer = ({id,sectionRef}) => {
                         <FooterLinkItems marginRight>
                             <FooterLinkTitle>Где мы находимся</FooterLinkTitle>
                             <FooterP>
-                                Подгорная ул.7, Иваново
-                                тел. 8-915-828-55-07
-                                ежедневно, 12:00–0:00
+                                {FOOTER_ADDRESS}
                             </FooterP>
                         </FooterLinkItems>
                         <FooterLinkItems>
                             <FooterLinkTitle>Социальные сети</FooterLinkTitle>
-                            <FooterLink href='https://www.instagram.com/cafe_ykuzmicha/'>
+                            <FooterLink href={INSTAGRAM_HREF}>
                                 <InstagramIcon/><span>Инстаграм</span>
                             </FooterLink>
-                            <FooterLink href='https://wa.me/79158285507'>
+                            <FooterLink href={WHATSAPP_HREF}>
                                <WhatsAppIcon/><span>Написать в WhatsApp</span>
                             </FooterLink>
-                            <FooterLink title="Должен быть установлен Viber для ПК" href="viber://chat?number=%2B79158285507">
+                            <FooterLink title="Должен быть установлен Viber для ПК" href={VIBER_HREF}>
                                 <ViberIcon/><span>Написать в Viber</span>
                             </FooterLink>
                         </FooterLinkItems>
                     </FooterLinksWrapper>
                     <NavLogo to='main' >
-                        <LogoH1>УКузьмича</LogoH1>
+                        <LogoH1>{LOGO_NAME}</LogoH1>
                     </NavLogo>
                 </FooterLinksContainer>
             </FooterWrap>

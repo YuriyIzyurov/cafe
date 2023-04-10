@@ -14,6 +14,7 @@ import { useActions } from "../../hooks/useActions";
 import { IUser } from "../../services/auth.service";
 import {getAccessToken} from "../../utility/auth.helper";
 import UserProfile from "./UserProfile";
+import {LOGO_NAME} from "../../utility/constants";
 
 
 
@@ -60,7 +61,7 @@ const Navbar:FC<NavbarType> = memo(({isOutsidePage, toggle, isRoomPage, isReview
                        ? (!currentProfile
                            ?
                            <NavLinkNextLogo href='/'>
-                               <LogoH1>УКузьмича</LogoH1>
+                               <LogoH1>{LOGO_NAME}</LogoH1>
                            </NavLinkNextLogo>
                            :
                            <UserProfile name={currentProfile.username}/>)
@@ -74,7 +75,7 @@ const Navbar:FC<NavbarType> = memo(({isOutsidePage, toggle, isRoomPage, isReview
                             exact='true'
                             offset={-80}
                         >
-                           <LogoH1>УКузьмича</LogoH1>
+                           <LogoH1>{LOGO_NAME}</LogoH1>
                         </NavLogo>
                            :
                            <UserProfile name={currentProfile.username}/>)}

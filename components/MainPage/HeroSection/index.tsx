@@ -12,8 +12,9 @@ import {
     HeroH1,
     HeroP,
 } from "./HeroSectionStyles";
-import mainImg from "public/images/main2.jpg";
+import mainImg from "public/images/photo_bg/main2.jpg";
 import MainButton from "../../MainButton";
+import {MAIN_PAGE_TEXT} from "../../../utility/constants";
 
 
 const HeroSection = ({sectionRef}) => {
@@ -26,9 +27,7 @@ const HeroSection = ({sectionRef}) => {
             <HeroContent>
                 <HeroH1>Идеальное место для семейного отдыха</HeroH1>
                 <HeroP>
-                    Кафе "У Кузьмича" - идеальное решение для спокойного
-                    семейного отдыха, встреч с друзьями, коллегами,близкими
-                    людьми или просто для комфортного времяпрепровождения за чашечкой кофе.
+                    {MAIN_PAGE_TEXT}
                 </HeroP>
                 <HeroBtnWrapper>
                     <MainButton/>

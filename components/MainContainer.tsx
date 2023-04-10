@@ -1,4 +1,5 @@
 import Head from "next/head";
+import {META_DESCRIPTION, META_KEYWORDS, META_TITLE} from "../utility/constants";
 
 const MainContainer = ({children, keywords = ''}) => {
     return (
@@ -6,12 +7,12 @@ const MainContainer = ({children, keywords = ''}) => {
             <Head>
                 <meta charSet="utf-8"/>
                 <meta name="viewport" content="width=device-width, shrink-to-fit=yes"/>
-                <meta name="description" content="Кафе У Кузьмича официальный сайт"/>
-                <meta name="keywords" content={'кафе, иваново, у кузьмича, ' + keywords}/>
-                <title>Кафе "У Кузьмича"</title>
+                <meta name="description" content={META_DESCRIPTION}/>
+                <meta name="keywords" content={META_KEYWORDS + keywords}/>
+                <title>{META_TITLE}</title>
                 <link rel="preconnect" href="https://fonts.googleapis.com"/>
                 <link rel="preconnect" href="https://fonts.gstatic.com" />
-                <link rel="shortcut icon" href="images/favicon.ico" />
+                <link rel="shortcut icon" href="public/images/logos/favicon.ico" />
             </Head>
             <main>
               {children}

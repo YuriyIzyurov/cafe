@@ -1,7 +1,7 @@
 import photo1 from "public/images/reviews/photo1.jpg";
 import photo2 from "public/images/reviews/photo2.jpg";
 import photo3 from "public/images/reviews/photo3.jpg";
-import favicon from "public/images/favicon.ico";
+import favicon from "public/images/logos/favicon.ico";
 import Image from "next/image";
 import React, {FC, memo, useEffect, useRef, useState} from "react";
 import { gsap } from "gsap";
@@ -23,6 +23,7 @@ import ReviewsBlock from "./ReviewsBlock";
 import CustomForm from "../../utility/customForm";
 import {CloseIcon, Icon } from "../Sidebar/SidebarStyles";
 import {IUser} from "../../services/auth.service";
+import {LOGO_NAME} from "../../utility/constants";
 gsap.registerPlugin(ScrollTrigger);
 
 export type ReviewDataType = Pick<ReviewType, 'name' | 'rating' | 'text' | 'updatedAt'>;
@@ -166,7 +167,7 @@ const ReviewsPage:FC<{
                     </ReviewsPageImgWrapper>
                     <TextBlockThird>
                         <TextBlockHeader>
-                            УКузьмича
+                            {LOGO_NAME}
                         </TextBlockHeader>
                         <TextBlockP>
                             Просто | Вкусно | По-домашнему
