@@ -25,7 +25,7 @@ const HeroSection = ({sectionRef}) => {
                 <Image src={mainImg}  alt='main' fill placeholder="blur" style={{objectFit:"cover"}}/>
             </HeroBg>
             <HeroContent>
-                <HeroH1>Идеальное место для семейного отдыха</HeroH1>
+                <HeroH1>Комфортное место для семейного отдыха</HeroH1>
                 <HeroP>
                     {MAIN_PAGE_TEXT}
                 </HeroP>
