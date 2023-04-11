@@ -220,6 +220,8 @@ export const HistoryImgWrap2 = styled.div`
   bottom: -30%;
   left: 17%;
   z-index: -1;
+  width: 300px;
+  height: 147px;
 
      @media screen and (max-width: 768px) {
           left: 5%;

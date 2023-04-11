@@ -45,8 +45,8 @@ const rooms = [
         images: ['/images/rooms/room3-1.jpg','/images/rooms/room3-2.jpg','/images/rooms/room3-3.jpg']
     },
     {
-        name: 'Летняя веранда',
-        text: ['количество посадочных мест ?',
+        name: 'Летняя терраса',
+        text: ['количество посадочных мест 36',
             'уютная летняя атмосфера',
             'свежий воздух и красивые виды :)'],
         images: ['/images/rooms/room4-1.jpg','/images/rooms/room4-2.jpg','/images/rooms/room4-3.jpg','/images/rooms/room4-4.jpg']

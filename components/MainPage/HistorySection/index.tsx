@@ -41,7 +41,6 @@ const HistorySection = ({timeline,sectionRef}) => {
 
 
 
-
     return (
         <HistoryContainer ref={sectionRef} id='history' name='history'>
             <HistoryWrapper>
@@ -50,7 +49,7 @@ const HistorySection = ({timeline,sectionRef}) => {
                         <Image src='/images/smoke.png' width={367} height={341} alt='smoke'/>
                     </HistoryImgWrap>
                     <HistoryImgWrap2 id='tea'>
-                        <Image src='/images/tea-leaves.png' width={200} height={162} alt='leaves'/>
+                        <Image src='/images/tea-leaves.png' fill style={{objectFit:"cover"}} alt='leaves'/>
                     </HistoryImgWrap2>
                     <HistoryImgWrapper>
                         <Image src={history}  alt='history' fill style={{objectFit:"cover"}}/>
