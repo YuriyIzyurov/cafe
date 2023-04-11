@@ -31,6 +31,12 @@ export const Icon = styled.div`
   font-size: 2rem;
   cursor: pointer;
   //outline: none;
+
+  @media screen and (max-width: 768px) {
+    top: .3rem;
+    right: .3rem;
+    font-size: 1.6rem;
+  }
 `
 
 export const SidebarWrapper = styled.div`
