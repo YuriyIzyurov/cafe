@@ -10,7 +10,7 @@ export const RoomsContainer = styled.section`
   max-width: 1100px;
   margin-right: auto;
   margin-left: auto;
-  padding: 80px 24px;
+  padding: 10px 24px;
   
   @media screen and (max-width: 768px) {
     
