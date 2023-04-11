@@ -44,13 +44,13 @@ const rooms = [
             'отдельный гардероб'],
         images: ['/images/rooms/room3-1.jpg','/images/rooms/room3-2.jpg','/images/rooms/room3-3.jpg']
     },
-    /*{
+    {
         name: 'Летняя веранда',
-        text: ['количество посадочных мест 28',
-            'для ежедневного комфортного времяпрепровождения', "для ежедневного комфортного времяпрепровождения",
-            'еще какое-нибудь преимущество0'],
+        text: ['количество посадочных мест ?',
+            'уютная летняя атмосфера',
+            'свежий воздух и красивые виды :)'],
         images: ['/images/rooms/room4-1.jpg','/images/rooms/room4-2.jpg','/images/rooms/room4-3.jpg','/images/rooms/room4-4.jpg']
-    }*/]
+    }]
 
 const handleScreenChange = (isFullScreen:boolean) => {
     if (screen.orientation.lock && isFullScreen) {
