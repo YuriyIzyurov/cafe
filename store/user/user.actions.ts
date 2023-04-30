@@ -15,6 +15,16 @@ export const login = createAsyncThunk<ResponseReturnType, IAuthData>('auth/login
         return thunkApi.rejectWithValue(e)
     }
 })
+export const registration = createAsyncThunk<ResponseReturnType, IAuthData>('auth/register', async (data, thunkApi) => {
+    try {
+        return await AuthService.register(data)
+    } catch (e) {
+        setTimeout(() => {
+            thunkApi.dispatch(userActions.deleteError())
+        }, 3000)
+        return thunkApi.rejectWithValue(e)
+    }
+})
 export const logout = createAsyncThunk('auth/logout', async () => {
     removeTokensStorage()
 })

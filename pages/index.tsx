@@ -3,13 +3,11 @@ import {useGetProductsQuery} from "../store/product/product.api";
 import {useActions} from "../hooks/useActions";
 import {useTypedSelector} from "../hooks/useTypedSelector";
 import Navbar from "../components/Navbar";
-import {RefObject, useEffect, useLayoutEffect, useRef, useState} from "react";
+import {RefObject, useEffect, useRef, useState} from "react";
 import HeroSection from "../components/MainPage/HeroSection";
 import { homeObjOne} from "../components/MainPage/InfoSection/data";
-import {scroller, Events} from 'react-scroll'
 import { useScrollBlock } from "../hooks/useScrollBlock";
 import {gsap} from "gsap";
-import dynamic from 'next/dynamic'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger.js';
 import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin.js';
 import {DynamicFooter, DynamicHistorySection, DynamicInfoSection, DynamicServicesSection, DynamicSidebar } from "../components/dynamicComponents";
@@ -19,16 +17,12 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
 type Direction = 'up' | 'down'
 const Index = () => {
 
-    const { data, isLoading, error} = useGetProductsQuery(6) //получаем данные с сервера
-    const {addItem} = useActions() //используем экшены
     const {user} = useTypedSelector(state => state) //доступ к стейту
 
     //автоскролл после перехода из другой страницы на эту
     const {mainPage} = useTypedSelector(state => state)
     const {deActivateScrolling} = useActions()
 
-    //отслеживание свайпов
-   // const [swipeDirection, touchEndY] = useSwipe()
 
     //блокируем скролл во время анимаций
     const [blockScroll, allowScroll] = useScrollBlock()
@@ -38,10 +32,8 @@ const Index = () => {
     const [masterTL, setMasterTL] = useState(null)
 
 
-
     //ссылки на секции, порядок [main, about, history, services, contacts]
     const refs: RefObject<HTMLElement>[] = Array.from({ length: 5 }).map(() => useRef(null))
-
 
 
     //активация плавного авто скроллера
@@ -52,7 +44,7 @@ const Index = () => {
         let prevScrollPos = window.scrollY
         let startMovePos = null
 
-        const handleScroll = (e) => {
+        const handleScroll = () => {
 
             if (!isScrolling) {
                 const currentScrollPos = window.scrollY
@@ -190,13 +182,6 @@ const Index = () => {
           <Navbar toggle={toggle} currentProfile={user.user}/>
           <div onClick={closeSidebar}>
               <HeroSection sectionRef={refs[0]}/>
-              {/*стандартая подгрузка компонентов*/}
-              {/*  <InfoSection timeline={masterTL} {...homeObjOne}/>
-              <HistorySection timeline={masterTL}/>
-              <Services timeline={masterTL}/>
-              <Footer id='contacts'/>*/}
-
-              {/*//todo:динамическая подгрузка компонентов плохо стыкуется с анимацей, когда быстрый скролл, анимация будто не успевает установиться*/}
               <DynamicInfoSection sectionRef={refs[1]} timeline={masterTL} {...homeObjOne}/>
               <DynamicHistorySection sectionRef={refs[2]} timeline={masterTL}/>
               <DynamicServicesSection sectionRef={refs[3]} timeline={masterTL}/>

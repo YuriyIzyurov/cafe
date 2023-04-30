@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const RoomsContainer = styled.section`
   color: #fff;
-  //background: #fff;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -10,15 +9,11 @@ export const RoomsContainer = styled.section`
   max-width: 1100px;
   margin-right: auto;
   margin-left: auto;
-  padding: 10px 24px;
-  
-  @media screen and (max-width: 768px) {
-    
-  }
+  padding: 80px 10px 24px 10px;
+ 
 `
 export const RoomsSection = styled.section`
   display: flex;
-  justify-content: space-between;
   flex-direction: ${({flexDirection}) => flexDirection && 'row-reverse'};
  
   
@@ -29,8 +24,10 @@ export const RoomsSection = styled.section`
 `
 export const GalleryWrapper =styled.div`
   max-width: 550px;
-
+  
   .image-gallery-thumbnail {
+    transition: none;
+    
     &.active {
       border: 3px solid #9f8e7b;
     }

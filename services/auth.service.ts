@@ -23,6 +23,11 @@ export const AuthService = {
         if(response.accessToken) saveToStorage(response)
         return response
     },
+    async register(data: IAuthData) {
+        const response = await instance.post<ResponseReturnType>('auth/login', data).then(response => response.data)
+        if(response.accessToken) saveToStorage(response)
+        return response
+    },
     async getNewTokens() {
         const refreshToken = Cookies.get('refreshToken')
 

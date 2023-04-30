@@ -17,7 +17,7 @@ const LoginForm:FC<{closeModal: () => void}> = ({closeModal}) => {
     const [error, setError] = useState(null)
     const { register, handleSubmit, watch, setValue, formState: { errors } } = useForm()
 
-    const {login, deleteError, logout} = useActions()
+    const {login, registration, deleteError, logout} = useActions()
     const {user} = useTypedSelector(state => state)
 
 

@@ -6,7 +6,7 @@ import {
 } from '@tanstack/react-query'
 import { ReactQueryDevtools} from "@tanstack/react-query-devtools";
 import {store} from "../store/store";
-import {PTSans, pierre, mons} from "../styles/fonts/fonts";
+import {pierre, mons} from "../styles/fonts/fonts";
 import type { AppProps } from 'next/app'
 import { useState } from 'react';
 

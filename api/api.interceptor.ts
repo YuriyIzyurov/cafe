@@ -4,9 +4,7 @@ import {errorCatch, getContentType} from "./api.helper";
 
 //todo:почему динамическая переменная не работает?
 export const instance = axios.create({
-    baseURL: 'https://jwt-authorization-nest.vercel.app',
-    //baseURL: process.env.SERVER_URL,
-    //baseURL: process.env.NODE_ENV==='development' ? process.env.LOCAL_SERVER_URL : process.env.SERVER_URL,
+    baseURL: process.env.NODE_ENV==='development' ? process.env.LOCAL_SERVER_URL : process.env.SERVER_URL,
     headers: getContentType(),
 })
 

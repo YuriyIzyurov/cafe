@@ -8,6 +8,7 @@ import {useTypedSelector} from "../hooks/useTypedSelector";
 import {MenuService} from "../services/menu.service";
 
 
+
 type PropsType = {
     dishes: DishSpecification[]
     drinks: DrinksSpecification[]
@@ -37,12 +38,15 @@ export default Menu;
 
 export async function getStaticProps(context) {
 
-    const response1 = await fetch('https://jwt-authorization-nest.vercel.app/dishes')
-    const response2 = await fetch('https://jwt-authorization-nest.vercel.app/drinks')
-    const dishes:DishSpecification[] = await response1.json()
-    const drinks:DrinksSpecification[] = await response2.json()
+    try {
+        const dishes:DishSpecification[] = await MenuService.getDishes()
+        const drinks:DrinksSpecification[] = await MenuService.getDrinks()
 
-    return {
-        props: {dishes, drinks}
+        return {
+            props: {dishes, drinks}
+        }
+    } catch(e) {
+        console.log("Невозможно загрузить меню", e)
+        return {notFound: true};
     }
 }

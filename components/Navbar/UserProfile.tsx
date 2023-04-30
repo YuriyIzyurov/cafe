@@ -1,5 +1,5 @@
 import {LogoutIcon, ProfileAvatar, UserProfileWrapper} from "./NavStyles";
-import history from "public/images/history2.jpg";
+import avatar from "public/images/avatar.jpg";
 import Image from "next/image";
 import {IoMdLogOut} from "react-icons/io";
 import {removeTokensStorage} from "../../utility/auth.helper";
@@ -21,7 +21,7 @@ const UserProfile = ({name}:{name:string}) => {
     return (
         <UserProfileWrapper>
             <ProfileAvatar onClick={toggle}>
-                <Image src={history}  alt='history' fill style={{objectFit:"cover"}}/>
+                <Image src={avatar}  alt='avatar' fill style={{objectFit:"cover"}}/>
             </ProfileAvatar>
             {name === 'superadministrator' ? <span>Суперадмин</span> : <span>Администратор</span>}
             <LogoutIcon

@@ -12,12 +12,11 @@ import {
     MenuSectionReversed,
     MenuSideImgWrapper,
     MenuSideImgWrapper2,
-    MenuToggle,
     MenuWrapper,
     ShadowOnMobDevices
 } from "./MenuPageStyles";
 import MenuCard from "./MenuCard";
-import React, {FC, RefObject, useEffect, useRef, useState} from "react";
+import React, {FC, useEffect,} from "react";
 import {activateMenuAnimation} from "../../utility/parallax";
 import { useInView } from 'react-intersection-observer';
 import BarCard from "./BarCard";
@@ -68,8 +67,6 @@ const MenuPage:FC<PropsType> = ({dishes, drinks, closeSidebar, currentProfile}) 
         /* Optional options */
         threshold: .14,
     })
-    const imgRef = useRef(null)
-    const [sectionIsActive, changeSectionActivity] = useState<ToggleStateType>({main: true, drinks: false, additional: false})
 
 
     const section1 = dishes.slice(0,4)
@@ -121,7 +118,8 @@ const MenuPage:FC<PropsType> = ({dishes, drinks, closeSidebar, currentProfile}) 
                         <MenuSectionReversed key={index} id={'section'+index}>
                             <AnimatedSectionCompositionSoup reference={ref} inView={inView}/>
                             {section.map((specification, index2) => {
-                                const isComplexCard = specification.name.includes("Горячие закуски")
+                                let isComplexCard
+                                if(specification.name) isComplexCard = specification.name.includes("Горячие закуски")
                                 return !isComplexCard
                                     ? <MenuCard
                                         key={specification._id}
@@ -151,8 +149,12 @@ const MenuPage:FC<PropsType> = ({dishes, drinks, closeSidebar, currentProfile}) 
                         <MenuSection key={index} id={'section'+index}>
                             <AnimatedSectionCompositionSaladAndPotato index={index}/>
                             {section.map((specification, index2) => {
-                                const saladImg = specification.name.includes("Салаты из мяса")
-                                const potatoImg = specification.name.includes("Гарниры")
+                                let saladImg
+                                if(specification.name)
+                                    specification.name.includes("Салаты из мяса")
+                                let potatoImg
+                                if(specification.name)
+                                    specification.name.includes("Гарниры")
                                 return !(saladImg || potatoImg)
                                     ? <MenuCard
                                         key={specification._id}

@@ -44,21 +44,17 @@ const ReviewsPage:FC<{
     goToLoginForm: () => void,
     currentProfile: IUser | null
 }> = memo(({reviews, closeSidebar, getReviewData, goToLoginForm, currentProfile}) => {
-    const [hover, setHover] = useState(false)
     const [prevEl, setPrevEl] = useState<HTMLElement | null>(null);
     const [nextEl, setNextEl] = useState<HTMLElement | null>(null);
     const [isFormActive, setFormActive] = useState(false)
     const [isBtnDisabled, setBtnDisabled] = useState(false)
 
-    const onHover = () => {
-        setHover(!hover)
-    }
+
     const setActive = () => {
         setFormActive(!isFormActive)
     }
 
     useEffect(() => {
-
         const mm = gsap.matchMedia();
         mm.add(
             {
@@ -101,11 +97,9 @@ const ReviewsPage:FC<{
                     </p>
                         <ButtonRoute
                             href='/rooms'
-                            onMouseEnter={onHover}
-                            onMouseLeave={onHover}
                         >
                             <ReviewButton>
-                                Фото залов {hover ? <ArrowForward/> : <ArrowRight/>}
+                                Фото залов
                             </ReviewButton>
                         </ButtonRoute>
                 </TextBlockFirst>

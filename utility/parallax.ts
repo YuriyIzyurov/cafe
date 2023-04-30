@@ -5,7 +5,6 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
 
 
 
-
 type SectionType = 'main' | 'history' | 'services'
 type Position = {y: number | string, x?: number, rotation?: string | number}
 

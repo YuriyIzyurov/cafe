@@ -6,14 +6,12 @@ import {
     HistoryContent,
     HistoryH1,
     HistoryH2,
-    HistoryImgWrap, HistoryImgWrap2,
     HistoryImgWrap3, HistoryImgWrapper,
-    HistoryLink,
     HistoryP,
     HistoryWrapper
 } from "./HistorySectionStyles";
 import history from '../../../public/images/history2.jpg'
-import {useEffect, useLayoutEffect, useState} from "react";
+import {useEffect} from "react";
 import Image from 'next/image'
 import {animation} from "../../../utility/parallax";
 import {isMobileDevice, useWindowHeight} from "../../../utility/deviceChecker";
@@ -29,7 +27,7 @@ const HistorySection = ({timeline,sectionRef}) => {
 
 
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         let ctx
         if(timeline) ctx = gsap.context(() => {
             const componentTimeline = animation('history')
@@ -45,12 +43,12 @@ const HistorySection = ({timeline,sectionRef}) => {
         <HistoryContainer ref={sectionRef} id='history' name='history'>
             <HistoryWrapper>
                 <HistoryBlock>
-                    <HistoryImgWrap id='smoke'>
+                    {/*<HistoryImgWrap id='smoke'>
                         <Image src='/images/smoke.png' width={367} height={341} alt='smoke'/>
                     </HistoryImgWrap>
                     <HistoryImgWrap2 id='tea'>
                         <Image src='/images/tea-leaves.png' fill style={{objectFit:"cover"}} alt='leaves'/>
-                    </HistoryImgWrap2>
+                    </HistoryImgWrap2>*/}
                     <HistoryImgWrapper>
                         <Image src={history}  alt='history' fill style={{objectFit:"cover"}}/>
                     </HistoryImgWrapper>

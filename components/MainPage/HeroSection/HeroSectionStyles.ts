@@ -97,11 +97,13 @@ export const HeroH1 = styled.h1`
 
 export const HeroP = styled.p`
   margin-top: 24px;
+  border: 1px solid transparent;
+  border-radius: 50%;
   color: #fff;
   font-size: 24px;
   text-align: center;
   max-width: 600px;
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(2px);
   
   
   @media screen and (max-width: 480px),(max-height: 700px) {

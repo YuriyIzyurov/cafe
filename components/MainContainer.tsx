@@ -12,7 +12,7 @@ const MainContainer = ({children, keywords = ''}) => {
                 <title>{META_TITLE}</title>
                 <link rel="preconnect" href="https://fonts.googleapis.com"/>
                 <link rel="preconnect" href="https://fonts.gstatic.com" />
-                <link rel="shortcut icon" href="public/images/logos/favicon.ico" />
+                <link rel="shortcut icon" href="images/logos/favicon.ico" />
             </Head>
             <main>
               {children}

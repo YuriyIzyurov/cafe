@@ -14,6 +14,14 @@ export const MenuService = {
 
         return [...response1, ...response2]
     },
+    async getDishes() {
+        const response = await instance.get<DishSpecification[]>(DISHES).then(response => response.data)
+        return response
+    },
+    async getDrinks() {
+        const response = await instance.get<DrinksSpecification[]>(DRINKS).then(response => response.data)
+        return response
+    },
     async updateMenuPosition(type: string, id: string, data: DishOrDrink) {
         const path = type === 'dish' ? DISHES : DRINKS
         return await instance.put(`${path}/${id}`, data).then(response => response.data)

@@ -2,7 +2,7 @@ import { ReviewsBlockWrapper} from "./ReviewsPageStyles";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore,{ Navigation, A11y, Virtual } from 'swiper';
 import 'swiper/css';
-import React, {FC, useState} from "react";
+import React, {FC, useEffect, useState} from "react";
 import ReviewCard, {CardDivider} from "./ReviewCard";
 import {ReviewDataType, ReviewType} from ".";
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
@@ -22,8 +22,7 @@ type PropsType = {
 }
 
 const ReviewsBlock:FC<PropsType> = ({ prevEl, nextEl, reviews, getReviewData, currentProfile }) => {
-    const [swiper, setSwiperLocal] = useState<SwiperCore | null>(null);
-//{ isLoading, error, data }
+
     const queryClient = useQueryClient()
     const {data} = useQuery(
           ['reviews'],
@@ -44,6 +43,7 @@ const ReviewsBlock:FC<PropsType> = ({ prevEl, nextEl, reviews, getReviewData, cu
     const handleMutate = ({type, id}) => {
         mutate({type, id})
     }
+
 
     return (
         <ReviewsBlockWrapper>
